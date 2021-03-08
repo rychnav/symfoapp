@@ -9,6 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class HomeController
  * @package App\Controller
+ * @Route(
+ *     path="/{_locale}",
+ *     defaults={"_locale"="%default_locale%"},
+ *     requirements={"_locale": "%app_locales%"},
+ * )
  */
 class HomeController extends AbstractController
 {

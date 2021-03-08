@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{%- block title -%}Welcome!{%- endblock title -%}</title>
+        <title>{%- block title -%}{{ "Welcome"|trans }}!{%- endblock title -%}</title>
 
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
