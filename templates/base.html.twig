@@ -6,6 +6,8 @@
 
         <title>{%- block title -%}{{ "Welcome"|trans }}!{%- endblock title -%}</title>
 
+        {{- block('favicons', '/parts/icons/_favicons.html.twig') -}}
+
         {%- block stylesheets -%}
             {{ encore_entry_link_tags('app') }}
         {%- endblock stylesheets -%}

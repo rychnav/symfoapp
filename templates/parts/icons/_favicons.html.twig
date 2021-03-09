@@ -1,0 +1,16 @@
+{%- macro ico_favicons(fav_path) -%}
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset(fav_path ~ 'favicon.ico') }}" />
+{%- endmacro ico_favicons -%}
+
+{%- macro png_favicons(fav_path) -%}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(fav_path ~ 'favicon-16x16.png') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(fav_path ~ 'favicon-32x32.png') }}" />
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ asset(fav_path ~ 'favicon-48x48.png') }}" />
+{%- endmacro png_favicons -%}
+
+{%- block favicons -%}
+    {%- set fav_path = 'build/img/favicons/' -%}
+
+    {{- _self.ico_favicons(fav_path) -}}
+    {{- _self.png_favicons(fav_path) -}}
+{%- endblock favicons -%}

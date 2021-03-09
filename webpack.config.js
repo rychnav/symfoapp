@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 // Manually configure the runtime environment if not already configured yet by the `encore` command.
 // It's useful when you use tools that rely on `webpack.config.js` file.
@@ -69,6 +70,28 @@ Encore
 
     // Uncomment if you're having problems with a jQuery plugin.
     //.autoProvidejQuery()
+
+    /** Plugins */
+
+    // Generate favicons.
+    .addPlugin(new FaviconsWebpackPlugin({
+        logo: './assets/images/logos/symfony_text_teal.svg',
+        mode: 'webapp',
+        devMode: 'webapp',
+        outputPath: 'img/favicons',
+        favicons: {
+            icons: {
+                android: false,
+                appleIcon: false,
+                appleStartup: false,
+                coast: false,
+                favicons: true,
+                firefox: false,
+                windows: false,
+                yandex: false,
+            }
+        }
+    }))
 ;
 
 module.exports = Encore.getWebpackConfig();
