@@ -16,5 +16,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "favicons": "^6.2.1",
+        "favicons-webpack-plugin": "^5.0.2"
     }
 }
