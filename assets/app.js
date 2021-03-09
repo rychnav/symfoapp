@@ -10,3 +10,9 @@ import './styles/app.scss';
 
 // Start the Stimulus application.
 import './bootstrap';
+
+// Import modules
+import Runner from './scripts/Runner.js';
+
+// Start the app
+Runner.run();
