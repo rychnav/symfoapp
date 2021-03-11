@@ -1,3 +1,11 @@
 /** Import Libs */
 
 @import '~@materializecss/materialize/sass/materialize.scss';
+
+/** Import variables */
+
+@import 'components/variables';
+
+/** Import components */
+
+@import 'components/typography';

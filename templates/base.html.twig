@@ -19,6 +19,8 @@
 
     <body>
         {%- block body -%}
+            {%- block top_nav -%}{{- block('top_nav', '/parts/navs/_navbar.html.twig') -}}{%- endblock top_nav -%}
+
             {%- block content -%}{%- endblock content -%}
         {%- endblock body -%}
     </body>
