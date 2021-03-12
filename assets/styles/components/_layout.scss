@@ -1,0 +1,27 @@
+.sym-html {
+    height: 100%;
+}
+
+.sym-body {
+    display: grid;
+    min-height: 100%;
+    min-width: 360px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "n"
+        "c"
+        "f";
+}
+
+.sym-navbar {
+    grid-area: n;
+}
+
+.sym-content {
+    grid-area: c;
+}
+
+.sym-footer {
+    grid-area: f;
+}
