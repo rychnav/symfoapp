@@ -1,0 +1,23 @@
+{%- macro svg_icon(icon) -%}
+    <svg class="{{- icon.class -}}">
+        <use xlink:href="#{{- icon.id -}}"></use>
+    </svg>
+{%- endmacro svg_icon -%}
+
+{%- block svg -%}
+    <svg class="sym-svg-root">
+        {# Material CSS icons. See https://material.io/resources/icons/?style=baseline #}
+
+        {# Home #}
+        <symbol viewBox="0 0 24 24" id="home" preserveAspectRatio="xMidYMid meet">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </symbol>
+
+        {# Menu #}
+        <symbol viewBox="0 0 24 24" id="menu" preserveAspectRatio="xMidYMid meet">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+        </symbol>
+    </svg>
+{%- endblock svg -%}

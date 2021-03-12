@@ -1,7 +1,11 @@
 {%- block top_nav -%}
     <nav class="sym-navbar">
         <div class="nav-wrapper">
+            {{- block('sidenav_trigger', '/parts/navs/_sidenav.html.twig') -}}
+
             <a href="{{ path('home') }}" class="brand-logo">{{ app_name }}</a>
         </div>
     </nav>
+
+    {{- block('sidenav_content', '/parts/navs/_sidenav.html.twig') -}}
 {%- endblock top_nav -%}

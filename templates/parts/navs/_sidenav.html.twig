@@ -1,0 +1,30 @@
+{%- block sidenav_trigger -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <a href="#" data-target="sidenav-content" class="sidenav-trigger show-on-large">
+        {{- svg_icon({'id': 'menu', 'class': 'sym-icon__small__light'}) -}}
+    </a>
+{%- endblock sidenav_trigger -%}
+
+{%- block sidenav_content -%}
+    <ul id="sidenav-content" class="sidenav">
+        <li>
+            {{- _self.sidenav_link(
+                {'route_name': 'home', 'route_params': {}, 'text': app_name},
+                {'id': 'home', 'class': 'sym-icon__small__primary sym-list-icon'}
+            ) -}}
+        </li>
+
+        <li class="divider"></li>
+    </ul>
+{%- endblock sidenav_content -%}
+
+{%- macro sidenav_link(link, icon) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <a href="{{ path(link.route_name, link.route_params) }}" class="waves-effect">
+        {{- svg_icon(icon) -}}
+
+        {{- link.text|trans -}}
+    </a>
+{%- endmacro sidenav_link -%}

@@ -1,0 +1,34 @@
+/** SVG styles */
+
+.sym-svg-root {
+    width: 0;
+    height: 0;
+}
+
+.sym-list-icon {
+    margin-right: $sym-tiny;
+}
+
+%sym-small {
+    width: $sym-small;
+    height: $sym-small;
+}
+
+@mixin sym-svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sym-icon__small__light {
+    @include sym-svg;
+    @extend %sym-small;
+
+    fill: $sym-light-color;
+}
+
+.sym-icon__small__primary {
+    @include sym-svg;
+    @extend %sym-small;
+
+    fill: $sym-primary-color;
+}
