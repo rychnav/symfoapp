@@ -4,8 +4,13 @@
             {{- block('sidenav_trigger', '/parts/navs/_sidenav.html.twig') -}}
 
             <a href="{{ path('home') }}" class="brand-logo">{{ app_name }}</a>
+
+            <ul class="right">
+                <li>{{- block('locale_switcher_trigger', 'parts/dropdowns/_locale-switcher.html.twig') -}}</li>
+            </ul>
         </div>
     </nav>
 
     {{- block('sidenav_content', '/parts/navs/_sidenav.html.twig') -}}
+    {{- block('locale_switcher_content', 'parts/dropdowns/_locale-switcher.html.twig') -}}
 {%- endblock top_nav -%}

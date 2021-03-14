@@ -1,0 +1,28 @@
+{%- block locale_switcher_trigger -%}
+    {% from 'parts/dropdowns/_dropdown.html.twig' import dropdown_trigger %}
+
+    {{- dropdown_trigger(
+        {'target_id': 'locales-dropdown', 'class': 'waves-red'},
+        {'id': 'language', 'class': 'sym-icon__small__light'},
+        {'text': 'Choose language', 'position': 'bottom'}
+    ) -}}
+{%- endblock locale_switcher_trigger -%}
+
+{%- block locale_switcher_content -%}
+    <ul id='locales-dropdown' class='dropdown-content'>
+        {{- _self.locale_item('cs', 'cs'|language_name(app.request.locale)|capitalize) -}}
+        {{- _self.locale_item('en', 'en'|language_name(app.request.locale)|capitalize) -}}
+        {{- _self.locale_item('ru', 'ru'|language_name(app.request.locale)|capitalize) -}}
+    </ul>
+{%- endblock locale_switcher_content -%}
+
+{%- macro locale_item(locale, lang) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <li>
+        <a href="{{ locale_url(locale) }}">
+            {{- svg_icon({'id': locale ~ '_flag', 'class': 'sym-icon__small-tiny sym-list-icon'}) -}}
+            <span>{{ lang }}</span>
+        </a>
+    </li>
+{%- endmacro locale_item -%}

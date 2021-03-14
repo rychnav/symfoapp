@@ -1,0 +1,8 @@
+{%- macro dropdown_trigger(trigger_link, icon, tooltip) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <a href="#" data-target="{{ trigger_link.target_id }}" class="dropdown-trigger tooltipped {{ trigger_link.class }}"
+        data-position="{{ tooltip.position }}" data-tooltip="{{ tooltip.text|trans }}">
+        {{- svg_icon(icon) -}}
+    </a>
+{%- endmacro dropdown_trigger -%}

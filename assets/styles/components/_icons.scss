@@ -19,6 +19,13 @@
     vertical-align: middle;
 }
 
+.sym-icon__small-tiny {
+    @include sym-svg;
+
+    width: $sym-small;
+    height: $sym-tiny;
+}
+
 .sym-icon__small__light {
     @include sym-svg;
     @extend %sym-small;
