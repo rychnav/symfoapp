@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{%- block title %}{{ 'Users'|trans }}{% endblock title -%}
+
+{%- block content -%}
+    {{- block('user_list') -}}
+{%- endblock content -%}
+
+{%- block user_list -%}
+    <div class="sym-table-page">
+        <h1>{{ 'Users'|trans }}</h1>
+
+        <div>
+            <table class="responsive-table highlight">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <span>{{- 'ID'|trans -}}</span>
+                        </th>
+
+                        <th scope="col">
+                            <span>{{- 'Email'|trans -}}</span>
+                        </th>
+
+                        <th scope="col">
+                            <span>{{- 'Roles'|trans -}}</span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%- for user in users -%}
+                        <tr>
+                            <td>
+                                <span>
+                                    {{- user.id -}}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span>
+                                    {{- user.email -}}
+                                </span>
+                            </td>
+
+                            <td>
+                                {%- set checked = 'ROLE_ADMIN' in user.roles ? 'checked' : '' -%}
+
+                                <label for="{{ user.id }}-roles">
+                                    <input id="{{ user.id }}-roles" type="checkbox" {{ checked }} disabled/>
+                                    <span>{{- 'Administrator'|trans -}}</span>
+                                </label>
+                            </td>
+                        </tr>
+                    {%- endfor -%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{%- endblock user_list -%}

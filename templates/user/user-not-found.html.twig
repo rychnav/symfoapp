@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{%- block title %}{{ 'Not Found'|trans }}{% endblock title -%}
+
+{%- block central_banner -%}
+    {% from 'parts/_exceptions.html.twig' import custom_exception_page %}
+
+    {{- custom_exception_page({'icon': icon, 'message': message}) -}}
+{%- endblock central_banner -%}

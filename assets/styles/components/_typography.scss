@@ -1,3 +1,9 @@
 html {
     color: $sym-dark-color;
 }
+
+@media #{$small-and-down} {
+    h1 {
+        text-align: center;
+    }
+}

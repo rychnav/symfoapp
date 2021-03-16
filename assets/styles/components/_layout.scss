@@ -20,6 +20,9 @@
 
 .sym-content {
     grid-area: c;
+
+    display: grid;
+    justify-self: center;
 }
 
 .sym-footer {
@@ -35,4 +38,11 @@
     .sym-central-banner {
         text-align: center;
     }
+}
+
+.sym-table-page {
+    display: grid;
+    grid-template-columns: minmax(300px, 80vw);
+    align-items: center;
+    align-content: space-evenly;
 }

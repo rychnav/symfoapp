@@ -16,6 +16,13 @@
         </li>
 
         <li class="divider"></li>
+
+        <li>
+            {{- _self.sidenav_link(
+                {'route_name': 'user_list', 'route_params': {}, 'text': 'Users'},
+                {'id': 'list', 'class': 'sym-icon__small__primary sym-list-icon'}
+            ) -}}
+        </li>
     </ul>
 {%- endblock sidenav_content -%}
 

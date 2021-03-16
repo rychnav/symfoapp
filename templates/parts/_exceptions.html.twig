@@ -11,3 +11,9 @@
     <h2>😕</h2>
     <h3>{{ params.status_code }}</h3>
 {%- endmacro exception_page -%}
+
+{%- macro custom_exception_page(params) -%}
+    <h1>{{ 'Oops'|trans }}!</h1>
+    <h2>{{- params.message|trans -}}</h2>
+    <h2>{{- params.icon -}}</h2>
+{%- endmacro custom_exception_page -%}
