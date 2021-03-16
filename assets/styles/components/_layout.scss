@@ -25,3 +25,14 @@
 .sym-footer {
     grid-area: f;
 }
+
+.sym-central {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    min-height: 100%;
+
+    .sym-central-banner {
+        text-align: center;
+    }
+}

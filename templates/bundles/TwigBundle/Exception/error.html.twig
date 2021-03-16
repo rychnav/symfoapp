@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{%- block title -%}{{ 'Error'|trans ~ ' ' ~ exception.statusCode }}{%- endblock title -%}
+
+{%- block central_banner -%}
+    {% from 'parts/_exceptions.html.twig' import exception_page %}
+
+    {{- exception_page({'status_text': exception.statusText, 'status_code': exception.statusCode}) -}}
+{%- endblock central_banner -%}

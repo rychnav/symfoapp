@@ -21,7 +21,15 @@
         {%- block body -%}
             {%- block top_nav -%}{{- block('top_nav', '/parts/navs/_navbar.html.twig') -}}{%- endblock top_nav -%}
 
-            <div class="sym-content">{%- block content -%}{%- endblock content -%}</div>
+            <div class="sym-content">
+                {%- block content -%}
+                    <div class="sym-central">
+                        <div class="sym-central-banner">
+                            {%- block central_banner -%}{%- endblock central_banner -%}
+                        </div>
+                    </div>
+                {%- endblock content -%}
+            </div>
 
             {%- block footer -%}{{- block('footer', '/parts/navs/_footer.html.twig') -}}{%- endblock footer -%}
             {%- block svg -%}{{- block('svg', '/parts/icons/_svg.html.twig') -}}{%- endblock svg -%}

@@ -1,0 +1,13 @@
+{%- macro exception_page(params) -%}
+    <h1>{{ 'Oops'|trans }}!</h1>
+    <h2>
+        {%- if params.status_code in [403, 404] -%}
+            {{- params.status_text|trans -}}
+        {%- else -%}
+            {{- 'Something went wrong'|trans -}}
+        {%- endif -%}...
+    </h2>
+
+    <h2>😕</h2>
+    <h3>{{ params.status_code }}</h3>
+{%- endmacro exception_page -%}
