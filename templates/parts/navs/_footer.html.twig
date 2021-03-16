@@ -1,7 +1,21 @@
 {%- block footer -%}
     <footer class="page-footer sym-footer">
+        {%- if app.request.locale not in app.request.preferredLanguage -%}
+            <div>{{- block('preferred_locale_link') -}}</div>
+        {%- endif -%}
+
         <div class="footer-copyright">
             <span>&copy; {{ date()|date('Y') }} {{ "All rights reserved"|trans }}</span>
         </div>
     </footer>
 {%- endblock footer -%}
+
+{%- block preferred_locale_link -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+    {% set tooltipText = "Translate on my language"|trans([], null, app.request.preferredLanguage) %}
+
+    <a href="{{ preferred_locale_url() }}" class="btn-flat right tooltipped"
+        data-position="left" data-tooltip="{{ tooltipText }}">
+        {{- svg_icon({'id': 'translate', 'class': 'sym-icon__small__light'}) -}}
+    </a>
+{%- endblock preferred_locale_link -%}
