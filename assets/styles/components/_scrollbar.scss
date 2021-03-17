@@ -1,0 +1,25 @@
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: $sym-secondary-color;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $sym-secondary-color;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: $sym-secondary-color;
+}
+
+/** For Firefox */
+html,
+body {
+    scrollbar-color: $sym-secondary-color $sym-light-color;
+    scrollbar-width: thin;
+}
