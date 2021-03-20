@@ -1,0 +1,15 @@
+{%- block user_fabs -%}
+    {% import 'parts/navs/_fab-actions.html.twig' as fabs %}
+
+    {{- fabs.create_fab({
+        'allowed_routes': ['user_list'],
+        'route': 'user_create',
+        'tooltip_text': 'Create user'
+    }) -}}
+
+    {{- fabs.back_to_list_fab({
+        'allowed_routes': ['user_create'],
+        'route': 'user_list',
+        'tooltip_text': 'Back to the list'
+    }) -}}
+{%- endblock user_fabs -%}

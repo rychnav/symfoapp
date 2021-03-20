@@ -1,0 +1,15 @@
+%submit-button {
+    // Expand submit buttons to the all form width.
+    width: 100%;
+    height: auto;
+    line-height: initial;
+    padding: .5rem;
+
+    .sym-icon__small__light {
+        margin-left: $sym-tiny;
+    }
+}
+
+button[type="submit"] {
+    @extend %submit-button;
+}

@@ -1,5 +1,6 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    form_themes: ['form_div_layout.html.twig', 'themes/materialize.html.twig']
 
     globals:
         app_name: '%env(APP_NAME)%'

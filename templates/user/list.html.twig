@@ -58,3 +58,9 @@
         </div>
     </div>
 {%- endblock user_list -%}
+
+{%- block fab_actions_button -%}
+    {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}
+
+    {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig'})-}}
+{%- endblock fab_actions_button -%}

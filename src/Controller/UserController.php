@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\DTO\UserData;
 use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class UserController
@@ -39,6 +43,40 @@ class UserController extends AbstractController
 
         return $this->render('user/list.html.twig', [
             'users' => $users,
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     path="/create",
+     *     name="user_create",
+     *     methods={"GET|POST"},
+     * )
+     */
+    public function createUser(
+        Request $request,
+        UserPasswordEncoderInterface $encoder
+    ): Response {
+        $dto = new UserData();
+
+        $form = $this->createForm(UserType::class, $dto, [
+            'action' => $request->getUri(),
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $dto->toEntity($form->getData(), new User(), $encoder);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('user_list');
+        }
+
+        return $this->render('/user/create.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }

@@ -1,16 +1,27 @@
 Administrator: Administrátor
 All rights reserved: Všechna práva vyhrazena
+Back to the list: Zpět na seznam
 Choose language: Zvolte jazyk
+Choose the role: Zvolte roli
+Create user: Vytvořit uživatele
 Email: Email
 Error: Chyba
 Forbidden: Zakázáno
 ID: №
 Nobody's here: Nikdo tu není
 Not Found: Nenalezeno
+Ok: Dobrý
 Oops: Jejda
+Password: Heslo
 Roles: Role
 Something went wrong: Něco se pokazilo
 Symfoapp: Symfoapp
 Translate on my language: Přeložit na češtinu
+User email: Email uživatele
+User password: Heslo uživatele
+User role: Role uživatele
+User: Uživatel
 Users: Uživatelé
 Welcome: Vítejte
+
+error: chyba

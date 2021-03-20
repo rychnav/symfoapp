@@ -1,0 +1,21 @@
+%sym-tag {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 1px 3px;
+    border-radius: 3px;
+}
+
+/** Severities for Symfony Validator constraints rules */
+
+.error-helper {
+    .sym-tag-error {
+        @extend %sym-tag;
+
+        color: $sym-light-color;
+        background-color: $sym-error;
+    }
+
+    .sym-tag-error-message {
+        color: $sym-error;
+    }
+}

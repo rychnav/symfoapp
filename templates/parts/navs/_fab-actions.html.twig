@@ -1,0 +1,45 @@
+{%- macro fab_actions_button(params) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large">
+            {{- svg_icon({'id': 'more-vertical', 'class': 'sym-icon__small__light'}) -}}
+        </a>
+
+        <ul>{{- block(params.block, params.path) -}}</ul>
+    </div>
+{%- endmacro fab_actions_button -%}
+
+{%- macro fab_action_item(params) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <li>
+        <a href="{{ path(params.route|default("#")) }}"
+            class="btn-floating {{ params.btn_color }} darken-2 tooltipped"
+            data-position="left" data-tooltip="{{ params.tooltip_text|trans }}">
+            {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__light'}) -}}
+        </a>
+    </li>
+{%- endmacro fab_action_item -%}
+
+{%- macro create_fab(params) -%}
+    {% if app.request.attributes.get('_route') in params.allowed_routes %}
+        {{- _self.fab_action_item({
+            'route': params.route,
+            'btn_color': 'green',
+            'tooltip_text': params.tooltip_text,
+            'icon_id': 'add'
+        }) -}}
+    {% endif %}
+{%- endmacro create_fab -%}
+
+{%- macro back_to_list_fab(params) -%}
+    {% if app.request.attributes.get('_route') in params.allowed_routes %}
+        {{- _self.fab_action_item({
+            'route': params.route,
+            'btn_color': 'teal',
+            'tooltip_text': params.tooltip_text,
+            'icon_id': 'list'
+        }) -}}
+    {% endif %}
+{%- endmacro back_to_list_fab -%}

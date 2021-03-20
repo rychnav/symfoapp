@@ -1,0 +1,187 @@
+{# See: https://github.com/symfony/symfony/blob/master/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig #}
+
+{# Widgets #}
+
+{%- block form_widget_simple -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    {%- set type = type|default('text') -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' validate')|trim}) -%}
+
+    {%- if type == 'range' or type == 'color' -%}
+        {# Attribute 'required' is not supported #}
+        {%- set required = false -%}
+    {%- endif -%}
+
+    {%- if type == 'email' -%}
+        {{- svg_icon({'id': 'email', 'class': 'prefix sym-icon__small__dark'}) -}}
+    {%- endif -%}
+
+    {%- if type == 'password' -%}
+        {{- svg_icon({'id': 'lock', 'class': 'prefix sym-icon__small__dark'}) -}}
+    {%- endif -%}
+
+    <input type="{{ type }}" {{ block('widget_attributes') }}{% if value is not empty %}value="{{ value }}" {% endif %}>
+{%- endblock form_widget_simple -%}
+
+{# Select #}
+
+{%- block choice_widget_collapsed -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+        {% set required = false %}
+    {%- endif -%}
+
+    {{- svg_icon({'id': 'menu_open', 'class': 'prefix sym-icon__small__dark'}) -}}
+
+    {%- with {label_attr: {class: 'active'}} -%}{{- block('form_label' ) -}}{%- endwith -%}
+
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {%- if placeholder is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {%- endif -%}
+
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {% set render_preferred_choices = true %}
+
+            {{- block('choice_widget_options') -}}
+
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- set options = choices -%}
+        {%- set render_preferred_choices = false -%}
+
+        {{- block('choice_widget_options') -}}
+    </select>
+{%- endblock choice_widget_collapsed -%}
+
+{# Label #}
+
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+
+        {% if value is not empty %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' active')|trim}) %}
+        {% endif %}
+
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+
+        {% if label is empty -%}
+            {%- if label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {%- endif -%}
+
+        <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+
+            {%- set asterisk = required ? '⚹' : '' -%}
+
+            {%- if translation_domain is same as(false) -%}
+                {{- asterisk ~ ' ' ~ label -}}
+            {%- else -%}
+                {{- asterisk ~ ' ' ~ label|trans(label_translation_parameters, translation_domain) -}}
+            {%- endif -%}
+        </{{ element|default('label') }}>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{# Help #}
+
+{%- block form_help -%}
+    {%- if help is not empty -%}
+        {%- set help_attr = help_attr|merge({class: (help_attr.class|default('') ~ ' helper-text left-align')|trim}) -%}
+
+        <span id="{{ id }}_help" {% with { attr: help_attr } %}{{ block('attributes') }}{% endwith %}
+            data-error="{{ "Something went wrong"|trans }}..." data-success="{{ "Ok"|trans }}">
+
+            {%- if translation_domain is same as(false) -%}
+                {%- if help_html is same as(false) -%}
+                    {{- help -}}
+                {%- else -%}
+                    {{- help|raw -}}
+                {%- endif -%}
+            {%- else -%}
+                {%- if help_html is same as(false) -%}
+                    {{- help|trans(help_translation_parameters, translation_domain) -}}
+                {%- else -%}
+                    {{- help|trans(help_translation_parameters, translation_domain)|raw -}}
+                {%- endif -%}
+            {%- endif -%}
+        </span>
+    {%- endif -%}
+{%- endblock form_help %}
+
+{# Errors #}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        {% set err_messages = [] %}
+
+        {%- for error in errors -%}
+            {%- set severity = error.cause.constraint.payload.severity ?? 'error' -%}
+
+            <span class="helper-text {{ severity }}-helper left-align">
+                {%- if error.cause -%}
+                    <span class="sym-tag-{{ severity }}">{{ severity|trans|upper }}</span>
+                    <span class="sym-tag-{{ severity }}-message">{{- error.cause.message -}}</span>
+                    {%- set err_messages = err_messages|merge([error.messageTemplate]) -%}
+                {%- elseif error.messageTemplate in err_messages -%}
+                    <span class="sym-tag-{{ severity }}">{{ severity|trans|upper }}</span>
+                    {{- error.message -}}
+                    {%- set err_messages = err_messages|merge([error.messageTemplate]) -%}
+                {%- endif -%}
+            </span>
+        {%- endfor -%}
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{# Form Row #}
+
+{%- block form_row -%}
+    {%- set widget_attr = {} -%}
+    {%- set inputType = form.vars.block_prefixes[1] -%}
+
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+
+    <div class="row"{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        <div class="input-field col s12">
+            {{- form_widget(form, widget_attr) -}}
+
+            {%- if inputType not in ['choice'] -%}
+                {{- form_label(form) -}}
+            {%- endif -%}
+
+            {% if form.vars.errors is empty %}
+                {{- form_help(form) -}}
+            {% endif %}
+
+            {{- form_errors(form) -}}
+        </div>
+    </div>
+{%- endblock form_row -%}
+
+{# Widget attributes  #}
+
+{%- block widget_attributes -%}
+    id="{{ id }}" name="{{ full_name }}"
+    {%- if disabled %} disabled="disabled"{% endif -%}
+    {%- if required %} required="required"{% endif -%}
+    {{ block('attributes') }}
+{%- endblock widget_attributes -%}

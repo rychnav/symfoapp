@@ -1,0 +1,45 @@
+// Somehow hide autofill highlight in Chrome
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+        filter: grayscale(100%) brightness(110%);
+    }
+}
+
+.input-field {
+    margin: 0;
+    // Need for selects icons.
+    text-align: left;
+
+    .prefix {
+        &.active { fill: $input-focus-color; }
+    }
+
+    .helper-text {
+        margin-bottom: 1px;
+    }
+
+    .select-wrapper {
+        .dropdown-content {
+            width: 100%;
+        }
+    }
+
+    label {
+        // Animation of the label prevents clicking the input.
+        pointer-events: none;
+    }
+
+    // Allows browser validation for selects.
+    // See: https://github.com/Dogfalo/materialize/issues/1861.
+    select[required] {
+        display: block;
+        height: 0;
+        width: 0;
+        padding: 0;
+    }
+}

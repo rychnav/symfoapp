@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{%- block title -%}{{ "Create user"|trans }}{%- endblock title -%}
+
+{%- block page_content -%}
+    {%- set submit_text = 'Create user' -%}
+
+    <h1>{{ "Create user"|trans }}</h1>
+
+    {{- block('user_type', '/user/_form.html.twig') -}}
+{%- endblock page_content -%}
+
+{%- block central_banner -%}
+    {{- block('page_content') -}}
+{%- endblock central_banner -%}
+
+{%- block fab_actions_button -%}
+    {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}
+
+    {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig'}) -}}
+{%- endblock fab_actions_button -%}

@@ -1,0 +1,12 @@
+{%- macro submit_button(params) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <div class="row">
+        <div class="input-field col s12">
+            <button class="btn waves-effect waves-light {{ params.btn_class|default('') }}" type="submit">
+                {{- params.submit_text|trans -}}
+                {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__light' ~ params.icon_class|default('')}) -}}
+            </button>
+        </div>
+    </div>
+{%- endmacro submit_button -%}

@@ -1,16 +1,27 @@
 Administrator: Администратор
 All rights reserved: Все права защищены
+Back to the list: Назад к списку
 Choose language: Выберите язык
+Choose the role: Выберите роль
+Create user: Создать пользователя
 Email: Почта
 Error: Ошибка
 Forbidden: Запрещено
 ID: №
 Nobody's here: Здесь никого нет
 Not Found: Не найдено
+Ok: Ок
 Oops: Упс
+Password: Пароль
 Roles: Роли
 Something went wrong: Что-то не так
 Symfoapp: Symfoapp
 Translate on my language: Перевести на русский
+User email: Почта пользователя
+User password: Пароль пользователя
+User role: Роль пользователя
+User: Пользователь
 Users: Пользователи
 Welcome: Добро пожаловать
+
+error: ошибка

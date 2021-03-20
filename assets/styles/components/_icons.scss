@@ -33,6 +33,13 @@
     fill: $sym-light-color;
 }
 
+.sym-icon__small__dark {
+    @include sym-svg;
+    @extend %sym-small;
+
+    fill: $sym-dark-color;
+}
+
 .sym-icon__small__primary {
     @include sym-svg;
     @extend %sym-small;
