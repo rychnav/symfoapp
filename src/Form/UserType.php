@@ -2,24 +2,14 @@
 
 namespace App\Form;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class UserType extends ModalFormType
 {
-    private $requestStack;
-
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->requestStack = $requestStack;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -60,20 +50,5 @@ class UserType extends AbstractType
                 }
             ))
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $ajaxAttrs = ['data-role' => 'modal-form'];
-        $formAttrs = [];
-
-        $attrs = $this->requestStack->getCurrentRequest()->isXmlHttpRequest()
-            ? array_merge($formAttrs, $ajaxAttrs )
-            : $formAttrs
-        ;
-
-        $resolver->setDefaults([
-            'attr' => $attrs,
-        ]);
     }
 }
