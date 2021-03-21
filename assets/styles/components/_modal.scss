@@ -1,0 +1,19 @@
+.modal {
+    @include sym-material-gradient();
+
+    animation: fadify 1s ease;
+
+    .modal-content {
+        @extend .z-depth-2;
+
+        margin: $sym-tiny;
+        background-color: $sym-light-color;
+
+        h1 {
+            @extend %sym-small-h1;
+
+            margin-bottom: $sym-small;
+            text-align: center;
+        }
+    }
+}

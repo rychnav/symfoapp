@@ -10,6 +10,17 @@ select:-webkit-autofill {
     }
 }
 
+.modal-content input:-webkit-autofill,
+.modal-content textarea:-webkit-autofill,
+.modal-content select:-webkit-autofill {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+        filter: grayscale(100%) brightness(104%);
+    }
+}
+
 .input-field {
     margin: 0;
     // Need for selects icons.

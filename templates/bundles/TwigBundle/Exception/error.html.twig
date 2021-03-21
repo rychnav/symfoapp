@@ -7,3 +7,9 @@
 
     {{- exception_page({'status_text': exception.statusText, 'status_code': exception.statusCode}) -}}
 {%- endblock central_banner -%}
+
+{%- block modal_content -%}
+    {% from 'parts/_exceptions.html.twig' import exception_page %}
+
+    {{- exception_page({'status_text': exception.statusText, 'status_code': exception.statusCode}) -}}
+{%- endblock modal_content -%}

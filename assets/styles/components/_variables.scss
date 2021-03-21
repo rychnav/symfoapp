@@ -12,3 +12,23 @@ $sym-primary-color: $primary-color;
 $sym-secondary-color: $secondary-color;
 
 $sym-error: #e57373;    // red lighten-2
+
+
+/** Gradients */
+
+@mixin sym-material-gradient(
+    $first: $sym-secondary-color,
+    $second: $sym-primary-color,
+    $third: $sym-dark-color
+) {
+    background:
+        linear-gradient(70deg, $first  30%, rgba(0,0,0,0) 30%),
+        linear-gradient(30deg, $second 60%, $third 60%);
+}
+
+/** Animations */
+
+@keyframes fadify {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

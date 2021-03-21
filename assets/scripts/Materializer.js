@@ -15,8 +15,16 @@ let Materializer = (() => {
         M.Dropdown.init(dropdowns, { constrainWidth: false });
     };
 
+    /** Reinitialization for Ajax forms */
+
+    let initSelects = () => {
+        let selects = document.querySelectorAll('select');
+        M.FormSelect.init(selects, {});
+    };
+
     return {
         autoInit: autoInit,
+        initSelects: initSelects,
     }
 })();
 

@@ -2,6 +2,12 @@ html {
     color: $sym-dark-color;
 }
 
+%sym-small-h1 {
+    font-weight: 400;
+    font-size: $h3-fontsize;
+    line-height: 110%;
+}
+
 @media #{$small-and-down} {
     h1 {
         text-align: center;

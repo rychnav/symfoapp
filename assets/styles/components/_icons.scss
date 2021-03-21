@@ -17,6 +17,9 @@
 @mixin sym-svg {
     display: inline-block;
     vertical-align: middle;
+
+    // Required to take Ajax URL from `event.target.href`
+    pointer-events: none;
 }
 
 .sym-icon__small-tiny {

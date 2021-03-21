@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends app.request.isxmlhttprequest ? 'base-ajax.html.twig' : 'base.html.twig' %}
 
 {%- block title -%}{{ "Create user"|trans }}{%- endblock title -%}
 
@@ -13,6 +13,10 @@
 {%- block central_banner -%}
     {{- block('page_content') -}}
 {%- endblock central_banner -%}
+
+{%- block modal_content -%}
+    {{- block('page_content') -}}
+{%- endblock modal_content -%}
 
 {%- block fab_actions_button -%}
     {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}

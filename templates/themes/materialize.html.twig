@@ -63,6 +63,8 @@
 {# Label #}
 
 {%- block form_label -%}
+    {% set id = app.request.isXmlHttpRequest ? id ~ '_ajax' : id ~ '_http' %}
+
     {% if label is not same as(false) -%}
         {% if not compound -%}
             {% set label_attr = label_attr|merge({'for': id}) %}
@@ -180,6 +182,8 @@
 {# Widget attributes  #}
 
 {%- block widget_attributes -%}
+    {% set id = app.request.isXmlHttpRequest ? id ~ '_ajax' : id ~ '_http' %}
+
     id="{{ id }}" name="{{ full_name }}"
     {%- if disabled %} disabled="disabled"{% endif -%}
     {%- if required %} required="required"{% endif -%}

@@ -15,7 +15,8 @@
 
     <li>
         <a href="{{ path(params.route|default("#")) }}"
-            class="btn-floating {{ params.btn_color }} darken-2 tooltipped"
+            class="{% if params.isModalTrigger %}modal-trigger{% endif %} btn-floating {{ params.btn_color }} darken-2 tooltipped"
+            {% if params.isModalTrigger %} data-target="materialize-modal" {% endif %}
             data-position="left" data-tooltip="{{ params.tooltip_text|trans }}">
             {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__light'}) -}}
         </a>
@@ -26,6 +27,7 @@
     {% if app.request.attributes.get('_route') in params.allowed_routes %}
         {{- _self.fab_action_item({
             'route': params.route,
+            'isModalTrigger': true,
             'btn_color': 'green',
             'tooltip_text': params.tooltip_text,
             'icon_id': 'add'
@@ -37,6 +39,7 @@
     {% if app.request.attributes.get('_route') in params.allowed_routes %}
         {{- _self.fab_action_item({
             'route': params.route,
+            'isModalTrigger': false,
             'btn_color': 'teal',
             'tooltip_text': params.tooltip_text,
             'icon_id': 'list'
