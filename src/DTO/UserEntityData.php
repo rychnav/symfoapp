@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @UniqueValue(field="email", class="App\Entity\User", payload={"severity"="error"})
  */
-class UserData extends AbstractData
+class UserEntityData extends AbstractEntityData
 {
     /**
      * @Assert\NotBlank(payload={"severity"="error"})
@@ -39,7 +39,7 @@ class UserData extends AbstractData
         return $this;
     }
 
-    public function toEntity(UserData $data, User $user, UserPasswordEncoderInterface $encoder): User
+    public function toEntity(UserEntityData $data, User $user, UserPasswordEncoderInterface $encoder): User
     {
         $user->setEmail($data->email);
         $user->setRoles($data->roles);

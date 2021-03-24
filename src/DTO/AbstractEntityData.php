@@ -2,7 +2,7 @@
 
 namespace App\DTO;
 
-class AbstractData
+class AbstractEntityData
 {
     /** Need for UniqueValueValidator */
     public $id;

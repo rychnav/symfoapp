@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\DTO\UserData;
+use App\DTO\UserEntityData;
 use App\Entity\User;
 use App\Event\UserCreateSuccess;
 use App\Form\UserType;
@@ -60,7 +60,7 @@ class UserController extends AbstractController
         Request $request,
         UserPasswordEncoderInterface $encoder
     ): Response {
-        $dto = new UserData();
+        $dto = new UserEntityData();
 
         $form = $this->createForm(UserType::class, $dto, [
             'action' => $request->getUri(),
