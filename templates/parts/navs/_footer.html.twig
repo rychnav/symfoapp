@@ -4,6 +4,8 @@
             <div>{{- block('preferred_locale_link') -}}</div>
         {%- endif -%}
 
+        <div>{{- block('flash_viewer_link') -}}</div>
+
         <div class="footer-copyright">
             <span>&copy; {{ date()|date('Y') }} {{ "All rights reserved"|trans }}</span>
         </div>
@@ -19,3 +21,12 @@
         {{- svg_icon({'id': 'translate', 'class': 'sym-icon__small__light'}) -}}
     </a>
 {%- endblock preferred_locale_link -%}
+
+{%- block flash_viewer_link -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <a href='#' data-role="flash-viewer-button" class='btn-flat left tooltipped hide'
+        data-position='right' data-tooltip='{{ "Show Flash messages"|trans }}'>
+        {{- svg_icon({'id': 'visibility', 'class': 'sym-icon__small__light'}) -}}
+    </a>
+{%- endblock flash_viewer_link -%}

@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\DTO\UserData;
 use App\Entity\User;
+use App\Event\UserCreateSuccess;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,6 +56,7 @@ class UserController extends AbstractController
      * )
      */
     public function createUser(
+        EventDispatcherInterface $dispatcher,
         Request $request,
         UserPasswordEncoderInterface $encoder
     ): Response {
@@ -71,6 +74,9 @@ class UserController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+            $event = new UserCreateSuccess($user);
+            $dispatcher->dispatch($event, UserCreateSuccess::NAME);
 
             return $this->redirectToRoute('user_list');
         }

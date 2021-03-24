@@ -1,3 +1,4 @@
+Add more: Добавить еще
 Administrator: Администратор
 All rights reserved: Все права защищены
 Back to the list: Назад к списку
@@ -14,8 +15,10 @@ Ok: Ок
 Oops: Упс
 Password: Пароль
 Roles: Роли
+Show Flash messages: Показать Флеш сообщения
 Something went wrong: Что-то не так
 Symfoapp: Symfoapp
+The new user was created successfully: Пользователь ''{email}'' успешно создан
 Translate on my language: Перевести на русский
 User email: Почта пользователя
 User password: Пароль пользователя

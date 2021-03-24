@@ -1,3 +1,4 @@
+import Flasher from './Flasher.js';
 import Modal from './Modal.js';
 
 let Ajaxer = (() => {
@@ -54,6 +55,9 @@ let Ajaxer = (() => {
         );
 
         successCallback(html);
+
+        // Save flashes to enable them after the AJAX -> HTTP redirect.
+        Flasher.save(Flasher.parseFlashes(html));
 
         return html;
     };

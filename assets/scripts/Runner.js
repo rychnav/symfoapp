@@ -1,3 +1,4 @@
+import Flasher from './Flasher.js';
 import Materializer from './Materializer.js';
 import Modal from './Modal.js';
 
@@ -8,6 +9,8 @@ let Runner = (() => {
         sessionStorage.setItem('referrer', window.location.href);
 
         Materializer.autoInit();
+
+        Flasher.init();
         Modal.init();
     }
 

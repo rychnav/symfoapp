@@ -1,0 +1,29 @@
+{%- block flash_container -%}
+    <div data-role="flash-container" class="hide">
+        {{- block('flash_messages') -}}
+    </div>
+{%- endblock flash_container -%}
+
+{%- block flash_messages -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    {%- for type, messages in app.flashes -%}
+        {%- for message in messages -%}
+            <div data-role="flash-message" class="sym-{{ type }}-message">
+                {{- svg_icon({'id': 'sym-' ~ type, 'class': 'sym-icon__small__light'}) -}}
+
+                <span class="sym-flash-text">
+                    {{- message.text|trans(message.params) -}}
+                </span>
+
+                {%- if message.action -%}
+                    <a href="{{ message.action.url }}" data-target="materialize-modal"
+                        class="waves-effect waves-teal btn-flat toast-action modal-trigger"
+                        data-role="flash-message-action">
+                        {{- message.action.name|trans -}}
+                    </a>
+                {%- endif -%}
+            </div>
+        {%- endfor -%}
+    {%- endfor -%}
+{%- endblock flash_messages -%}
