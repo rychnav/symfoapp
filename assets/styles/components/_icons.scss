@@ -49,3 +49,10 @@
 
     fill: $sym-primary-color;
 }
+
+.sym-icon__small__secondary {
+    @include sym-svg;
+    @extend %sym-small;
+
+    fill: $sym-secondary-color;
+}

@@ -1,3 +1,4 @@
+Actions: Actions
 Add more: Add more
 Administrator: Administrator
 All rights reserved: All rights reserved
@@ -19,7 +20,9 @@ Show Flash messages: Show Flash messages
 Something went wrong: Something went wrong
 Symfoapp: Symfoapp
 The new user was created successfully: The new user ''{email}'' was created successfully
+The user was updated successfully: The user ''{email}'' was updated successfully
 Translate on my language: Translate on English
+Update user: Update user
 User email: User email
 User password: User password
 User role: User role

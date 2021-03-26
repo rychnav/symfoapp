@@ -1,3 +1,4 @@
+Actions: Действия
 Add more: Добавить еще
 Administrator: Администратор
 All rights reserved: Все права защищены
@@ -19,7 +20,9 @@ Show Flash messages: Показать Флеш сообщения
 Something went wrong: Что-то не так
 Symfoapp: Symfoapp
 The new user was created successfully: Пользователь ''{email}'' успешно создан
+The user was updated successfully: Пользователь ''{email}'' успешно обновлен
 Translate on my language: Перевести на русский
+Update user: Обновить пользователя
 User email: Почта пользователя
 User password: Пароль пользователя
 User role: Роль пользователя

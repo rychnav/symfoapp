@@ -7,6 +7,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserType extends ModalFormType
 {
@@ -50,5 +53,27 @@ class UserType extends ModalFormType
                 }
             ))
         ;
+    }
+
+    public function finishView(FormView $view, FormInterface $form, array $options)
+    {
+        if ($form->getData()->id) {
+            $view['password']->vars['required'] = false;
+        }
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setDefault('validation_groups', function (FormInterface $form) {
+            $data = $form->getData();
+
+            if ($data && $data->id !== null) {
+                return ['update'];
+            }
+
+            return ['create'];
+        });
     }
 }

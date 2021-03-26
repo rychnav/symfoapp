@@ -2,13 +2,13 @@
     {% import 'parts/navs/_fab-actions.html.twig' as fabs %}
 
     {{- fabs.create_fab({
-        'allowed_routes': ['user_list'],
+        'allowed_routes': ['user_list', 'user_update'],
         'route': 'user_create',
         'tooltip_text': 'Create user'
     }) -}}
 
     {{- fabs.back_to_list_fab({
-        'allowed_routes': ['user_create'],
+        'allowed_routes': ['user_create', 'user_update'],
         'route': 'user_list',
         'tooltip_text': 'Back to the list'
     }) -}}

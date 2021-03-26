@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\DTO\UserEntityData;
 use App\Entity\User;
 use App\Event\UserCreateSuccess;
+use App\Event\UserUpdateSuccess;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -82,6 +83,46 @@ class UserController extends AbstractController
         }
 
         return $this->render('/user/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     path="/{id}/update",
+     *     name="user_update",
+     *     methods={"GET|POST"},
+     * )
+     */
+    public function updateUser(
+        EventDispatcherInterface $dispatcher,
+        int $id,
+        Request $request,
+        UserPasswordEncoderInterface $encoder
+    ): Response {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        $dto = (new UserEntityData)->fromEntity($user);
+
+        $form = $this->createForm(UserType::class, $dto, [
+            'action' => $request->getUri(),
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Pass the old user into event to get changes after updating.
+            $event = new UserUpdateSuccess($user);
+            $user = $dto->toEntity($form->getData(), $user, $encoder);
+
+            $em->persist($user);
+            $em->flush();
+            $dispatcher->dispatch($event, UserUpdateSuccess::NAME);
+
+            return $this->redirectToRoute('user_list');
+        }
+
+        return $this->render('/user/update.html.twig', [
             'form' => $form->createView(),
         ]);
     }

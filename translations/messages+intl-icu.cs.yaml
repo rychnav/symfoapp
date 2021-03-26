@@ -1,3 +1,4 @@
+Actions: Činy
 Add more: Přidat další
 Administrator: Administrátor
 All rights reserved: Všechna práva vyhrazena
@@ -19,7 +20,9 @@ Show Flash messages: Zobrazit Bleskové zprávy
 Something went wrong: Něco se pokazilo
 Symfoapp: Symfoapp
 The new user was created successfully: Nový uživatel ''{email}'' byl úspěšně vytvořen
+The user was updated successfully: Uživatel ''{email}'' byl úspěšně aktualizován
 Translate on my language: Přeložit na češtinu
+Update user: Aktualizovat uživatele
 User email: Email uživatele
 User password: Heslo uživatele
 User role: Role uživatele

@@ -25,6 +25,10 @@
                         <th scope="col">
                             <span>{{- 'Roles'|trans -}}</span>
                         </th>
+
+                        <th scope="col">
+                            {{- 'Actions'|trans -}}
+                        </th>
                     </tr>
                 </thead>
 
@@ -51,6 +55,15 @@
                                     <span>{{- 'Administrator'|trans -}}</span>
                                 </label>
                             </td>
+
+                            <td>
+                                {{- _self.action_link({
+                                    'route': 'user_update',
+                                    'entity': user,
+                                    'tooltip_text': 'Update user',
+                                    'icon_id': 'update'
+                                }) -}}
+                            </td>
                         </tr>
                     {%- endfor -%}
                 </tbody>
@@ -64,3 +77,13 @@
 
     {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig'})-}}
 {%- endblock fab_actions_button -%}
+
+{%- macro action_link(params) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <a href="{{ path(params.route, {'id': params.entity.id}) }}"
+        class="waves-effect waves-teal btn-flat tooltipped modal-trigger" data-target="materialize-modal"
+        data-position="bottom" data-tooltip="{{ params.tooltip_text|trans }}">
+        {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__secondary'}) -}}
+    </a>
+{%- endmacro action_link -%}
