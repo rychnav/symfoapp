@@ -31,7 +31,12 @@
                 {%- endblock content -%}
             </div>
 
-            {%- block fab_actions_button -%}{%- endblock fab_actions_button -%}
+            {%- block fab_actions_button -%}
+                {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}
+
+                {{- fab_actions_button() -}}
+            {%- endblock fab_actions_button -%}
+
             {%- block footer -%}{{- block('footer', '/parts/navs/_footer.html.twig') -}}{%- endblock footer -%}
             {%- block modal -%}<div id="materialize-modal" class="modal"></div>{%- endblock modal -%}
             {%- block flashes -%}{{- block('flash_container', '/parts/messages/_flashes.html.twig') -}}{%- endblock flashes -%}

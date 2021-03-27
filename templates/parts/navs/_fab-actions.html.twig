@@ -6,7 +6,15 @@
             {{- svg_icon({'id': 'more-vertical', 'class': 'sym-icon__small__light'}) -}}
         </a>
 
-        <ul>{{- block(params.block, params.path) -}}</ul>
+        <ul>
+            {# Page dependent fabs #}
+            {%- if params.block is defined and params.path is defined -%}
+                {{- block(params.block, params.path) -}}
+            {%- endif -%}
+
+            {# Global fabs #}
+            {{- block('translate_fab') -}}
+        </ul>
     </div>
 {%- endmacro fab_actions_button -%}
 
@@ -14,14 +22,34 @@
     {% from 'parts/icons/_svg.html.twig' import svg_icon %}
 
     <li>
-        <a href="{{ path(params.route|default("#")) }}"
-            class="{% if params.isModalTrigger %}modal-trigger{% endif %} btn-floating {{ params.btn_color }} darken-2 tooltipped"
+        {% set url = params.route is defined ? path(params.route) : params.url %}
+
+        {% set tooltip_text = params.tooltip_text|trans(
+            params.trans_params|default({}),
+            params.trans_domain|default('messages'),
+            params.locale|default(app.request.locale)
+        ) %}
+
+        <a href="{{ url }}" class="{% if params.isModalTrigger %}modal-trigger{% endif %} btn-floating {{ params.btn_color }} darken-2 tooltipped"
             {% if params.isModalTrigger %} data-target="materialize-modal" {% endif %}
-            data-position="left" data-tooltip="{{ params.tooltip_text|trans }}">
+            data-position="left" data-tooltip="{{ tooltip_text }}">
             {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__light'}) -}}
         </a>
     </li>
 {%- endmacro fab_action_item -%}
+
+{%- block translate_fab -%}
+    {%- if app.request.locale not in app.request.preferredLanguage -%}
+        {{- _self.fab_action_item({
+            'url': preferred_locale_url(),
+            'locale': app.request.preferredLanguage,
+            'isModalTrigger': false,
+            'btn_color': 'blue',
+            'tooltip_text': "Translate on my language",
+            'icon_id': 'translate'
+        }) -}}
+    {%- endif -%}
+{%- endblock translate_fab -%}
 
 {%- macro create_fab(params) -%}
     {% if app.request.attributes.get('_route') in params.allowed_routes %}
