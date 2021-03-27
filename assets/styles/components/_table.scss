@@ -1,0 +1,104 @@
+/** Vertical table */
+
+@mixin table-vertical {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+
+    td:empty:before {
+        content: '\00a0';
+    }
+
+    th,
+    td {
+        margin: 0;
+        vertical-align: top;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    thead {
+        display: block;
+        float: left;
+
+        tr {
+            display: block;
+            padding: 0 10px 0 0;
+
+            th::before {
+                content: "\00a0";
+            }
+        }
+    }
+
+    tbody {
+        display: block;
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+        white-space: nowrap;
+
+        tr {
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+
+    th {
+        display: block;
+        text-align: right;
+    }
+
+    td {
+        display: block;
+        min-height: 1.25em;
+        text-align: left;
+    }
+
+    tr {
+        border-bottom: none;
+        padding: 0 10px;
+    }
+
+    thead {
+        border: 0;
+        border-right: 1px solid $table-border-color;
+    }
+}
+
+.details-table {
+    @include table-vertical;
+
+    width: fit-content;
+
+    caption {
+        @extend %sym-small-h1;
+
+        margin: 0 0 ($h3-fontsize / 2.5) 0;
+        color: $sym-secondary-color;
+    }
+}
+
+@media #{$medium-and-down} {
+    table.responsive-table {
+        td,
+        th {
+            min-height: 4.25rem;
+        }
+
+        .td-actions {
+            padding: 5px 2px;
+        }
+    }
+
+    table.details-table {
+        td,
+        th {
+            min-height: 3.25rem;
+        }
+    }
+}

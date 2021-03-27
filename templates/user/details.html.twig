@@ -1,0 +1,56 @@
+{% extends app.request.isxmlhttprequest ? 'base-ajax.html.twig' : 'base.html.twig' %}
+
+{%- block title -%}{{ "User details"|trans }}{%- endblock title -%}
+
+{%- block page_content -%}
+    {{- block('user_list') -}}
+{%- endblock page_content -%}
+
+{%- block central_banner -%}
+    {{- block('page_content') -}}
+{%- endblock central_banner -%}
+
+{%- block modal_content -%}
+    {{- block('page_content') -}}
+{%- endblock modal_content -%}
+
+{%- block fab_actions_button -%}
+    {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}
+
+    {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig'}) -}}
+{%- endblock fab_actions_button -%}
+
+{%- block user_list -%}
+    {% from 'user/list.html.twig' import action_link %}
+
+    {% set role = 'ROLE_ADMIN' in user.roles ? 'Administrator' : 'User' %}
+
+    <table class="responsive-table details-table highlight">
+        <caption>{{ user.email }}</caption>
+
+        <thead>
+            <tr>
+                <th scope="col">{{ 'ID'|trans }}</th>
+                <th scope="col">{{ 'Email'|trans }}</th>
+                <th scope="col">{{ 'Roles'|trans }}</th>
+                <th scope="col">{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ role|trans }}</td>
+                <td class="td-actions">
+                    {{- action_link({
+                        'route': 'user_update',
+                        'entity': user,
+                        'tooltip_text': 'Update user',
+                        'icon_id': 'update'
+                    }) -}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{%- endblock user_list -%}

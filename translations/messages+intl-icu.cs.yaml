@@ -16,6 +16,7 @@ Ok: Dobrý
 Oops: Jejda
 Password: Heslo
 Roles: Role
+Show details: Zobrazit podrobnosti
 Show Flash messages: Zobrazit Bleskové zprávy
 Something went wrong: Něco se pokazilo
 Symfoapp: Symfoapp
@@ -23,6 +24,7 @@ The new user was created successfully: Nový uživatel ''{email}'' byl úspěšn
 The user was updated successfully: Uživatel ''{email}'' byl úspěšně aktualizován
 Translate on my language: Přeložit na češtinu
 Update user: Aktualizovat uživatele
+User details: Podrobnosti o uživateli
 User email: Email uživatele
 User password: Heslo uživatele
 User role: Role uživatele

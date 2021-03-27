@@ -65,6 +65,13 @@
                                     'tooltip_text': 'Update user',
                                     'icon_id': 'update'
                                 }) -}}
+
+                                {{- _self.action_link({
+                                    'route': 'user_details',
+                                    'entity': user,
+                                    'tooltip_text': 'Show details',
+                                    'icon_id': 'read_more'
+                                }) -}}
                             </td>
                         </tr>
                     {%- endfor -%}

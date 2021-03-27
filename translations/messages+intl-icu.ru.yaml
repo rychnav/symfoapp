@@ -16,6 +16,7 @@ Ok: Ок
 Oops: Упс
 Password: Пароль
 Roles: Роли
+Show details: Показать подробнее
 Show Flash messages: Показать Флеш сообщения
 Something went wrong: Что-то не так
 Symfoapp: Symfoapp
@@ -23,6 +24,7 @@ The new user was created successfully: Пользователь ''{email}'' ус
 The user was updated successfully: Пользователь ''{email}'' успешно обновлен
 Translate on my language: Перевести на русский
 Update user: Обновить пользователя
+User details: Подробно о пользователе
 User email: Почта пользователя
 User password: Пароль пользователя
 User role: Роль пользователя

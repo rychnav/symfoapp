@@ -143,4 +143,21 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route(
+     *     path="/{id}/details",
+     *     name="user_details",
+     *     methods={"GET"},
+     * )
+     */
+    public function showDetails(int $id): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+
+        return $this->render('/user/details.html.twig', [
+            'user' => $user,
+        ]);
+    }
 }

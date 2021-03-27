@@ -16,6 +16,7 @@ Ok: Ok
 Oops: Oops
 Password: Password
 Roles: Roles
+Show details: Show details
 Show Flash messages: Show Flash messages
 Something went wrong: Something went wrong
 Symfoapp: Symfoapp
@@ -23,6 +24,7 @@ The new user was created successfully: The new user ''{email}'' was created succ
 The user was updated successfully: The user ''{email}'' was updated successfully
 Translate on my language: Translate on English
 Update user: Update user
+User details: User details
 User email: User email
 User password: User password
 User role: User role

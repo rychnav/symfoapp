@@ -63,9 +63,10 @@ class UserSubscriber implements EventSubscriberInterface
         $updatedUser = $event->getUser();
 
         $flashAction = new FlashAction(
-            'Add more',
-            // TODO: Change route to `user_details`.
-            $this->urlGenerator->generate('user_create')
+            'Show details',
+            $this->urlGenerator->generate('user_details', [
+                'id' => $event->getUser()->getId()
+            ])
         );
 
         $flashMessage = new FlashMessage(
