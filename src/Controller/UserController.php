@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Event\UserCreateSuccess;
 use App\Event\UserUpdateSuccess;
 use App\Form\UserType;
+use App\Service\Pager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,17 +26,22 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UserController extends AbstractController
 {
+    private const ITEMS_PER_PAGE = 5;
+
     /**
      * @Route(
-     *     path="/list",
+     *     path="/list/{page<\d+>?1}",
      *     name="user_list",
      *     methods={"GET"},
      * )
      */
-    public function showAll(): Response
-    {
+    public function showAll(
+        Pager $pager,
+        Request $request
+    ): Response {
         $repository = $this->getDoctrine()->getRepository(User::class);
-        $users = $repository->findAll();
+        $query = $repository->createQueryBuilder('u')->getQuery();
+        $users = $pager->paginate($query, $request, self::ITEMS_PER_PAGE);
 
         if(!$users) {
             return $this->render('user/user-not-found.html.twig', [
@@ -44,7 +50,18 @@ class UserController extends AbstractController
             ]);
         }
 
+        $lastPage = $pager->lastPage($users);
+
+        if ($lastPage < $request->attributes->get('page')) {
+            $request->attributes->set('page', $lastPage);
+
+            return $this->redirectToRoute('user_list', [
+                'page' => $lastPage,
+            ]);
+        }
+
         return $this->render('user/list.html.twig', [
+            'lastPage' => $lastPage,
             'users' => $users,
         ]);
     }

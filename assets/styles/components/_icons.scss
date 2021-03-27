@@ -56,3 +56,15 @@
 
     fill: $sym-secondary-color;
 }
+
+.disabled {
+    cursor: default;
+
+    a {
+        pointer-events: none;
+
+        svg {
+            fill: $sym-disabled-color;
+        }
+    }
+}

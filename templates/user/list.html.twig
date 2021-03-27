@@ -4,6 +4,8 @@
 
 {%- block content -%}
     {{- block('user_list') -}}
+
+    {{- block('pagination', '/parts/navs/_pagination.html.twig') -}}
 {%- endblock content -%}
 
 {%- block user_list -%}
