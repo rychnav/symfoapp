@@ -6,10 +6,17 @@ Back to the list: Назад к списку
 Choose language: Выберите язык
 Choose the role: Выберите роль
 Create user: Создать пользователя
+Delete permanently: Удалить навсегда
+Delete user: Удалить пользователя
 Email: Почта
 Error: Ошибка
 Forbidden: Запрещено
 ID: №
+I want to permanently delete an entity: >-
+    {entity, select,
+        user {Я хочу безвозвратно удалить пользователя ''{entity_title}''!}
+        other {Я хочу безвозвратно удалить}
+    }
 Nobody's here: Здесь никого нет
 Not Found: Не найдено
 Ok: Ок
@@ -21,6 +28,7 @@ Show Flash messages: Показать Флеш сообщения
 Something went wrong: Что-то не так
 Symfoapp: Symfoapp
 The new user was created successfully: Пользователь ''{email}'' успешно создан
+The user was deleted successfully: Пользователь ''{email}'' был успешно удален
 The user was updated successfully: Пользователь ''{email}'' успешно обновлен
 Translate on my language: Перевести на русский
 Update user: Обновить пользователя

@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\DTO\UserEntityData;
 use App\Entity\User;
 use App\Event\UserCreateSuccess;
+use App\Event\UserDeleteSuccess;
 use App\Event\UserUpdateSuccess;
+use App\Form\DeleteEntityType;
 use App\Form\UserType;
 use App\Service\Pager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -158,6 +160,45 @@ class UserController extends AbstractController
 
         return $this->render('/user/details.html.twig', [
             'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     path="/{id}/confirm/delete",
+     *     name="user_confirm_delete",
+     *     methods={"GET|POST"},
+     * )
+     */
+    public function delete(
+        EventDispatcherInterface $dispatcher,
+        int $id,
+        Request $request
+    ): Response {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+
+        $form = $this->createForm(DeleteEntityType::class, null, [
+            'action' => $request->getUri(),
+            'entity' => 'user',
+            'entity_title' => $user->getEmail(),
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->remove($user);
+            $em->flush();
+
+            $event = new UserDeleteSuccess($user);
+            $dispatcher->dispatch($event, UserDeleteSuccess::NAME);
+
+            return $this->redirectToRoute('user_list');
+        }
+
+        return $this->render('user/delete.html.twig', [
+            'form' => $form->createView(),
+            'id' => $id
         ]);
     }
 }

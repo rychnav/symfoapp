@@ -40,11 +40,6 @@ select:-webkit-autofill {
         }
     }
 
-    label {
-        // Animation of the label prevents clicking the input.
-        pointer-events: none;
-    }
-
     // Allows browser validation for selects.
     // See: https://github.com/Dogfalo/materialize/issues/1861.
     select[required] {

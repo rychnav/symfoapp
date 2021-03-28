@@ -24,6 +24,29 @@
     <input type="{{ type }}" {{ block('widget_attributes') }}{% if value is not empty %}value="{{ value }}" {% endif %}>
 {%- endblock form_widget_simple -%}
 
+{# Checkbox #}
+
+{%- block checkbox_widget -%}
+    {% set type = type|default('checkbox') %}
+    {% set label_attr = label_attr|merge({'for': app.request.isXmlHttpRequest ? id ~ '_ajax' : id ~ '_http'}) %}
+
+    <p>
+        <{{ element|default('label') }}
+            {%- if label_attr -%}
+                {%- with { attr: label_attr } -%}{{ block('attributes') }}{%- endwith -%}
+            {%- endif -%}
+        >
+            <input type="{{ type }}" {{ block('widget_attributes') }}>
+
+            {%- if translation_domain is same as(false) -%}
+                <span>{{- label -}}</span>
+            {%- else -%}
+                <span>{{- label|trans(label_translation_parameters, translation_domain) -}}</span>
+            {%- endif -%}
+        </{{ element|default('label') }}>
+    </p>
+{%- endblock checkbox_widget -%}
+
 {# Select #}
 
 {%- block choice_widget_collapsed -%}
@@ -163,10 +186,10 @@
     {%- endif -%}
 
     <div class="row"{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
-        <div class="input-field col s12">
+        <div class="input-field col s12 {% if inputType in ['checkbox'] -%} left {%- endif -%}">
             {{- form_widget(form, widget_attr) -}}
 
-            {%- if inputType not in ['choice'] -%}
+            {%- if inputType not in ['checkbox', 'choice'] -%}
                 {{- form_label(form) -}}
             {%- endif -%}
 

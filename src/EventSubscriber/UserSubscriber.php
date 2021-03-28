@@ -5,6 +5,7 @@ namespace App\EventSubscriber;
 use App\DTO\FlashAction;
 use App\DTO\FlashMessage;
 use App\Event\UserCreateSuccess;
+use App\Event\UserDeleteSuccess;
 use App\Event\UserUpdateSuccess;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -32,6 +33,7 @@ class UserSubscriber implements EventSubscriberInterface
         return [
             UserCreateSuccess::NAME => 'onCreateSuccess',
             UserUpdateSuccess::NAME => 'onUpdateSuccess',
+            UserDeleteSuccess::NAME => 'onDeleteSuccess',
         ];
     }
 
@@ -95,6 +97,21 @@ class UserSubscriber implements EventSubscriberInterface
         $this->logger->info('User was updated', [
             'email' => $event->getUser()->getEmail(),
             'old_values' => $res,
+        ]);
+    }
+
+    public function onDeleteSuccess(UserDeleteSuccess $event): void
+    {
+        $flashMessage = new FlashMessage(
+            'success',
+            'The user was deleted successfully',
+            null,
+            ['email' => $event->getUser()->getEmail()]
+        );
+
+        $this->session->getFlashBag()->add($flashMessage->type, $flashMessage);
+        $this->logger->info('User was deleted', [
+            'email' => $event->getUser()->getEmail(),
         ]);
     }
 }

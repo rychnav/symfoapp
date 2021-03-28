@@ -72,6 +72,13 @@
                                     'tooltip_text': 'Show details',
                                     'icon_id': 'read_more'
                                 }) -}}
+
+                                {{- _self.action_link({
+                                    'route': 'user_confirm_delete',
+                                    'entity': user,
+                                    'tooltip_text': 'Delete user',
+                                    'icon_id': 'person_remove'
+                                }) -}}
                             </td>
                         </tr>
                     {%- endfor -%}

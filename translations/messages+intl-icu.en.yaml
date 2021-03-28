@@ -6,10 +6,17 @@ Back to the list: Back to the list
 Choose language: Choose language
 Choose the role: Choose the role
 Create user: Create user
+Delete permanently: Delete permanently
+Delete user: Delete user
 Email: Email
 Error: Error
 Forbidden: Forbidden
 ID: №
+I want to permanently delete an entity: >-
+    {entity, select,
+        user {I want to permanently delete a user with email ''{entity_title}''!}
+        other {I want to permanently delete}
+    }
 Nobody's here: Nobody's here
 Not Found: Not found
 Ok: Ok
@@ -21,6 +28,7 @@ Show Flash messages: Show Flash messages
 Something went wrong: Something went wrong
 Symfoapp: Symfoapp
 The new user was created successfully: The new user ''{email}'' was created successfully
+The user was deleted successfully: The user ''{email}'' was deleted successfully
 The user was updated successfully: The user ''{email}'' was updated successfully
 Translate on my language: Translate on English
 Update user: Update user

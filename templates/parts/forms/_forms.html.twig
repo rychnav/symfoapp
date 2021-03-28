@@ -1,0 +1,11 @@
+{%- macro delete_type(params) -%}
+    {% from 'parts/forms/_controls.html.twig' import submit_button %}
+
+    {{- form_start(params.form) -}}
+        {{- form_row(params.form.delete_permanently) -}}
+
+        {{- submit_button(params) -}}
+
+        {{- form_rest(params.form) -}}
+    {{- form_end(params.form) -}}
+{%- endmacro delete_type -%}

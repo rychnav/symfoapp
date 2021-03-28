@@ -6,9 +6,16 @@ Back to the list: Zpět na seznam
 Choose language: Zvolte jazyk
 Choose the role: Zvolte roli
 Create user: Vytvořit uživatele
+Delete permanently: Odstranit trvale
+Delete user: Odstranit uživatele
 Email: Email
 Error: Chyba
 Forbidden: Zakázáno
+I want to permanently delete an entity: >-
+    {entity, select,
+        user {Chci trvale odstranit uživatele s emailem ''{entity_title}''!}
+        other {Chci trvale odstranit}
+    }
 ID: №
 Nobody's here: Nikdo tu není
 Not Found: Nenalezeno
@@ -21,6 +28,7 @@ Show Flash messages: Zobrazit Bleskové zprávy
 Something went wrong: Něco se pokazilo
 Symfoapp: Symfoapp
 The new user was created successfully: Nový uživatel ''{email}'' byl úspěšně vytvořen
+The user was deleted successfully: Uživatel ''{email}'' byl úspěšně odstraněn
 The user was updated successfully: Uživatel ''{email}'' byl úspěšně aktualizován
 Translate on my language: Přeložit na češtinu
 Update user: Aktualizovat uživatele

@@ -1,0 +1,30 @@
+{% extends app.request.isxmlhttprequest ? 'base-ajax.html.twig' : 'base.html.twig' %}
+
+{%- block title -%}{{ "Delete user"|trans }}{%- endblock title -%}
+
+{%- block page_content -%}
+    {% from 'parts/forms/_forms.html.twig' import delete_type %}
+
+    <h1 class="center-align">{{ "Delete user"|trans }}</h1>
+
+    {{- delete_type({
+        'form': form,
+        'submit_text': 'Delete permanently',
+        'icon_id': 'person_remove',
+        'btn_class': 'sym-danger-bg'
+    }) -}}
+{%- endblock page_content -%}
+
+{%- block central_banner -%}
+    {{- block('page_content') -}}
+{%- endblock central_banner -%}
+
+{%- block modal_content -%}
+    {{- block('page_content') -}}
+{%- endblock modal_content -%}
+
+{%- block fab_actions_button -%}
+    {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}
+
+    {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig'}) -}}
+{%- endblock fab_actions_button -%}
