@@ -39,7 +39,8 @@ let Page = (() => {
          * @returns boolean
          */
         isAjaxEvent: (event) => {
-            return event.target.getAttribute('data-role') === 'sort-link';
+            return event.target.getAttribute('data-role') === 'sort-link'
+                || event.target.getAttribute('data-role') === 'pagination-link';
         },
 
         setEvents: () => {

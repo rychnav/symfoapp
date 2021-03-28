@@ -9,13 +9,13 @@
     {%- if lastPage > 1 -%}
         <ul class="pagination center-align">
             <li class="hide-on-small-only {% if currentIndex == 1 %}disabled{% endif %}">
-                <a href="{{ path(currentRoute, routeParams|merge({ 'page': 1 })) }}">
+                <a data-role="pagination-link" href="{{ path(currentRoute, routeParams|merge({ 'page': 1 })) }}">
                     {{- svg_icon({'id': 'first_page', 'class': 'sym-icon__small__dark'}) -}}
                 </a>
             </li>
 
             <li {% if currentIndex == 1 %}class="disabled"{% endif %}>
-                <a href="{{ path(currentRoute, routeParams|merge({ 'page': currentIndex - 1 })) }}">
+                <a data-role="pagination-link" href="{{ path(currentRoute, routeParams|merge({ 'page': currentIndex - 1 })) }}">
                     {{- svg_icon({'id': 'navigate_before', 'class': 'sym-icon__small__dark'}) -}}
                 </a>
             </li>
@@ -23,7 +23,7 @@
             {%- for index in 1..lastPage -%}
                 {%- if index > currentIndex - range and index < currentIndex + range -%}
                     <li class="waves-effect {% if index == currentIndex %}active{% endif %}">
-                        <a href="{{ path(currentRoute, routeParams|merge({ 'page': index })) }}">
+                        <a data-role="pagination-link" href="{{ path(currentRoute, routeParams|merge({ 'page': index })) }}">
                             {{- index -}}
                         </a>
                     </li>
@@ -31,13 +31,13 @@
             {%- endfor -%}
 
             <li {% if currentIndex == lastPage %}class="disabled"{% endif %}>
-                <a href="{{ path(currentRoute, routeParams|merge({ 'page': currentIndex + 1 })) }}">
+                <a data-role="pagination-link" href="{{ path(currentRoute, routeParams|merge({ 'page': currentIndex + 1 })) }}">
                     {{- svg_icon({'id': 'navigate_next', 'class': 'sym-icon__small__dark'}) -}}
                 </a>
             </li>
 
             <li class="hide-on-small-only {% if currentIndex == lastPage %}disabled{% endif %}">
-                <a href="{{ path(currentRoute, routeParams|merge({ 'page': lastPage })) }}">
+                <a data-role="pagination-link" href="{{ path(currentRoute, routeParams|merge({ 'page': lastPage })) }}">
                     {{- svg_icon({'id': 'last_page', 'class': 'sym-icon__small__dark'}) -}}
                 </a>
             </li>

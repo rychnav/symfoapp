@@ -6,7 +6,7 @@
     - ability to switch between the available locales;
     - 'Translate to your preferred language' link;
     - Ajax forms submitting;
-    - pagination for user list;
+    - Ajax pagination for user list;
     - Ajax sorting;
 - **Changed**
 - **Deprecated**
