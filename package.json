@@ -22,8 +22,10 @@
     },
     "dependencies": {
         "@materializecss/materialize": "^1.0.0",
+        "bazinga-translator": "^4.0.1",
         "favicons": "^6.2.1",
-        "favicons-webpack-plugin": "^5.0.2"
+        "favicons-webpack-plugin": "^5.0.2",
+        "intl-messageformat": "^9.6.3"
     },
     "browserslist": [
         "> .05% or last 2 versions, not ie<=11, not ie_mob<=11"
