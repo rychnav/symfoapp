@@ -22,9 +22,17 @@ let Materializer = (() => {
         M.FormSelect.init(selects, {});
     };
 
+    /** Reinitialization for Ajax pages */
+
+    let initTooltips = () => {
+        let tooltips = document.querySelectorAll('.tooltipped');
+        M.Tooltip.init(tooltips, {});
+    };
+
     return {
         autoInit: autoInit,
         initSelects: initSelects,
+        initTooltips: initTooltips,
     }
 })();
 

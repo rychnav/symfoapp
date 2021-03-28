@@ -7,7 +7,7 @@
     - 'Translate to your preferred language' link;
     - Ajax forms submitting;
     - pagination for user list;
-    - sorting;
+    - Ajax sorting;
 - **Changed**
 - **Deprecated**
 - **Removed**

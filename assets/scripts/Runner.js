@@ -1,6 +1,7 @@
 import Flasher from './Flasher.js';
 import Materializer from './Materializer.js';
 import Modal from './Modal.js';
+import Page from './Page.js';
 
 let Runner = (() => {
 
@@ -12,6 +13,7 @@ let Runner = (() => {
 
         Flasher.init();
         Modal.init();
+        Page.init();
     }
 
     return {

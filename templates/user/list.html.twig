@@ -116,7 +116,7 @@
     {% set sort_params = sort_params(params) %}
     {% set icon_class = sort_params.is_active ? 'sym-icon__small__primary' : 'sym-icon__small__secondary' %}
 
-    <a href="{{ path(params.sort_path, {'sort_property': params.sort_property, 'sort_order': sort_params.order}) }}">
+    <a data-role="sort-link" href="{{ path(params.sort_path, {'sort_property': params.sort_property, 'sort_order': sort_params.order}) }}">
         {{- svg_icon({'id': sort_params.icon_id, 'class': icon_class}) -}}
     </a>
 {%- endmacro sort_link -%}
