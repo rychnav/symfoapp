@@ -70,6 +70,33 @@ class UserController extends AbstractController
 
     /**
      * @Route(
+     *     path="/list/sort/{page<\d+>?1}/{sort_property<id|email|roles>?id}/{sort_order<asc|desc>?asc}",
+     *     name="user_list_sort",
+     *     methods={"GET"},
+     * )
+     */
+    public function sort(
+        Pager $pager,
+        Request $request,
+        string $sort_property,
+        string $sort_order
+    ): Response {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $query = $repository->sort($sort_property, $sort_order);
+
+        $results = $pager->paginate($query, $request, self::ITEMS_PER_PAGE);
+        $lastPage = $pager->lastPage($results);
+
+        return $this->render('user/list.html.twig', [
+            'users' => $results,
+            'lastPage' => $lastPage,
+            'sort_property' => $sort_property,
+            'sort_order' => $sort_order,
+        ]);
+    }
+
+    /**
+     * @Route(
      *     path="/create",
      *     name="user_create",
      *     methods={"GET|POST"},

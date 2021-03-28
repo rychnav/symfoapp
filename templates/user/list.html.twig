@@ -9,6 +9,9 @@
 {%- endblock content -%}
 
 {%- block user_list -%}
+    {% set can_sort = users|length > 1 %}
+    {% set sort_path = 'user_list_sort' %}
+
     <div class="sym-table-page">
         <h1>{{ 'Users'|trans }}</h1>
 
@@ -17,14 +20,17 @@
                 <thead>
                     <tr>
                         <th scope="col">
+                            {%- if can_sort -%}{{- _self.sort_link({'sort_path': sort_path, 'sort_property': 'id'}) -}}{%- endif -%}
                             <span>{{- 'ID'|trans -}}</span>
                         </th>
 
                         <th scope="col">
+                            {%- if can_sort -%}{{- _self.sort_link({'sort_path': sort_path, 'sort_property': 'email'}) -}}{%- endif -%}
                             <span>{{- 'Email'|trans -}}</span>
                         </th>
 
                         <th scope="col">
+                            {%- if can_sort -%}{{- _self.sort_link({'sort_path': sort_path, 'sort_property': 'roles'}) -}}{%- endif -%}
                             <span>{{- 'Roles'|trans -}}</span>
                         </th>
 
@@ -103,3 +109,14 @@
         {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__secondary'}) -}}
     </a>
 {%- endmacro action_link -%}
+
+{%- macro sort_link(params) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    {% set sort_params = sort_params(params) %}
+    {% set icon_class = sort_params.is_active ? 'sym-icon__small__primary' : 'sym-icon__small__secondary' %}
+
+    <a href="{{ path(params.sort_path, {'sort_property': params.sort_property, 'sort_order': sort_params.order}) }}">
+        {{- svg_icon({'id': sort_params.icon_id, 'class': icon_class}) -}}
+    </a>
+{%- endmacro sort_link -%}
