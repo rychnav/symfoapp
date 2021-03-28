@@ -10,6 +10,7 @@ use App\Event\UserUpdateSuccess;
 use App\Form\DeleteEntityType;
 use App\Form\UserType;
 use App\Service\Pager;
+use App\Service\TargetPathResolver;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +40,8 @@ class UserController extends AbstractController
      */
     public function showAll(
         Pager $pager,
-        Request $request
+        Request $request,
+        TargetPathResolver $targetPathResolver
     ): Response {
         $repository = $this->getDoctrine()->getRepository(User::class);
         $query = $repository->createQueryBuilder('u')->getQuery();
@@ -62,6 +64,8 @@ class UserController extends AbstractController
             ]);
         }
 
+        $targetPathResolver->setPath();
+
         return $this->render('user/list.html.twig', [
             'lastPage' => $lastPage,
             'users' => $users,
@@ -79,13 +83,16 @@ class UserController extends AbstractController
         Pager $pager,
         Request $request,
         string $sort_property,
-        string $sort_order
+        string $sort_order,
+        TargetPathResolver $targetPathResolver
     ): Response {
         $repository = $this->getDoctrine()->getRepository(User::class);
         $query = $repository->sort($sort_property, $sort_order);
 
         $results = $pager->paginate($query, $request, self::ITEMS_PER_PAGE);
         $lastPage = $pager->lastPage($results);
+
+        $targetPathResolver->setPath();
 
         return $this->render('user/list.html.twig', [
             'users' => $results,
@@ -144,6 +151,7 @@ class UserController extends AbstractController
         EventDispatcherInterface $dispatcher,
         int $id,
         Request $request,
+        TargetPathResolver $targetPathResolver,
         UserPasswordEncoderInterface $encoder
     ): Response {
         $em = $this->getDoctrine()->getManager();
@@ -165,7 +173,7 @@ class UserController extends AbstractController
             $em->flush();
             $dispatcher->dispatch($event, UserUpdateSuccess::NAME);
 
-            return $this->redirectToRoute('user_list');
+            return $this->redirect($targetPathResolver->getPath());
         }
 
         return $this->render('/user/update.html.twig', [
