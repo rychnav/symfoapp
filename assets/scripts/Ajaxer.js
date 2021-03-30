@@ -48,11 +48,15 @@ let Ajaxer = (() => {
             window.location = response.url;
         }
 
-        window.history.pushState(
-            { route: path },
-            `Ajax Request: ${path}`,
-            path
-        );
+        ['edit'].every((item) => {
+            if (!path.includes(item)) {
+                window.history.pushState(
+                    { route: path },
+                    `Ajax Request: ${path}`,
+                    path
+                );
+            }
+        });
 
         successCallback(html);
 

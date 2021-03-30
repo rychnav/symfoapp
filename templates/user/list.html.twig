@@ -16,7 +16,7 @@
         <h1>{{ 'Users'|trans }}</h1>
 
         <div>
-            <table class="responsive-table highlight">
+            <table data-role="data-table" class="responsive-table highlight">
                 <thead>
                     <tr>
                         <th scope="col">
@@ -44,22 +44,25 @@
                     {%- for user in users -%}
                         <tr>
                             <td>
-                                <span>
+                                <span data-content="id">
                                     {{- user.id -}}
                                 </span>
                             </td>
 
                             <td>
-                                <span>
+                                <span data-field="email" data-type="email" data-old="{{ user.email }}">
                                     {{- user.email -}}
                                 </span>
                             </td>
 
                             <td>
-                                {%- set checked = 'ROLE_ADMIN' in user.roles ? 'checked' : '' -%}
+                                {%- set isAdmin = 'ROLE_ADMIN' in user.roles -%}
+                                {%- set checked = isAdmin ? 'checked' : '' -%}
+                                {%- set dataOld = isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER' -%}
 
                                 <label for="{{ user.id }}-roles">
-                                    <input id="{{ user.id }}-roles" type="checkbox" {{ checked }} disabled/>
+                                    <input id="{{ user.id }}-roles" type="checkbox" {{ checked }} disabled
+                                           data-field="roles" data-old="{{ dataOld }}"/>
                                     <span>{{- 'Administrator'|trans -}}</span>
                                 </label>
                             </td>
@@ -93,6 +96,10 @@
         </div>
     </div>
 {%- endblock user_list -%}
+
+{%- block csrf -%}
+    <input data-role="csrf-input" type="hidden" name="token" value="{{ csrf_token('user_list') }}"/>
+{%- endblock csrf -%}
 
 {%- block fab_actions_button -%}
     {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}

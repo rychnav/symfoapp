@@ -12,4 +12,12 @@
         'route': 'user_list',
         'tooltip_text': 'Back to the list'
     }) -}}
+
+    {{- fabs.enable_editing_fab({
+        'allowed_routes': ['user_list']
+    }) -}}
+
+    {{- fabs.disable_editing_fab({
+        'allowed_routes': ['user_list']
+    }) -}}
 {%- endblock user_fabs -%}

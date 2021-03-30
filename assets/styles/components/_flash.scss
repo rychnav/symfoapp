@@ -6,6 +6,14 @@
 
 /** Themes */
 
+.sym-error-message {
+    background-color: $sym-error;
+}
+
+.sym-info-message {
+    background-color: $sym-info;
+}
+
 .sym-success-message {
     background-color: $sym-success;
 }

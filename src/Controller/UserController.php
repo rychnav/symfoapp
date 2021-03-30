@@ -15,8 +15,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class UserController
@@ -178,6 +181,73 @@ class UserController extends AbstractController
 
         return $this->render('/user/update.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     path="/{id}/edit/{property}",
+     *     name="user_edit",
+     *     methods={"POST"},
+     * )
+     */
+    public function editProperty(
+        int $id,
+        PropertyAccessorInterface $propertyAccessor,
+        Request $request,
+        string $property,
+        TranslatorInterface $translator,
+        ValidatorInterface $validator
+    ): Response {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->find($id);
+        $rawValue = $request->get($property);
+        $value = $property === 'roles' ? [$rawValue] : $rawValue;
+
+        $csrf = $request->request->get('csrf_token');
+        if (!$this->isCsrfTokenValid('user_list', $csrf)) {
+            $message = 'Invalid CSRF token.';
+
+            return $this->json([
+                'value' => $propertyAccessor->getValue($user, $property),
+                'errors' => [$translator->trans($message, [], 'validators')],
+            ]);
+        }
+
+        $constraints = $validator->getMetadataFor(UserEntityData::class)
+            ->getPropertyMetadata($property)[0]
+            ->constraints;
+
+        $errors = $validator->validate(
+            $value,
+            $constraints,
+            ['Default', 'update']
+        );
+
+        if (count($errors) > 0) {
+            $messages = [];
+
+            foreach ($errors as $error) {
+                $messages[] = $error->getMessage();
+            }
+
+            return $this->json([
+                'value' => $propertyAccessor->getValue($user, $property),
+                'errors' => $messages,
+            ]);
+        }
+
+        $propertyAccessor->setValue(
+            $user,
+            $property,
+            $value
+        );
+
+        $em->flush();
+
+        return $this->json([
+            'value' => $value,
+            'property' => $property,
         ]);
     }
 

@@ -31,6 +31,7 @@
         ) %}
 
         <a href="{{ url }}" class="{% if params.isModalTrigger %}modal-trigger{% endif %} btn-floating {{ params.btn_color }} darken-2 tooltipped"
+            {% if params.data_role is defined %} data-role="{{ params.data_role }}"{% endif %}
             {% if params.isModalTrigger %} data-target="materialize-modal" {% endif %}
             data-position="left" data-tooltip="{{ tooltip_text }}">
             {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__light'}) -}}
@@ -74,3 +75,29 @@
         }) -}}
     {% endif %}
 {%- endmacro back_to_list_fab -%}
+
+{%- macro enable_editing_fab(params) -%}
+    {% if app.request.attributes.get('_route') in params.allowed_routes %}
+        {{- _self.fab_action_item({
+            'url': '#',
+            'isModalTrigger': false,
+            'btn_color': 'pink',
+            'tooltip_text': 'Enable editing',
+            'icon_id': 'update',
+            'data_role': 'enable-editing'
+        }) -}}
+    {% endif %}
+{%- endmacro enable_editing_fab -%}
+
+{%- macro disable_editing_fab(params) -%}
+    {% if app.request.attributes.get('_route') in params.allowed_routes %}
+        {{- _self.fab_action_item({
+            'url': '#',
+            'isModalTrigger': false,
+            'btn_color': 'violet hide',
+            'tooltip_text': 'Disable editing',
+            'icon_id': 'update-disabled',
+            'data_role': 'disable-editing'
+        }) -}}
+    {% endif %}
+{%- endmacro disable_editing_fab -%}

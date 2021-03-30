@@ -1,4 +1,5 @@
 import Ajaxer from './Ajaxer.js';
+import EntityEditor from './EntityEditor';
 import Materializer from './Materializer.js';
 
 let Page = (() => {
@@ -22,6 +23,7 @@ let Page = (() => {
             let content = Container.extractFromHtml(html);
 
             Container.elem.replaceWith(content);
+            EntityEditor.setEnableEditAttrs();
             Materializer.initTooltips();
         }
     };

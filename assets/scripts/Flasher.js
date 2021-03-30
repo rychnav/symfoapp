@@ -60,6 +60,22 @@ let Flasher = (() => {
 
             Storage.clear();
         },
+
+        /**
+         * @param {array<string>} messagesText
+         * @param {string} messageType
+         */
+        sendTexts: (messagesText, messageType='error') => {
+            FlashContainer.clear();
+
+            // We should append flashes before the send them because of Flash viewer will not working.
+            messagesText.forEach((text) => {
+                FlashContainer.elem.innerHTML += Message.createFromText(text, messageType);
+            });
+
+            FlashContainer.send();
+            FlashViewer.showButton();
+        },
     };
 
     let Listener = {
@@ -96,6 +112,11 @@ let Flasher = (() => {
                 FlashSender.sendMany(messages);
             }
         },
+
+        clear: () => {
+            FlashContainer.elem.innerHTML = '';
+            FlashViewer.hideButton();
+        },
     };
 
     let Message = {
@@ -112,6 +133,19 @@ let Flasher = (() => {
         getType: (elem) => {
             let className = elem.classList[elem.classList.length - 1];
             return className.match("-(.*)-")[1];
+        },
+
+        /**
+         * Wrap Flash  message in HTML tags.
+         * @param {string} messageText
+         * @param {string} messageType
+         * @returns {string}
+         */
+        createFromText: (messageText, messageType) => {
+            return `<div class="sym-${messageType}-message" data-role="flash-message">
+                <svg class="sym-icon__small__light"><use xlink:href="#sym-${messageType}"></use></svg>
+                <span class="sym-flash-text">${messageText}</span>
+            </div>`;
         },
     };
 
@@ -157,6 +191,10 @@ let Flasher = (() => {
         showButton: () => {
             FlashViewer.elem.classList.remove('hide');
         },
+
+        hideButton: () => {
+            FlashViewer.elem.classList.add('hide');
+        },
     };
 
     let init = () => {
@@ -170,9 +208,11 @@ let Flasher = (() => {
     }
 
     return {
+        clear: FlashContainer.clear,
         init: init,
         parseFlashes: FlashParser.fromHtml,
         save: Storage.save,
+        sendTexts: FlashSender.sendTexts,
     };
 })();
 

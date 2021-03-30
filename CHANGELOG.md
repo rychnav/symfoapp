@@ -8,6 +8,7 @@
     - Ajax forms submitting;
     - Ajax pagination for user list;
     - Ajax sorting;
+    - ability to edit entities directly in the list;
 - **Changed**
 - **Deprecated**
 - **Removed**
