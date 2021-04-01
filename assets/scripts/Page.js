@@ -1,4 +1,5 @@
 import Ajaxer from './Ajaxer.js';
+import Chooser from './Chooser.js';
 import EntityEditor from './EntityEditor';
 import Materializer from './Materializer.js';
 
@@ -24,6 +25,7 @@ let Page = (() => {
 
             Container.elem.replaceWith(content);
             EntityEditor.setEnableEditAttrs();
+            Chooser.init();
             Materializer.initTooltips();
         }
     };
@@ -65,6 +67,7 @@ let Page = (() => {
 
     return {
         init: Listener.setEvents,
+        appendPageContent: Container.appendContent,
     };
 })();
 

@@ -1,10 +1,22 @@
 {%- block user_fabs -%}
     {% import 'parts/navs/_fab-actions.html.twig' as fabs %}
 
+    {{- fabs.delete_many_fab({
+        'allowed_routes': ['user_list']
+    }) -}}
+
     {{- fabs.create_fab({
         'allowed_routes': ['user_list', 'user_update', 'user_details', 'user_confirm_delete'],
         'route': 'user_create',
         'tooltip_text': 'Create user'
+    }) -}}
+
+    {{- fabs.select_many_fab({
+        'allowed_routes': ['user_list']
+    }) -}}
+
+    {{- fabs.unselect_many_fab({
+        'allowed_routes': ['user_list']
     }) -}}
 
     {{- fabs.back_to_list_fab({

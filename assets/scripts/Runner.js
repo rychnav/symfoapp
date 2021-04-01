@@ -1,3 +1,4 @@
+import Chooser from './Chooser.js';
 import EntityEditor from './EntityEditor.js';
 import Flasher from './Flasher.js';
 import Materializer from './Materializer.js';
@@ -12,6 +13,7 @@ let Runner = (() => {
 
         Materializer.autoInit();
 
+        Chooser.init();
         EntityEditor.init();
         Flasher.init();
         Modal.init();

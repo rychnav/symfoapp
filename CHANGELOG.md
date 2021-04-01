@@ -9,6 +9,7 @@
     - Ajax pagination for user list;
     - Ajax sorting;
     - ability to edit entities directly in the list;
+    - ability to delete multiply entities at once;
 - **Changed**
 - **Deprecated**
 - **Removed**

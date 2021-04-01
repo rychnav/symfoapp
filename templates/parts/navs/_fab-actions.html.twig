@@ -101,3 +101,42 @@
         }) -}}
     {% endif %}
 {%- endmacro disable_editing_fab -%}
+
+{%- macro select_many_fab(params) -%}
+    {% if app.request.attributes.get('_route') in params.allowed_routes %}
+        {{- _self.fab_action_item({
+            'url': '#',
+            'isModalTrigger': false,
+            'btn_color': 'orange',
+            'tooltip_text': 'Select many',
+            'icon_id': 'checkbox',
+            'data_role': 'show-chooseboxes'
+        }) -}}
+    {% endif %}
+{%- endmacro select_many_fab -%}
+
+{%- macro unselect_many_fab(params) -%}
+    {% if app.request.attributes.get('_route') in params.allowed_routes %}
+        {{- _self.fab_action_item({
+            'url': '#',
+            'isModalTrigger': false,
+            'btn_color': 'orange hide',
+            'tooltip_text': 'Cancel selection',
+            'icon_id': 'hide_checkboxes',
+            'data_role': 'hide-chooseboxes'
+        }) -}}
+    {% endif %}
+{%- endmacro unselect_many_fab -%}
+
+{%- macro delete_many_fab(params) -%}
+    {% if app.request.attributes.get('_route') in params.allowed_routes %}
+        {{- _self.fab_action_item({
+            'url': '#',
+            'isModalTrigger': false,
+            'btn_color': 'red hide',
+            'tooltip_text': 'Delete many',
+            'icon_id': 'delete_forever',
+            'data_role': 'remove-entities'
+        }) -}}
+    {% endif %}
+{%- endmacro delete_many_fab -%}

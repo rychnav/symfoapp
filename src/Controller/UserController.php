@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\DTO\UserEntityData;
 use App\Entity\User;
+use App\Event\CsrfTokenFail;
 use App\Event\UserCreateSuccess;
 use App\Event\UserDeleteSuccess;
 use App\Event\UserUpdateSuccess;
@@ -305,5 +306,40 @@ class UserController extends AbstractController
             'form' => $form->createView(),
             'id' => $id
         ]);
+    }
+
+    /**
+     * @Route(
+     *     path="/delete/multiply",
+     *     name="user_delete_multiply",
+     *     methods={"POST"},
+     * )
+     */
+    public function deleteMultiply(
+        EventDispatcherInterface $dispatcher,
+        Request $request,
+        TargetPathResolver $targetPathResolver
+    ): Response {
+        $ids = $request->get('ids');
+        $em = $this->getDoctrine()->getManager();
+
+        $csrf = $request->request->get('csrf_token');
+        // TODO: Token ID should be the secret. See: https://symfony.com/doc/current/configuration/secrets.html
+        if (!$this->isCsrfTokenValid('user_list', $csrf)) {
+            $event = new CsrfTokenFail($request);
+            $dispatcher->dispatch($event, CsrfTokenFail::NAME);
+        } else {
+            foreach(json_decode($ids) as $id) {
+                $user = $em->getRepository(User::class)->find($id);
+                $em->remove($user);
+
+                $event = new UserDeleteSuccess($user);
+                $dispatcher->dispatch($event, UserDeleteSuccess::NAME);
+            }
+
+            $em->flush();
+        }
+
+        return $this->redirect($targetPathResolver->getPath());
     }
 }

@@ -48,7 +48,7 @@ let Ajaxer = (() => {
             window.location = response.url;
         }
 
-        ['edit'].every((item) => {
+        ['edit', 'delete/multiply'].every((item) => {
             if (!path.includes(item)) {
                 window.history.pushState(
                     { route: path },

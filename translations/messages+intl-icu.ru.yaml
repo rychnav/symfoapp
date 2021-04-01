@@ -3,9 +3,11 @@ Add more: Добавить еще
 Administrator: Администратор
 All rights reserved: Все права защищены
 Back to the list: Назад к списку
+Cancel selection: Отменить выбор
 Choose language: Выберите язык
 Choose the role: Выберите роль
 Create user: Создать пользователя
+Delete many: Удалить несколько
 Delete permanently: Удалить навсегда
 Delete user: Удалить пользователя
 Disable editing: Запретить редактирование
@@ -25,6 +27,7 @@ Ok: Ок
 Oops: Упс
 Password: Пароль
 Roles: Роли
+Select many: Выберите несколько
 Show details: Показать подробнее
 Show Flash messages: Показать Флеш сообщения
 Something went wrong: Что-то не так
