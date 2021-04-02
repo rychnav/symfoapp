@@ -7,3 +7,9 @@
 
     {{- custom_exception_page({'icon': icon, 'message': message}) -}}
 {%- endblock central_banner -%}
+
+{%- block fab_actions_button -%}
+    {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}
+
+    {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig', 'entities': users}) -}}
+{%- endblock fab_actions_button -%}

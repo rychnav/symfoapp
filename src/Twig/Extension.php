@@ -2,7 +2,9 @@
 
 namespace App\Twig;
 
+use App\Service\IdBag;
 use Locale;
+use ReflectionClass;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
@@ -27,6 +29,7 @@ class Extension extends AbstractExtension
             new TwigFunction('locale_url', [$this, 'getLocaleUrl']),
             new TwigFunction('preferred_locale_url', [$this, 'getPreferredLocaleUrl']),
             new TwigFunction('sort_params', [$this, 'getSortParams']),
+            new TwigFunction('id_bag_session_key', [$this, 'getIdBagSessionKey']),
         ];
     }
 
@@ -74,5 +77,12 @@ class Extension extends AbstractExtension
             'icon_id' => $iconId,
             'is_active' => $isActiveProperty,
         ];
+    }
+
+    public function getIdBagSessionKey(string $entity): string
+    {
+        return (new ReflectionClass(IdBag::class))->getConstant(
+            mb_strtoupper($entity) . '_BAG_KEY'
+        );
     }
 }

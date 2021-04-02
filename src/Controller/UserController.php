@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\DTO\UserEntityData;
+use App\DTO\UserSearchData;
 use App\Entity\User;
 use App\Event\CsrfTokenFail;
 use App\Event\UserCreateSuccess;
 use App\Event\UserDeleteSuccess;
 use App\Event\UserUpdateSuccess;
 use App\Form\DeleteEntityType;
+use App\Form\UserSearchType;
 use App\Form\UserType;
+use App\Service\IdBag;
 use App\Service\Pager;
 use App\Service\TargetPathResolver;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,6 +37,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class UserController extends AbstractController
 {
     private const ITEMS_PER_PAGE = 5;
+    private const USER_BAG_KEY = IdBag::USER_BAG_KEY;
 
     /**
      * @Route(
@@ -43,6 +47,7 @@ class UserController extends AbstractController
      * )
      */
     public function showAll(
+        IdBag $idBag,
         Pager $pager,
         Request $request,
         TargetPathResolver $targetPathResolver
@@ -69,6 +74,7 @@ class UserController extends AbstractController
         }
 
         $targetPathResolver->setPath();
+        $idBag->clear(self::USER_BAG_KEY);
 
         return $this->render('user/list.html.twig', [
             'lastPage' => $lastPage,
@@ -103,6 +109,79 @@ class UserController extends AbstractController
             'lastPage' => $lastPage,
             'sort_property' => $sort_property,
             'sort_order' => $sort_order,
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     path="/search",
+     *     name="user_search_form",
+     *     methods={"GET|POST"},
+     * )
+     */
+    public function searchForm(Request $request): Response
+    {
+        $dto = new UserSearchData();
+
+        $form = $this->createForm(UserSearchType::class, $dto, [
+            'action' => $this->generateUrl('user_search_form'),
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $dto->fromForm($form);
+
+            return $this->redirectToRoute('user_list_search', [
+                'email' => $data->email,
+                'roles' => $data->roles,
+            ]);
+        }
+
+        return $this->render('user/search.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route(
+     *     path="/list/{page<\d+>?1}/search/{email}/{roles}",
+     *     name="user_list_search",
+     *     methods={"GET"},
+     * )
+     */
+    public function search(
+        IdBag $idBag,
+        Pager $pager,
+        Request $request,
+        string $email,
+        string $roles,
+        TargetPathResolver $targetPathResolver
+    ): Response {
+        $targetPathResolver->setPath();
+
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $query = $repository->search($email, $roles);
+
+        $idBag->saveFromQuery($query, self::USER_BAG_KEY);
+
+        $users = $pager->paginate($query, $request, self::ITEMS_PER_PAGE);
+
+        if(!$users->count()) {
+            return $this->render('user/user-not-found.html.twig', [
+                'icon' => '🧐',
+                'message' => "Nobody's here",
+                'users' => null,
+            ]);
+        }
+
+        $lastPage = $pager->lastPage($users);
+
+        return $this->render('user/list.html.twig', [
+            'users' => $users,
+            'lastPage' => $lastPage,
+            'email' => $email,
+            'roles' => $roles,
         ]);
     }
 

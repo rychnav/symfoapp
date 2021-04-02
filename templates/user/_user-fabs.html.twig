@@ -2,7 +2,18 @@
     {% import 'parts/navs/_fab-actions.html.twig' as fabs %}
 
     {{- fabs.delete_many_fab({
-        'allowed_routes': ['user_list']
+        'allowed_routes': ['user_list', 'user_list_search']
+    }) -}}
+
+    {{- fabs.reset_filters_fab({
+        'entity': 'user',
+        'route': 'user_list'
+    }) -}}
+
+    {{- fabs.search_fab({
+        'entity': 'user',
+        'route': 'user_search_form',
+        'tooltip_text': 'Search users'
     }) -}}
 
     {{- fabs.create_fab({
@@ -11,25 +22,29 @@
         'tooltip_text': 'Create user'
     }) -}}
 
-    {{- fabs.select_many_fab({
-        'allowed_routes': ['user_list']
-    }) -}}
+    {%- if params.entities -%}
+        {{- fabs.select_many_fab({
+            'allowed_routes': ['user_list', 'user_list_search']
+        }) -}}
 
-    {{- fabs.unselect_many_fab({
-        'allowed_routes': ['user_list']
-    }) -}}
+        {{- fabs.unselect_many_fab({
+            'allowed_routes': ['user_list', 'user_list_search']
+        }) -}}
+    {%- endif -%}
 
     {{- fabs.back_to_list_fab({
-        'allowed_routes': ['user_create', 'user_update', 'user_details', 'user_confirm_delete'],
+        'allowed_routes': ['user_create', 'user_update', 'user_details', 'user_confirm_delete', 'user_list_search'],
         'route': 'user_list',
         'tooltip_text': 'Back to the list'
     }) -}}
 
-    {{- fabs.enable_editing_fab({
-        'allowed_routes': ['user_list']
-    }) -}}
+    {%- if params.entities -%}
+        {{- fabs.enable_editing_fab({
+            'allowed_routes': ['user_list', 'user_list_search']
+        }) -}}
 
-    {{- fabs.disable_editing_fab({
-        'allowed_routes': ['user_list']
-    }) -}}
+        {{- fabs.disable_editing_fab({
+            'allowed_routes': ['user_list', 'user_list_search']
+        }) -}}
+    {%- endif -%}
 {%- endblock user_fabs -%}

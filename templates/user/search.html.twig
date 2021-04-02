@@ -1,0 +1,25 @@
+{% extends app.request.isxmlhttprequest ? 'base-ajax.html.twig' : 'base.html.twig' %}
+
+{%- block title -%}{{ "Search users"|trans }}{%- endblock title -%}
+
+{%- block page_content -%}
+    {%- set submit_text = 'Search users' -%}
+
+    <h1>{{ "Search users"|trans }}</h1>
+
+    {{- block('search_type', '/user/_form.html.twig') -}}
+{%- endblock page_content -%}
+
+{%- block central_banner -%}
+    {{- block('page_content') -}}
+{%- endblock central_banner -%}
+
+{%- block modal_content -%}
+    {{- block('page_content') -}}
+{%- endblock modal_content -%}
+
+{%- block fab_actions_button -%}
+    {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}
+
+    {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig', 'entities': users}) -}}
+{%- endblock fab_actions_button -%}

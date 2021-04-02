@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Service\IdBag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
@@ -18,17 +20,54 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    private const USER_BAG_KEY = IdBag::USER_BAG_KEY;
+
+    private $idBag;
+
+    public function __construct(ManagerRegistry $registry, IdBag $idBag)
     {
         parent::__construct($registry, User::class);
+
+        $this->idBag = $idBag;
+    }
+
+    private function getFromSession(): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        if ($this->idBag->hasIds(self::USER_BAG_KEY)) {
+            $qb->andWhere('u.id IN (:ids)')
+                ->setParameter('ids', $this->idBag->getAll(self::USER_BAG_KEY));
+        } else {
+            return $this->createQueryBuilder('u');
+        }
+
+        return $qb;
     }
 
     public function sort(string $property, string $order): Query
     {
-        $qb = $this->createQueryBuilder('u');
+        $qb = $this->getFromSession();
 
         return $qb->orderBy("u.$property", $order)
             ->getQuery();
+    }
+
+    public function search(string $email, string $roles): Query
+    {
+        $qb = $this->getFromSession();
+
+        if ($email !== 'null') {
+            $qb->andWhere("u.email LIKE :email_val")
+                ->setParameter('email_val', "%$email%");
+        }
+
+        if ($roles !== 'null') {
+            $qb->andWhere("u.roles LIKE :roles_val")
+                ->setParameter('roles_val', "%$roles%");
+        }
+
+        return $qb->getQuery();
     }
 
     /**

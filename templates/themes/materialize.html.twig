@@ -21,6 +21,10 @@
         {{- svg_icon({'id': 'lock', 'class': 'prefix sym-icon__small__dark'}) -}}
     {%- endif -%}
 
+    {%- if type in ['search', 'text'] -%}
+        {{- svg_icon({'id': 'short_text', 'class': 'prefix sym-icon__small__dark'}) -}}
+    {%- endif -%}
+
     <input type="{{ type }}" {{ block('widget_attributes') }}{% if value is not empty %}value="{{ value }}" {% endif %}>
 {%- endblock form_widget_simple -%}
 

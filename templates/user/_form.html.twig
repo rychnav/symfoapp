@@ -11,3 +11,16 @@
         {{- form_rest(form) -}}
     {{- form_end(form) -}}
 {%- endblock user_type -%}
+
+{%- block search_type -%}
+    {% from 'parts/forms/_controls.html.twig' import submit_button %}
+
+    {{- form_start(form) -}}
+        {{- form_row(form.email) -}}
+        {{- form_row(form.roles) -}}
+
+        {{- submit_button({'icon_id': 'send', 'submit_text': submit_text}) -}}
+
+        {{- form_rest(form) -}}
+    {{- form_end(form) -}}
+{%- endblock search_type -%}

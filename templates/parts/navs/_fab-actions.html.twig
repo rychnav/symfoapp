@@ -140,3 +140,27 @@
         }) -}}
     {% endif %}
 {%- endmacro delete_many_fab -%}
+
+{%- macro search_fab(params) -%}
+    {% if params.entity in app.request.uri %}
+        {{- _self.fab_action_item({
+            'route': params.route,
+            'isModalTrigger': true,
+            'btn_color': 'deep-purple',
+            'tooltip_text': params.tooltip_text,
+            'icon_id': 'search'
+        }) -}}
+    {% endif %}
+{%- endmacro search_fab -%}
+
+{%- macro reset_filters_fab(params) -%}
+    {% if app.request.session.get(id_bag_session_key(params.entity)) is not empty %}
+        {{- _self.fab_action_item({
+            'route': params.route,
+            'isModalTrigger': false,
+            'btn_color': 'purple',
+            'tooltip_text': 'Reset filters',
+            'icon_id': 'search-off'
+        }) -}}
+    {% endif %}
+{%- endmacro reset_filters_fab -%}
