@@ -15,23 +15,29 @@ Email: Email
 Enable editing: Povolit úpravy
 Error: Chyba
 Forbidden: Zakázáno
+Hi! Welcome here!: Ahoj, {username}! Vítejte tady!
 I want to permanently delete an entity: >-
     {entity, select,
         user {Chci trvale odstranit uživatele s emailem ''{entity_title}''!}
         other {Chci trvale odstranit}
     }
 ID: №
+Login: Přihlásit se
+Logout: Odhlásit se
 Nobody's here: Nikdo tu není
 Not Found: Nenalezeno
 Ok: Dobrý
 Oops: Jejda
 Password: Heslo
+Remember me: Zapamatovat mě
 Reset filters: Obnovit filtry
 Roles: Role
 Search users: Vyhledat uživatele
 Select many: Vybrat více
 Show details: Zobrazit podrobnosti
 Show Flash messages: Zobrazit Bleskové zprávy
+Sign in: Přihlásit se
+Sign out: Odhlásit se
 Something went wrong: Něco se pokazilo
 Symfoapp: Symfoapp
 The new user was created successfully: Nový uživatel ''{email}'' byl úspěšně vytvořen
@@ -46,5 +52,7 @@ User role: Role uživatele
 User: Uživatel
 Users: Uživatelé
 Welcome: Vítejte
+Your email: Váš email
+Your password: Vaše heslo
 
 error: chyba

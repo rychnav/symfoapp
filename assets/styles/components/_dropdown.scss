@@ -1,0 +1,10 @@
+.dropdown-content {
+    a {
+        &.modal-trigger {
+            span {
+                // Required to take Ajax URL from `event.target.href`
+                pointer-events: none;
+            }
+        }
+    }
+}

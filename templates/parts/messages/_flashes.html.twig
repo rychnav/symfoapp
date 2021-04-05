@@ -4,6 +4,12 @@
     </div>
 {%- endblock flash_container -%}
 
+{%- block ajax_flashes -%}
+    <div data-role="ajax-flashes" class='hide'>
+        {{- block('flash_messages') -}}
+    </div>
+{%- endblock ajax_flashes -%}
+
 {%- block flash_messages -%}
     {% from 'parts/icons/_svg.html.twig' import svg_icon %}
 
@@ -13,7 +19,7 @@
                 {{- svg_icon({'id': 'sym-' ~ type, 'class': 'sym-icon__small__light'}) -}}
 
                 <span class="sym-flash-text">
-                    {{- message.text|trans(message.params) -}}
+                    {{- message.text|trans(message.params, message.domain) -}}
                 </span>
 
                 {%- if message.action -%}

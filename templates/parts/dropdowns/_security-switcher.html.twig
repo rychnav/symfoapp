@@ -1,0 +1,41 @@
+{%- block security_switcher_trigger -%}
+    {% from 'parts/dropdowns/_dropdown.html.twig' import dropdown_trigger %}
+
+    {{- dropdown_trigger(
+        {'target_id': 'security-dropdown', 'class': 'waves-red'},
+        {'id': app.user ? 'person': 'person_outline', 'class': 'sym-icon__small__light'},
+        {'text': app.user ? 'Sign out': 'Sign in', 'position': 'bottom'}
+    ) -}}
+{%- endblock security_switcher_trigger -%}
+
+{%- block security_switcher_content -%}
+    <ul id='security-dropdown' class='dropdown-content'>
+        {%- if app.user -%}
+            {{- _self.security_item({
+                'route': 'logout',
+                'icon_id': 'person_outline',
+                'text': 'Logout',
+                'is_modal_trigger': false,
+            }) -}}
+        {%- else -%}
+            {{- _self.security_item({
+                'route': 'login',
+                'icon_id': 'person',
+                'text': 'Login'
+            }) -}}
+        {%- endif -%}
+    </ul>
+{%- endblock security_switcher_content -%}
+
+{%- macro security_item(params) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    {% set modalParams = params.is_modal_trigger|default(true) ? 'class=modal-trigger data-target=materialize-modal' : '' %}
+
+    <li>
+        <a href="{{ path(params.route) }}" {{ modalParams }} >
+            {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__secondary sym-list-icon'}) -}}
+            <span>{{ params.text|trans }}</span>
+        </a>
+    </li>
+{%- endmacro security_item -%}

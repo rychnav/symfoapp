@@ -6,11 +6,13 @@
             <a href="{{ path('home') }}" class="brand-logo">{{ app_name }}</a>
 
             <ul class="right">
+                <li>{{- block('security_switcher_trigger', 'parts/dropdowns/_security-switcher.html.twig') -}}</li>
                 <li>{{- block('locale_switcher_trigger', 'parts/dropdowns/_locale-switcher.html.twig') -}}</li>
             </ul>
         </div>
     </nav>
 
     {{- block('sidenav_content', '/parts/navs/_sidenav.html.twig') -}}
+    {{- block('security_switcher_content', 'parts/dropdowns/_security-switcher.html.twig') -}}
     {{- block('locale_switcher_content', 'parts/dropdowns/_locale-switcher.html.twig') -}}
 {%- endblock top_nav -%}

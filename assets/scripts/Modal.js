@@ -1,4 +1,5 @@
 import AjaxSender from './Ajaxer.js';
+import Flasher from './Flasher.js';
 import Materializer from './Materializer.js';
 
 let Modal = (() => {
@@ -44,12 +45,16 @@ let Modal = (() => {
 
         /** @param {string} html */
         appendContent: async (html) => {
+            Flasher.clear();
+
             Modal.elem.innerHTML = html;
             Modal.overlay.addEventListener('click', Modal.clear);
 
             if(Modal.form !== null) {
                 await Materializer.initSelects();
                 Modal.form.addEventListener('submit', postForm);
+
+                await Flasher.init();
             }
         },
 

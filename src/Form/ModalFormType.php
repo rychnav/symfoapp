@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ModalFormType extends AbstractType
 {
-    private $requestStack;
+    protected $requestStack;
 
     public function __construct(RequestStack $requestStack)
     {

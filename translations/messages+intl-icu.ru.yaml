@@ -15,23 +15,29 @@ Email: Почта
 Enable editing: Разрешить редактирование
 Error: Ошибка
 Forbidden: Запрещено
+Hi! Welcome here!: Привет, {username}! Добро пожаловать!
 ID: №
 I want to permanently delete an entity: >-
     {entity, select,
         user {Я хочу безвозвратно удалить пользователя ''{entity_title}''!}
         other {Я хочу безвозвратно удалить}
     }
+Login: Войти
+Logout: Выйти
 Nobody's here: Здесь никого нет
 Not Found: Не найдено
 Ok: Ок
 Oops: Упс
 Password: Пароль
+Remember me: Запомнить меня
 Reset filters: Сбросить фильтры
 Roles: Роли
 Search users: Искать пользователей
 Select many: Выберите несколько
 Show details: Показать подробнее
 Show Flash messages: Показать Флеш сообщения
+Sign in: Войти
+Sign out: Выйти
 Something went wrong: Что-то не так
 Symfoapp: Symfoapp
 The new user was created successfully: Пользователь ''{email}'' успешно создан
@@ -46,5 +52,7 @@ User role: Роль пользователя
 User: Пользователь
 Users: Пользователи
 Welcome: Добро пожаловать
+Your email: Ваша почта
+Your password: Ваш пароль
 
 error: ошибка
