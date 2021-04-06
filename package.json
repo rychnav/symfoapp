@@ -4,6 +4,7 @@
         "@symfony/webpack-encore": "^1.0.0",
         "autoprefixer": "^10.2.5",
         "core-js": "^3.0.0",
+        "foundation-emails": "^2.3.1",
         "postcss": "^8.1",
         "postcss-loader": "^4.0.3",
         "regenerator-runtime": "^0.13.2",
