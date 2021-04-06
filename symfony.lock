@@ -560,6 +560,12 @@
     "symfony/yaml": {
         "version": "v5.2.4"
     },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.3"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.3.0"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.0"
     },
