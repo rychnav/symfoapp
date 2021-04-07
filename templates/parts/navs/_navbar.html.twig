@@ -6,6 +6,13 @@
             <a href="{{ path('home') }}" class="brand-logo">{{ app_name }}</a>
 
             <ul class="right">
+                <li>
+                    {{- _self.navbar_modal_trigger({
+                        'route': 'contacts',
+                        'icon_id': 'email',
+                        'tooltip_text': 'Write us'
+                    }) -}}
+                </li>
                 <li>{{- block('security_switcher_trigger', 'parts/dropdowns/_security-switcher.html.twig') -}}</li>
                 <li>{{- block('locale_switcher_trigger', 'parts/dropdowns/_locale-switcher.html.twig') -}}</li>
             </ul>
@@ -16,3 +23,13 @@
     {{- block('security_switcher_content', 'parts/dropdowns/_security-switcher.html.twig') -}}
     {{- block('locale_switcher_content', 'parts/dropdowns/_locale-switcher.html.twig') -}}
 {%- endblock top_nav -%}
+
+{%- macro navbar_modal_trigger(params) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <a href="{{ path(params.route, params.route_params|default([])) }}"
+       class="waves-effect waves-teal modal-trigger tooltipped" data-target="materialize-modal"
+       data-position="{{ params.tooltip_position|default('bottom') }}" data-tooltip="{{ params.tooltip_text|trans }}">
+        {{- svg_icon({'id': params.icon_id, 'class': 'sym-icon__small__light' ~ params.icon_class|default('')}) -}}
+    </a>
+{%- endmacro navbar_modal_trigger -%}

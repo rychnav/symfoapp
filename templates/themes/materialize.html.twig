@@ -28,6 +28,19 @@
     <input type="{{ type }}" {{ block('widget_attributes') }}{% if value is not empty %}value="{{ value }}" {% endif %}>
 {%- endblock form_widget_simple -%}
 
+{# Textarea #}
+
+{%- block textarea_widget -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    {{- svg_icon({'id': 'notes', 'class': 'prefix sym-icon__small__dark'}) -}}
+
+    <textarea class="materialize-textarea validate" {{ block('widget_attributes')}}>
+        {{- value -}}
+    </textarea>
+{%- endblock textarea_widget -%}
+
+
 {# Checkbox #}
 
 {%- block checkbox_widget -%}

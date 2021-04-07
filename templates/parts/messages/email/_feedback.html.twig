@@ -1,0 +1,19 @@
+{% extends 'parts/messages/email/base-email.html.twig' %}
+
+{%- block content -%}
+    <row>
+        <columns>
+            <p class="sym-email-message">{{- app.request.get('contacts').message -}}</p>
+        </columns>
+    </row>
+
+    <row>
+        <columns>
+            <center>
+                <button class="sym-email-button small-expanded" href="{{ mail_from_link(email) }}">
+                    {{- "Reply"|trans -}}
+                </button>
+            </center>
+        </columns>
+    </row>
+{%- endblock content -%}

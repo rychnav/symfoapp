@@ -6,15 +6,19 @@ Back to the list: Back to the list
 Cancel selection: Cancel selection
 Choose language: Choose language
 Choose the role: Choose the role
+Contacts: Contacts
 Create user: Create user
 Select many: Select many
+Date: Date
 Delete permanently: Delete permanently
 Delete user: Delete user
 Disable editing: Disable editing
+Email subject: Email subject
 Email: Email
 Enable editing: Enable editing
 Error: Error
 Forbidden: Forbidden
+From: From
 Hi! Welcome here!: Hi, {username}! Welcome here!
 ID: №
 I want to permanently delete an entity: >-
@@ -24,6 +28,9 @@ I want to permanently delete an entity: >-
     }
 Login: Login
 Logout: Logout
+Message text: Message text
+Message: Message
+Name: Name
 Nobody's here: Nobody's here
 Not Found: Not found
 Ok: Ok
@@ -31,19 +38,25 @@ Oops: Oops
 Password: Password
 Remember me: Remember me
 Delete many: Delete many
+Reply: Reply
 Reset filters: Reset filters
 Roles: Roles
 Search users: Search users
+Send: Send
 Show details: Show details
 Show Flash messages: Show Flash messages
 Sign in: Sign in
 Sign out: Sign out
 Something went wrong: Something went wrong
+Subject: Subject
 Symfoapp: Symfoapp
+The email was not sent: The email was not sent
+The email was successfully sent: The email was successfully sent
 The new user was created successfully: The new user ''{email}'' was created successfully
 The user was deleted successfully: The user ''{email}'' was deleted successfully
 The user was updated successfully: The user ''{email}'' was updated successfully
 Translate on my language: Translate on English
+Try again: Try again
 Update user: Update user
 User details: User details
 User email: User email
@@ -52,7 +65,9 @@ User role: User role
 User: User
 Users: Users
 Welcome: Welcome
+Write us: Write us
 Your email: Your email
+Your name: Your name
 Your password: Your password
 
 error: error

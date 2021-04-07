@@ -11,6 +11,7 @@
     - Ajax sequential search by one or more fields;
     - ability to edit entities directly in the list;
     - ability to delete multiply entities at once;
+    - sending emails;
 - **Changed**
 - **Deprecated**
 - **Removed**

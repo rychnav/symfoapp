@@ -1,0 +1,61 @@
+// Materialize CSS
+@import "~@materializecss/materialize/sass/components/color-variables";
+@import "~@materializecss/materialize/sass/components/color-classes";
+@import "~@materializecss/materialize/sass/components/variables";
+
+// Project styles
+@import "colors.scss";
+@import "variables.scss";
+
+// Foundation Email. See: https://github.com/foundation/foundation-emails/blob/develop/scss/settings/_settings.scss
+@import "~foundation-emails/scss/settings/settings";
+
+// Redefine vars
+$global-width: 300px !default;
+$global-breakpoint: $global-width + $global-gutter;
+
+@import "~foundation-emails/dist/foundation-emails.css";
+
+body {
+    @include sym-material-gradient();
+    color: $sym-dark-color;
+
+    .container_email {
+        background-color: $sym-light-color;
+
+        .sym-email-header {
+            padding: 0;
+            background-color: $sym-primary-color;
+
+            .sym-email-logo {
+                color: $sym-light-color;
+            }
+        }
+
+        .sym-email-info {
+            .sym-email-requisites {
+                background-color: $sym-light-color;
+
+                .sym-email-requisites-logo {
+                    margin-right: 50px;
+                }
+
+                .sym-email-requisites-text {
+                    font-size: 12px;
+                    color: $sym-secondary-color;
+                }
+            }
+        }
+
+        .sym-email-message {
+            color: $sym-secondary-color;
+        }
+
+        .sym-email-button.button tr td {
+            color: $sym-light-color;
+            background: $sym-secondary-color;
+            border: 2px solid $sym-secondary-color;
+            border-radius: 3px;
+        }
+    }
+}

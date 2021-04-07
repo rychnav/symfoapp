@@ -6,15 +6,19 @@ Back to the list: Назад к списку
 Cancel selection: Отменить выбор
 Choose language: Выберите язык
 Choose the role: Выберите роль
+Contacts: Контакты
 Create user: Создать пользователя
+Date: Дата
 Delete many: Удалить несколько
 Delete permanently: Удалить навсегда
 Delete user: Удалить пользователя
 Disable editing: Запретить редактирование
+Email subject: Тема письма
 Email: Почта
 Enable editing: Разрешить редактирование
 Error: Ошибка
 Forbidden: Запрещено
+From: От
 Hi! Welcome here!: Привет, {username}! Добро пожаловать!
 ID: №
 I want to permanently delete an entity: >-
@@ -24,6 +28,9 @@ I want to permanently delete an entity: >-
     }
 Login: Войти
 Logout: Выйти
+Message text: Текст сообщения
+Message: Сообщение
+Name: Имя
 Nobody's here: Здесь никого нет
 Not Found: Не найдено
 Ok: Ок
@@ -31,19 +38,25 @@ Oops: Упс
 Password: Пароль
 Remember me: Запомнить меня
 Reset filters: Сбросить фильтры
+Reply: Ответить
 Roles: Роли
 Search users: Искать пользователей
 Select many: Выберите несколько
+Send: Отправить
 Show details: Показать подробнее
 Show Flash messages: Показать Флеш сообщения
 Sign in: Войти
 Sign out: Выйти
 Something went wrong: Что-то не так
+Subject: Тема
 Symfoapp: Symfoapp
+The email was not sent: Письмо не было отправлено
+The email was successfully sent: Письмо было успешно отправлено
 The new user was created successfully: Пользователь ''{email}'' успешно создан
 The user was deleted successfully: Пользователь ''{email}'' был успешно удален
 The user was updated successfully: Пользователь ''{email}'' успешно обновлен
 Translate on my language: Перевести на русский
+Try again: Еще раз
 Update user: Обновить пользователя
 User details: Подробно о пользователе
 User email: Почта пользователя
@@ -52,7 +65,9 @@ User role: Роль пользователя
 User: Пользователь
 Users: Пользователи
 Welcome: Добро пожаловать
+Write us: Напишите нам
 Your email: Ваша почта
+Your name: Ваше имя
 Your password: Ваш пароль
 
 error: ошибка

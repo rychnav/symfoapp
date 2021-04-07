@@ -1,0 +1,20 @@
+{% extends app.request.isxmlhttprequest ? 'base-ajax.html.twig' : 'base.html.twig' %}
+
+{%- block title -%}{{ "Contacts"|trans }}{%- endblock title -%}
+
+{%- block page_content -%}
+    {%- set submit_text = 'Send' -%}
+
+    <h1>{{ "Write us"|trans }}</h1>
+
+    {{- block('contacts_type', '/contacts/_form.html.twig') -}}
+{%- endblock page_content -%}
+
+{%- block central_banner -%}
+    {{- block('page_content') -}}
+{%- endblock central_banner -%}
+
+{%- block modal_content -%}
+    {{- block('page_content') -}}
+    {{- block('ajax_flashes', '/parts/messages/_flashes.html.twig') -}}
+{%- endblock modal_content -%}

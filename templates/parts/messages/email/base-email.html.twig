@@ -1,0 +1,76 @@
+{% apply inky_to_html|inline_css(encore_entry_css_source('email')) %}
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+    <html lang="{{ app.request.locale }}" xml:lang="{{ app.request.locale }}">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title></title> <!-- Should be for W3S but empty to be not shown in inbox -->
+
+            <!--[if (mso)|(mso 16)]>
+                <style type="text/css">
+                    a { text-decoration: none; }
+                </style>
+            <![endif]-->
+        </head>
+
+        <body>
+            <spacer size="20"></spacer>
+
+            <container class="container_email">
+                <row class="sym-email-header">
+                    <columns small="12">
+                        <spacer size="10"></spacer>
+
+                        <a class="sym-email-logo" href="{{ url('home') }}">
+                            <h3>{{- app_name -}}</h3>
+                        </a>
+
+                        <spacer size="5"></spacer>
+                    </columns>
+                </row>
+
+                <spacer size="20"></spacer>
+
+                <row>
+                    <columns small="12" class="sym-email-info">
+                        <h2 class="sym-email-subject">{{ email.subject|capitalize }}</h2>
+
+                        <hr class="sym-email-hr">
+
+                        <container class="sym-email-requisites">
+                            <row>
+                                <columns small="1">
+                                    <a href="{{ url('home') }}">
+                                        <center>
+                                            <img alt="Symfony Logo" width="30"
+                                                 src="{{ email.image('@images/logos/logo_rounded_teal.png') }}">
+                                        </center>
+                                    </a>
+                                </columns>
+
+                                <columns small="11" class="text-left" valign="middle">
+                                    <p class="sym-email-requisites-text">
+                                        <span style="width: 30px">&ensp;</span>
+                                        <span>{{ "Date"|trans }}: {{ trans_date("now"|date, "EEE dd LLL yyyy - HH:mm:ss") }}</span>
+
+                                        <br> <!-- for MS Mail -->
+
+                                        <span style="width: 30px">&ensp;</span>
+                                        <span>{{ "From"|trans }}: {{ email.from[0].name|capitalize }}:
+                                            &lt;<a href="{{ mail_from_link(email) }}">{{ email.from[0].address }}&gt;</a>
+                                        </span>
+                                    </p>
+                                </columns>
+                            </row>
+                        </container>
+                    </columns>
+                </row>
+
+                {% block content %}{% endblock content %}
+            </container>
+        </body>
+    </html>
+{% endapply %}

@@ -6,15 +6,19 @@ Back to the list: Zpět na seznam
 Cancel selection: Zrušit výběr
 Choose language: Zvolte jazyk
 Choose the role: Zvolte roli
+Contacts: Kontakty
 Create user: Vytvořit uživatele
+Date: Datum
 Delete many: Smazat více
 Delete permanently: Odstranit trvale
 Delete user: Odstranit uživatele
 Disable editing: Zakázat úpravy
+Email subject: Předmět emailu
 Email: Email
 Enable editing: Povolit úpravy
 Error: Chyba
 Forbidden: Zakázáno
+From: Od
 Hi! Welcome here!: Ahoj, {username}! Vítejte tady!
 I want to permanently delete an entity: >-
     {entity, select,
@@ -24,26 +28,35 @@ I want to permanently delete an entity: >-
 ID: №
 Login: Přihlásit se
 Logout: Odhlásit se
+Message text: Text zprávy
+Message: Zpráva
+Name: Jméno
 Nobody's here: Nikdo tu není
 Not Found: Nenalezeno
 Ok: Dobrý
 Oops: Jejda
 Password: Heslo
 Remember me: Zapamatovat mě
+Reply: Odpovědět
 Reset filters: Obnovit filtry
 Roles: Role
 Search users: Vyhledat uživatele
 Select many: Vybrat více
+Send: Odeslat
 Show details: Zobrazit podrobnosti
 Show Flash messages: Zobrazit Bleskové zprávy
 Sign in: Přihlásit se
 Sign out: Odhlásit se
 Something went wrong: Něco se pokazilo
+Subject: Předmět
 Symfoapp: Symfoapp
+The email was not sent: Email nebyl odeslán
+The email was successfully sent: Email byl úspěšně odeslán
 The new user was created successfully: Nový uživatel ''{email}'' byl úspěšně vytvořen
 The user was deleted successfully: Uživatel ''{email}'' byl úspěšně odstraněn
 The user was updated successfully: Uživatel ''{email}'' byl úspěšně aktualizován
 Translate on my language: Přeložit na češtinu
+Try again: Opakovat
 Update user: Aktualizovat uživatele
 User details: Podrobnosti o uživateli
 User email: Email uživatele
@@ -52,6 +65,8 @@ User role: Role uživatele
 User: Uživatel
 Users: Uživatelé
 Welcome: Vítejte
+Write us: Napište nám
+Your name: Vaše jméno
 Your email: Váš email
 Your password: Vaše heslo
 
