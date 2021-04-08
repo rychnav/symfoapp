@@ -172,21 +172,12 @@
 
 {%- block form_errors -%}
     {%- if errors|length > 0 -%}
-        {% set err_messages = [] %}
-
         {%- for error in errors -%}
             {%- set severity = error.cause.constraint.payload.severity ?? 'error' -%}
 
             <span class="helper-text {{ severity }}-helper left-align">
-                {%- if error.cause -%}
-                    <span class="sym-tag-{{ severity }}">{{ severity|trans|upper }}</span>
-                    <span class="sym-tag-{{ severity }}-message">{{- error.cause.message -}}</span>
-                    {%- set err_messages = err_messages|merge([error.messageTemplate]) -%}
-                {%- elseif error.messageTemplate in err_messages -%}
-                    <span class="sym-tag-{{ severity }}">{{ severity|trans|upper }}</span>
-                    {{- error.message -}}
-                    {%- set err_messages = err_messages|merge([error.messageTemplate]) -%}
-                {%- endif -%}
+                <span class="sym-tag-{{ severity }}">{{ severity|trans|upper }}</span>
+                <span class="sym-tag-{{ severity }}-message">{{- error.message -}}</span>
             </span>
         {%- endfor -%}
     {%- endif -%}

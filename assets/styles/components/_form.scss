@@ -43,6 +43,8 @@ select:-webkit-autofill {
     }
 
     .helper-text {
+        // For captcha input
+        pointer-events: none;
         margin-bottom: 1px;
     }
 
