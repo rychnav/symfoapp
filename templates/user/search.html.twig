@@ -21,5 +21,8 @@
 {%- block fab_actions_button -%}
     {% from 'parts/navs/_fab-actions.html.twig' import fab_actions_button %}
 
-    {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig', 'entities': users}) -}}
+    {#- For HTTP page. When Ajax, users is defined because form is inside user list template -#}
+    {%- set entities = users is defined ? users : null -%}
+
+    {{- fab_actions_button({'block': 'user_fabs', 'path': 'user/_user-fabs.html.twig', 'entities': entities}) -}}
 {%- endblock fab_actions_button -%}
