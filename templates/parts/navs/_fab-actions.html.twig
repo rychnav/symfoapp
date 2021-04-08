@@ -1,21 +1,23 @@
 {%- macro fab_actions_button(params) -%}
     {% from 'parts/icons/_svg.html.twig' import svg_icon %}
 
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large">
-            {{- svg_icon({'id': 'more-vertical', 'class': 'sym-icon__small__light'}) -}}
-        </a>
+    {%- if block('translate_fab') or params.block is defined -%}
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large">
+                {{- svg_icon({'id': 'more-vertical', 'class': 'sym-icon__small__light'}) -}}
+            </a>
 
-        <ul>
-            {# Page dependent fabs #}
-            {%- if params.block is defined and params.path is defined -%}
-                {{- block(params.block, params.path) -}}
-            {%- endif -%}
+            <ul>
+                {# Page dependent fabs #}
+                {%- if params.block is defined and params.path is defined -%}
+                    {{- block(params.block, params.path) -}}
+                {%- endif -%}
 
-            {# Global fabs #}
-            {{- block('translate_fab') -}}
-        </ul>
-    </div>
+                {# Global fabs #}
+                {{- block('translate_fab') -}}
+            </ul>
+        </div>
+    {%- endif -%}
 {%- endmacro fab_actions_button -%}
 
 {%- macro fab_action_item(params) -%}
