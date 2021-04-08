@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -62,6 +63,10 @@ class ContactsType extends ModalFormType
                     new NotBlank(['payload' => ['severity' => 'error']]),
                 ],
             ])
+            ->add('captcha', CaptchaType::class, [
+                'help' => 'Enter the captcha',
+                'background_color' => [250, 250, 250],
+            ]);
         ;
     }
 }

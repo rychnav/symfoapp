@@ -206,13 +206,15 @@
         <div class="input-field col s12 {% if inputType in ['checkbox'] -%} left {%- endif -%}">
             {{- form_widget(form, widget_attr) -}}
 
-            {%- if inputType not in ['checkbox', 'choice'] -%}
-                {{- form_label(form) -}}
-            {%- endif -%}
+            {%- if name not in ['captcha'] -%}
+                {%- if inputType not in ['checkbox', 'choice'] -%}
+                    {{- form_label(form) -}}
+                {%- endif -%}
 
-            {% if form.vars.errors is empty %}
-                {{- form_help(form) -}}
-            {% endif %}
+                {% if form.vars.errors is empty -%}
+                    {{- form_help(form) -}}
+                {% endif %}
+            {%- endif -%}
 
             {{- form_errors(form) -}}
         </div>
@@ -229,3 +231,17 @@
     {%- if required %} required="required"{% endif -%}
     {{ block('attributes') }}
 {%- endblock widget_attributes -%}
+
+{% block captcha_widget %}
+    <div class="col s12 m4 center-align">
+        <img src="{{ captcha_code }}" title="captcha" width="{{ captcha_width }}" height="{{ captcha_height }}">
+    </div>
+
+    <div class="col s12 m8">
+        {{- form_widget(form) -}}
+
+        {% if form.vars.errors is empty %}
+            {{- form_help(form) -}}
+        {% endif %}
+    </div>
+{% endblock captcha_widget %}
