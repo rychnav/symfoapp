@@ -36,7 +36,11 @@ Not Found: Nenalezeno
 Ok: Dobrý
 Oops: Jejda
 Password: Heslo
+Register: Zaregistrovat se
+Registration: Registrace
 Remember me: Zapamatovat mě
+Repeat password: Opakování hesla
+Repeat your password, please: Zopakujte heslo, prosím
 Reply: Odpovědět
 Reset filters: Obnovit filtry
 Roles: Role
@@ -50,6 +54,7 @@ Sign out: Odhlásit se
 Something went wrong: Něco se pokazilo
 Subject: Předmět
 Symfoapp: Symfoapp
+Terms accepted: Podmínky přijaty
 The email was not sent: Email nebyl odeslán
 The email was successfully sent: Email byl úspěšně odeslán
 The new user was created successfully: Nový uživatel ''{email}'' byl úspěšně vytvořen

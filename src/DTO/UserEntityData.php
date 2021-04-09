@@ -9,13 +9,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Avoid creating the new entity with existing email and entering the existing email during updating entity.
- * @UniqueValue(field="email", class="App\Entity\User", groups={"create", "update"}, payload={"severity"="error"})
+ * @UniqueValue(field="email", class="App\Entity\User", groups={"create", "update", "register"}, payload={"severity"="error"})
  */
 class UserEntityData extends AbstractEntityData
 {
     /**
-     * @Assert\NotBlank(groups={"create", "update"}, payload={"severity"="error"})
-     * @Assert\Email(groups={"create", "update"}, payload={"severity"="error"})
+     * @Assert\NotBlank(groups={"create", "update", "register"}, payload={"severity"="error"})
+     * @Assert\Email(groups={"create", "update", "register"}, payload={"severity"="error"})
      */
     public $email;
 
@@ -25,8 +25,8 @@ class UserEntityData extends AbstractEntityData
     public $roles;
 
     /**
-     * @Assert\NotBlank(groups={"create"}, payload={"severity"="error"})
-     * @Assert\Length(groups={"create", "update"}, min=6, max=50, payload={"severity"="error"})
+     * @Assert\NotBlank(groups={"create", "register"}, payload={"severity"="error"})
+     * @Assert\Length(groups={"create", "update", "register"}, min=6, max=50, payload={"severity"="error"})
      *
      * Allow updating user without entering the password.
      * @Assert\NotBlank(groups={"update"}, allowNull=true, payload={"severity"="error"})
@@ -46,7 +46,7 @@ class UserEntityData extends AbstractEntityData
     public function toEntity(UserEntityData $data, User $user, UserPasswordEncoderInterface $encoder): User
     {
         $user->setEmail($data->email);
-        $user->setRoles($data->roles);
+        $user->setRoles($data->roles ?? ['ROLE_USER']);
 
         if ($data->password) {
             $user->setPassword($encoder->encodePassword($user, $data->password));

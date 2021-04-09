@@ -5,6 +5,7 @@ namespace App\EventSubscriber;
 use App\DTO\FlashMessage;
 use App\Event\LoginFail;
 use App\Event\LoginSuccess;
+use App\Event\RegisterSuccess;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -27,6 +28,7 @@ class SecuritySubscriber implements EventSubscriberInterface
         return [
             LoginSuccess::NAME => 'onLoginSuccess',
             LoginFail::NAME => 'onLoginFail',
+            RegisterSuccess::NAME => 'onRegisterSuccess',
         ];
     }
 
@@ -62,6 +64,13 @@ class SecuritySubscriber implements EventSubscriberInterface
         $this->session->getBag('flashes')->add($flashMessage->type, $flashMessage);
         $this->logger->info('Login was failed', [
             'exception' => $event->getThrowable()->getMessage(),
+        ]);
+    }
+
+    public function onRegisterSuccess(RegisterSuccess $event): void
+    {
+        $this->logger->info('The new user was register', [
+            'email' => $event->getUser()->getEmail(),
         ]);
     }
 }

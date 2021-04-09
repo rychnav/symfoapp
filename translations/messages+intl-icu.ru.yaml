@@ -36,7 +36,11 @@ Not Found: Не найдено
 Ok: Ок
 Oops: Упс
 Password: Пароль
+Register: Зарегистрироваться
+Registration: Регистрация
 Remember me: Запомнить меня
+Repeat password: Повтор пароля
+Repeat your password, please: Повторите пароль, пожалуйста
 Reset filters: Сбросить фильтры
 Reply: Ответить
 Roles: Роли
@@ -50,6 +54,7 @@ Sign out: Выйти
 Something went wrong: Что-то не так
 Subject: Тема
 Symfoapp: Symfoapp
+Terms accepted: Условия приняты
 The email was not sent: Письмо не было отправлено
 The email was successfully sent: Письмо было успешно отправлено
 The new user was created successfully: Пользователь ''{email}'' успешно создан

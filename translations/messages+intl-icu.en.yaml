@@ -36,7 +36,11 @@ Not Found: Not found
 Ok: Ok
 Oops: Oops
 Password: Password
+Register: Register
+Registration: Registration
 Remember me: Remember me
+Repeat password: Repeat password
+Repeat your password, please: Repeat your password, please
 Delete many: Delete many
 Reply: Reply
 Reset filters: Reset filters
@@ -50,6 +54,7 @@ Sign out: Sign out
 Something went wrong: Something went wrong
 Subject: Subject
 Symfoapp: Symfoapp
+Terms accepted: Terms accepted
 The email was not sent: The email was not sent
 The email was successfully sent: The email was successfully sent
 The new user was created successfully: The new user ''{email}'' was created successfully

@@ -11,3 +11,18 @@
         {{- form_rest(form) -}}
     {{- form_end(form) -}}
 {%- endblock login_type -%}
+
+{%- block register_type -%}
+    {% from 'parts/forms/_controls.html.twig' import submit_button %}
+
+    {{- form_start(form) -}}
+        {{- form_row(form.email) -}}
+        {{- form_row(form.password.first) -}}
+        {{- form_row(form.password.second) -}}
+        {{- form_row(form.termsAccepted) -}}
+
+        {{- submit_button({'icon_id': 'send', 'submit_text': submit_text}) -}}
+
+        {{- form_rest(form) -}}
+    {{- form_end(form) -}}
+{%- endblock register_type -%}

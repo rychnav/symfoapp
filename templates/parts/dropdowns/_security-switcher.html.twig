@@ -23,6 +23,12 @@
                 'icon_id': 'person',
                 'text': 'Login'
             }) -}}
+
+            {{- _self.security_item({
+                'route': 'register',
+                'icon_id': 'account_circle',
+                'text': 'Register'
+            }) -}}
         {%- endif -%}
     </ul>
 {%- endblock security_switcher_content -%}

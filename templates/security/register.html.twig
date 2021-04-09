@@ -1,0 +1,20 @@
+{% extends app.request.isxmlhttprequest ? 'base-ajax.html.twig' : 'base.html.twig' %}
+
+{%- block title -%}{{ "Registration"|trans }}{%- endblock title -%}
+
+{%- block page_content -%}
+    {%- set submit_text = 'Register' -%}
+
+    <h1 class="center-align">{{ "Registration"|trans }}</h1>
+
+    {{- block('register_type', '/security/_form.html.twig') -}}
+{%- endblock page_content -%}
+
+{%- block central_banner -%}
+    {{- block('page_content') -}}
+{%- endblock central_banner -%}
+
+{%- block modal_content -%}
+    {{- block('page_content') -}}
+    {{- block('ajax_flashes', '/parts/messages/_flashes.html.twig') -}}
+{%- endblock modal_content -%}
