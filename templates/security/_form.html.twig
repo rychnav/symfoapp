@@ -16,6 +16,7 @@
     {% from 'parts/forms/_controls.html.twig' import submit_button %}
 
     {{- form_start(form) -}}
+        {{- form_row(form.firstName) -}}
         {{- form_row(form.email) -}}
         {{- form_row(form.password.first) -}}
         {{- form_row(form.password.second) -}}

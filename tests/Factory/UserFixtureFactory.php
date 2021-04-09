@@ -23,6 +23,7 @@ class UserFixtureFactory extends ModelFactory
     {
         return [
             'email' => self::faker()->unique()->email,
+            'firstName' => self::faker()->firstName(),
         ];
     }
 

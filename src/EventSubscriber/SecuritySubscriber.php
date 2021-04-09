@@ -40,7 +40,7 @@ class SecuritySubscriber implements EventSubscriberInterface
             'success',
             'Hi! Welcome here!',
             null,
-            ['username' => $user->getEmail()]
+            ['username' => $user->getFirstName()]
         );
 
         $this->session->getFlashBag()->add($flashMessage->type, $flashMessage);

@@ -6,6 +6,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -22,6 +23,11 @@ class RegisterType extends ModalFormType
         $builder
             ->setAction($request->getUri())
             ->setMethod('POST')
+
+            ->add('firstName', TextType::class, [
+                'label' => 'First name',
+                'help' => 'Your name',
+            ])
 
             ->add('email', EmailType::class, [
                 'label' => 'Email',

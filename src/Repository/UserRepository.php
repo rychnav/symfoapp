@@ -53,9 +53,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery();
     }
 
-    public function search(string $email, string $roles): Query
+    public function search(string $firstName, string $email, string $roles): Query
     {
         $qb = $this->getFromSession();
+
+        if ($firstName !== 'null') {
+            $qb->andWhere("u.firstName LIKE :firstName_val")
+                ->setParameter('firstName_val', "%$firstName%");
+        }
 
         if ($email !== 'null') {
             $qb->andWhere("u.email LIKE :email_val")

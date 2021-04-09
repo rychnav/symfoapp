@@ -17,6 +17,7 @@ Email subject: Email subject
 Email: Email
 Enable editing: Enable editing
 Error: Error
+First name: First name
 Forbidden: Forbidden
 From: From
 Hi! Welcome here!: Hi, {username}! Welcome here!
@@ -65,6 +66,7 @@ Try again: Try again
 Update user: Update user
 User details: User details
 User email: User email
+User name: User name
 User password: User password
 User role: User role
 User: User

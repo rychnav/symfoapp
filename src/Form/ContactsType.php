@@ -35,6 +35,7 @@ class ContactsType extends ModalFormType
             ->setMethod('POST')
 
             ->add('name', TextType::class, [
+                'data' => $user ? $user->getFirstName() : null,
                 'help' => 'Your name',
                 'constraints' => [
                     new NotBlank(['payload' => ['severity' => 'error']]),

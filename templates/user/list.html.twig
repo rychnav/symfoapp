@@ -25,6 +25,11 @@
                         </th>
 
                         <th scope="col">
+                            {%- if can_sort -%}{{- _self.sort_link({'sort_path': sort_path, 'sort_property': 'firstName'}) -}}{%- endif -%}
+                            <span>{{- 'First name'|trans -}}</span>
+                        </th>
+
+                        <th scope="col">
                             {%- if can_sort -%}{{- _self.sort_link({'sort_path': sort_path, 'sort_property': 'email'}) -}}{%- endif -%}
                             <span>{{- 'Email'|trans -}}</span>
                         </th>
@@ -46,6 +51,12 @@
                             <td>
                                 <span data-content="id">
                                     {{- user.id -}}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span data-field="firstName" data-type="text" data-old="{{ user.firstName }}">
+                                    {{- user.firstName -}}
                                 </span>
                             </td>
 

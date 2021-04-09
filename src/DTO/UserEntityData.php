@@ -15,6 +15,12 @@ class UserEntityData extends AbstractEntityData
 {
     /**
      * @Assert\NotBlank(groups={"create", "update", "register"}, payload={"severity"="error"})
+     * @Assert\Length(min=2, max=50, groups={"create", "update", "register"}, payload={"severity"="error"})
+     */
+    public $firstName;
+
+    /**
+     * @Assert\NotBlank(groups={"create", "update", "register"}, payload={"severity"="error"})
      * @Assert\Email(groups={"create", "update", "register"}, payload={"severity"="error"})
      */
     public $email;
@@ -36,6 +42,7 @@ class UserEntityData extends AbstractEntityData
     public function fromEntity(User $user): self
     {
         $this->id = $user->getId();
+        $this->firstName = $user->getFirstName();
         $this->email = $user->getEmail();
         $this->roles = $user->getRealRoles();
         $this->password = $user->getPassword();
@@ -45,6 +52,7 @@ class UserEntityData extends AbstractEntityData
 
     public function toEntity(UserEntityData $data, User $user, UserPasswordEncoderInterface $encoder): User
     {
+        $user->setFirstName($data->firstName);
         $user->setEmail($data->email);
         $user->setRoles($data->roles ?? ['ROLE_USER']);
 

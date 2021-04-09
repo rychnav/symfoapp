@@ -14,6 +14,12 @@ class UserSearchType extends ModalFormType
             ->setAction($options['action'])
             ->setMethod('POST')
 
+            ->add('firstName', SearchType::class, [
+                'required' => false,
+                'attr' => ['name' => 'firstName'],
+                'label' => 'Name',
+                'help' => 'User name',
+            ])
             ->add('email', SearchType::class, [
                 'required' => false,
                 'attr' => ['name' => 'email'],

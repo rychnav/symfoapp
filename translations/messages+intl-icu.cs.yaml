@@ -17,6 +17,7 @@ Email subject: Předmět emailu
 Email: Email
 Enable editing: Povolit úpravy
 Error: Chyba
+First name: Křestní jméno
 Forbidden: Zakázáno
 From: Od
 Hi! Welcome here!: Ahoj, {username}! Vítejte tady!
@@ -65,6 +66,7 @@ Try again: Opakovat
 Update user: Aktualizovat uživatele
 User details: Podrobnosti o uživateli
 User email: Email uživatele
+User name: Uživatelské jméno
 User password: Heslo uživatele
 User role: Role uživatele
 User: Uživatel

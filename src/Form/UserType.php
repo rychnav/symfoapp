@@ -6,6 +6,7 @@ use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -19,6 +20,10 @@ class UserType extends ModalFormType
             ->setAction($options['action'])
             ->setMethod('POST')
 
+            ->add('firstName', TextType::class, [
+                'label' => 'Name',
+                'help' => 'User name',
+            ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'help' => 'User email',

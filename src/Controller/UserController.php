@@ -84,7 +84,7 @@ class UserController extends AbstractController
 
     /**
      * @Route(
-     *     path="/list/sort/{page<\d+>?1}/{sort_property<id|email|roles>?id}/{sort_order<asc|desc>?asc}",
+     *     path="/list/sort/{page<\d+>?1}/{sort_property<id|firstName|email|roles>?id}/{sort_order<asc|desc>?asc}",
      *     name="user_list_sort",
      *     methods={"GET"},
      * )
@@ -133,6 +133,7 @@ class UserController extends AbstractController
             $data = $dto->fromForm($form);
 
             return $this->redirectToRoute('user_list_search', [
+                'firstName' => $data->firstName,
                 'email' => $data->email,
                 'roles' => $data->roles,
             ]);
@@ -145,7 +146,7 @@ class UserController extends AbstractController
 
     /**
      * @Route(
-     *     path="/list/{page<\d+>?1}/search/{email}/{roles}",
+     *     path="/list/{page<\d+>?1}/search/{firstName}/{email}/{roles}",
      *     name="user_list_search",
      *     methods={"GET"},
      * )
@@ -154,6 +155,7 @@ class UserController extends AbstractController
         IdBag $idBag,
         Pager $pager,
         Request $request,
+        string $firstName,
         string $email,
         string $roles,
         TargetPathResolver $targetPathResolver
@@ -161,7 +163,7 @@ class UserController extends AbstractController
         $targetPathResolver->setPath();
 
         $repository = $this->getDoctrine()->getRepository(User::class);
-        $query = $repository->search($email, $roles);
+        $query = $repository->search($firstName, $email, $roles);
 
         $idBag->saveFromQuery($query, self::USER_BAG_KEY);
 
@@ -180,6 +182,7 @@ class UserController extends AbstractController
         return $this->render('user/list.html.twig', [
             'users' => $users,
             'lastPage' => $lastPage,
+            'firstName' => $firstName,
             'email' => $email,
             'roles' => $roles,
         ]);
