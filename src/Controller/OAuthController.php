@@ -31,4 +31,27 @@ class OAuthController extends AbstractController
      * )
      */
     public function connectGoogleCheck() {}
+
+    /**
+     * @Route(
+     *     path="/connect/facebook",
+     *     name="facebook_connect"
+     * )
+     */
+    public function redirectToFacebookConnect(ClientRegistry $clientRegistry): Response
+    {
+        return $clientRegistry
+            ->getClient('facebook')
+            ->redirect([
+                'public_profile', 'email',
+            ], []);
+    }
+
+    /**
+     * @Route(
+     *     path="/facebook/auth",
+     *     name="facebook_auth"
+     * )
+     */
+    public function connectFacebookCheck() {}
 }

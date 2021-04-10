@@ -13,5 +13,9 @@
         <div class="input-field col s12">
             {{ _self.social_auth_link({'network': 'google'}) }}
         </div>
+
+        <div class="input-field col s12">
+            {{- _self.social_auth_link({'network': 'facebook'}) -}}
+        </div>
     </div>
 {%- endblock social_auth -%}

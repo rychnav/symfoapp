@@ -17,4 +17,8 @@ a.social-auth-button {
     &.google-auth-button {
         @extend %google-grad;
     }
+
+    &.facebook-auth-button {
+        background-color: #4267B2;
+    }
 }
