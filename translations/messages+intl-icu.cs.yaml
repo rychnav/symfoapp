@@ -4,10 +4,15 @@ Administrator: Administrátor
 All rights reserved: Všechna práva vyhrazena
 Authentication type: Typ ověření
 Back to the list: Zpět na seznam
+Button not working: Tlačítko nefunguje
 Cancel selection: Zrušit výběr
 Choose language: Zvolte jazyk
 Choose the authentication type: Zvolte typ ověření
 Choose the role: Zvolte roli
+Confirm your account: Potvrďte svůj účet
+Confirm: Potvrdit
+Confirmation email: Potvrzovací email
+Confirming your account will give you full access to app and all feature notifications will be sent to this email address: Potvrzením účtu získáte plný přístup k {appname} a všechna další upozornění budou odeslána na tuto emailovou adresu
 Contacts: Kontakty
 Create user: Vytvořit uživatele
 Date: Datum
@@ -15,6 +20,8 @@ Delete many: Smazat více
 Delete permanently: Odstranit trvale
 Delete user: Odstranit uživatele
 Disable editing: Zakázat úpravy
+Email confirmation: Potvrzení emailu
+Email is already verified: Email ''{email}'' je již ověřen
 Email subject: Předmět emailu
 Email: Email
 Enable editing: Povolit úpravy
@@ -42,6 +49,9 @@ Not Found: Nenalezeno
 Ok: Dobrý
 Oops: Jejda
 Password: Heslo
+Paste this link into your browser: Vložte tento odkaz do svého prohlížeče
+Please, hit the button below: Prosím, stiskněte tlačítko níže
+Please, wait a little, then try again: Prosím, počkejte chvíli ({hours}hod {minutes}min), pak to zkuste znovu
 Register: Zaregistrovat se
 Registration date from: Datum registrace od
 Registration date to: Datum registrace do
@@ -65,11 +75,15 @@ Start date: Datum zahájení
 Subject: Předmět
 Symfoapp: Symfoapp
 Terms accepted: Podmínky přijaty
+Thank you for choosing to build your day with: Děkujeme, že jste si vybrali postavit svůj den s {appname}
+The confirmation email was not sent: Potvrzovací email nebyl odeslán
+The confirmation email was successfully sent: Potvrzovací email byl úspěšně odeslán
 The email was not sent: Email nebyl odeslán
 The email was successfully sent: Email byl úspěšně odeslán
 The new user was created successfully: Nový uživatel ''{email}'' byl úspěšně vytvořen
 The user was deleted successfully: Uživatel ''{email}'' byl úspěšně odstraněn
 The user was updated successfully: Uživatel ''{email}'' byl úspěšně aktualizován
+This email is not yours: Tento email není váš
 Translate on my language: Přeložit na češtinu
 Try again: Opakovat
 Update user: Aktualizovat uživatele
@@ -78,10 +92,15 @@ User email: Email uživatele
 User name: Uživatelské jméno
 User password: Heslo uživatele
 User role: Role uživatele
+User with email could not be found: Uživatel s emailem ''{email}'' nebyl nalezen
 User: Uživatel
 Users: Uživatelé
+We don't spam: Nebudeme vám posílat žádný spam
 Welcome: Vítejte
 Write us: Napište nám
+Your account is already verified: Váš účet je již ověřen
+Your account has not been verified yet: Váš účet ještě nebyl ověřen
+Your account was confirmed successfully: Váš účet byl úspěšně potvrzen
 Your name: Vaše jméno
 Your email: Váš email
 Your password: Vaše heslo

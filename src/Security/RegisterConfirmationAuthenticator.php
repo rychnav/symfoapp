@@ -2,18 +2,15 @@
 
 namespace App\Security;
 
-use App\Controller\SecurityController;
 use App\Entity\User;
-use App\Event\LoginFail;
+use App\Event\ConfirmationFail;
+use App\Event\EmailSuccess;
 use App\Event\LoginSuccess;
-use App\Event\NoConfirmedAccount;
-use App\Form\LoginType;
 use App\Service\TargetPathResolver;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,31 +28,24 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Twig\Environment;
 
-class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
+class RegisterConfirmationAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     private const CSRF_TOKEN_ID = '_token';
     private const FORM_NAME = 'login';
-    public const LOGIN_ROUTE = 'login';
+    public const LOGIN_ROUTE = 'register_confirmation';
 
     private $csrfTokenManager;
     private $entityManager;
     private $eventDispatcher;
-    private $formFactory;
     private $passwordEncoder;
     private $targetPathResolver;
-    private $twig;
     private $urlGenerator;
 
     public function __construct(
-        AuthenticationUtils $authenticationUtils,
         CsrfTokenManagerInterface $csrfTokenManager,
         EntityManagerInterface $entityManager,
-        Environment $environment,
         EventDispatcherInterface $eventDispatcher,
-        FormFactoryInterface $formFactory,
         TargetPathResolver $targetPathResolver,
         UrlGeneratorInterface $urlGenerator,
         UserPasswordEncoderInterface $passwordEncoder
@@ -63,12 +53,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $this->csrfTokenManager = $csrfTokenManager;
         $this->entityManager = $entityManager;
         $this->eventDispatcher = $eventDispatcher;
-        $this->formFactory = $formFactory;
         $this->passwordEncoder = $passwordEncoder;
         $this->targetPathResolver = $targetPathResolver;
-        $this->twig = $environment;
         $this->urlGenerator = $urlGenerator;
-        $this->utils = $authenticationUtils;
     }
 
     /**
@@ -108,6 +95,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             'email' => $request->request->all(self::FORM_NAME)['email'],
             'password' => $request->request->all(self::FORM_NAME)['password'],
             'csrf_token' => $request->request->all(self::FORM_NAME)[self::CSRF_TOKEN_ID],
+            'public_token' => $request->attributes->all()['token'],
+            'user_id' => $request->attributes->all()['id'],
         ];
 
         $request->getSession()->set(
@@ -132,18 +121,59 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
      */
     public function getUser($credentials, UserProviderInterface $userProvider): ?User
     {
-        $token = new CsrfToken('authenticate', $credentials['csrf_token']);
+        // 1. Check CSRF token in Login form
+        $csrf_token = new CsrfToken('authenticate', $credentials['csrf_token']);
 
-        if (!$this->csrfTokenManager->isTokenValid($token)) {
+        if (!$this->csrfTokenManager->isTokenValid($csrf_token)) {
             throw new InvalidCsrfTokenException('Invalid CSRF token.');
         }
 
+        // 2. Check the User is logging in with the correct email
         $user = $this->entityManager->getRepository(User::class)
             ->findOneBy(['email' => $credentials['email']]);
 
         if (!$user) {
-            // Fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Username could not be found.');
+        }
+
+        // 3. Check if the account already verified
+        if ($user->getConfirmedAt()) {
+            throw new CustomUserMessageAuthenticationException('Email is already verified', [
+                'transDomain' => 'messages',
+                'transParams' => ['email' => $user->getEmail()]
+            ]);
+        }
+
+        // 4. The User is OK. Check token
+        $token = $user->getToken();
+
+        if (!$token) {
+            throw new CustomUserMessageAuthenticationException('No token could be found.');
+        }
+
+        // It's redundant, but simple check
+        $isValid = $user->getId() === (int) $credentials['user_id']
+            && $credentials['public_token'] === $token->getPublicToken();
+
+        if (!$isValid) {
+            throw new CustomUserMessageAuthenticationException('Invalid credentials.');
+        }
+
+        // 5. Check the token is not expired
+        $expireDate = $token->getExpiresAt();
+
+        if ($expireDate < new DateTime()) {
+            $this->entityManager->remove($token);
+            $this->entityManager->flush();
+
+            throw new CustomUserMessageAuthenticationException('Credentials have expired.');
+        }
+
+        // 6. Check secret
+        $secret = $token->encode($credentials['public_token'], $credentials['user_id'], $expireDate);
+
+        if (!hash_equals($secret, $token->getToken())) {
+            throw new CustomUserMessageAuthenticationException('Invalid or expired login link.');
         }
 
         return $user;
@@ -165,6 +195,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
      */
     public function checkCredentials($credentials, UserInterface $user): bool
     {
+        // Check password
         $isValid = $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
 
         if(!$isValid) {
@@ -205,23 +236,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
     {
         $user = $token->getUser();
-        $oldToken = $user->getToken();
 
-        if ($oldToken && $oldToken->getExpiresAt() < new DateTime()) {
-            $this->entityManager->remove($oldToken);
-        }
+        $user->setAuthType('email');
+        $user->setConfirmedAt(new DateTime());
+        $this->entityManager->remove($user->getToken());
 
-        $isConfirmed = $user->getConfirmedAt();
+        $this->entityManager->flush();
 
-        if (!$isConfirmed) {
-            $noConfirmed = new NoConfirmedAccount();
-            $this->eventDispatcher->dispatch($noConfirmed, NoConfirmedAccount::NAME);
-        }
-
-        if ($user->getAuthType() !== SecurityController::REGISTER_WITH_EMAIL) {
-            $user->setAuthType(SecurityController::REGISTER_WITH_EMAIL);
-            $this->entityManager->flush();
-        }
+        $event = new EmailSuccess('Your account was confirmed successfully');
+        $this->eventDispatcher->dispatch($event, EmailSuccess::NAME);
 
         $event = new LoginSuccess($user);
         $this->eventDispatcher->dispatch($event, LoginSuccess::NAME);
@@ -231,19 +254,18 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
-        $form = $this->formFactory->create(LoginType::class);
-        $form->handleRequest($request);
+        $message = $exception->getMessage();
+        $domain = substr($message, -1) === '.' ? 'security' : 'messages';
 
-        if($exception && $form->isValid()) {
-            $event = new LoginFail($exception);
-            $this->eventDispatcher->dispatch($event, LoginFail::NAME);
-        }
+        $confirmationFail = new ConfirmationFail(
+            $request->request->all(self::FORM_NAME)['email'],
+            $message,
+            $domain
+        );
+        $this->eventDispatcher->dispatch($confirmationFail, $confirmationFail::NAME);
 
-        $content = $this->twig->render('security/login.html.twig', [
-            'form' => $form->createView(),
-        ]);
-
-        return new Response($content);
+        // To give ability normal login, because current login form sends submit on 'email_confirmation'.
+        return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 
     /**

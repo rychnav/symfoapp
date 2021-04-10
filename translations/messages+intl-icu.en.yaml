@@ -4,10 +4,15 @@ Administrator: Administrator
 All rights reserved: All rights reserved
 Authentication type: Authentication type
 Back to the list: Back to the list
+Button not working: Button not working
 Cancel selection: Cancel selection
 Choose language: Choose language
 Choose the authentication type: Choose the authentication type
 Choose the role: Choose the role
+Confirm your account: Confirm your account
+Confirm: Confirm
+Confirmation email: Confirmation email
+Confirming your account will give you full access to app and all feature notifications will be sent to this email address: Confirming your account will give you full access to {appname} and all feature notifications will be sent to this email address
 Contacts: Contacts
 Create user: Create user
 Select many: Select many
@@ -15,6 +20,8 @@ Date: Date
 Delete permanently: Delete permanently
 Delete user: Delete user
 Disable editing: Disable editing
+Email confirmation: Email confirmation
+Email is already verified: Email ''{email}'' is already verified
 Email subject: Email subject
 Email: Email
 Enable editing: Enable editing
@@ -42,6 +49,9 @@ Not Found: Not found
 Ok: Ok
 Oops: Oops
 Password: Password
+Paste this link into your browser: Paste this link into your browser
+Please, hit the button below: Please, hit the button below
+Please, wait a little, then try again: Please, wait a little ({hours}h {minutes}min), then try again
 Register: Register
 Registration date from: Registration date from
 Registration date to: Registration date to
@@ -65,11 +75,15 @@ Start date: Start date
 Subject: Subject
 Symfoapp: Symfoapp
 Terms accepted: Terms accepted
+Thank you for choosing to build your day with: Thank you for choosing to build your day with {appname}
+The confirmation email was not sent: The confirmation email was not sent
+The confirmation email was successfully sent: The confirmation email was successfully sent
 The email was not sent: The email was not sent
 The email was successfully sent: The email was successfully sent
 The new user was created successfully: The new user ''{email}'' was created successfully
 The user was deleted successfully: The user ''{email}'' was deleted successfully
 The user was updated successfully: The user ''{email}'' was updated successfully
+This email is not yours: This email is not yours
 Translate on my language: Translate on English
 Try again: Try again
 Update user: Update user
@@ -77,11 +91,16 @@ User details: User details
 User email: User email
 User name: User name
 User password: User password
+User with email could not be found: User with email ''{email}'' could not be found
 User role: User role
 User: User
 Users: Users
 Welcome: Welcome
+We don't spam: We don't spam
 Write us: Write us
+Your account is already verified: Your account is already verified
+Your account has not been verified yet: Your account has not been verified yet
+Your account was confirmed successfully: Your account was confirmed successfully
 Your email: Your email
 Your name: Your name
 Your password: Your password

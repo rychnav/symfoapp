@@ -1,0 +1,40 @@
+{% extends 'parts/messages/email/base-email.html.twig' %}
+
+{%- block content -%}
+    <row>
+        <columns>
+            <center>
+                <center>
+                    <img width="200" height="200" alt="{{ "Registration"|trans }}" class="float-center"
+                         src="{{ email.image('@images/icons/registration.png') }}">
+                </center>
+
+                <spacer size="32"></spacer>
+
+                <h2 class="text-center teal-text text-lighten-2">
+                    {{- "Confirm your account"|trans ~ "!" -}}
+                </h2>
+            </center>
+
+            <p class="text-center">{{ "Hi! Welcome here!"|trans({'username': user.firstName}) }}</p>
+            <p>{{ "Thank you for choosing to build your day with"|trans({'appname': app_name}) }}.</p>
+            <p>{{ "Confirming your account will give you full access to app and all feature notifications will be sent to this email address"|trans({'appname': app_name})}}.</p>
+
+            <spacer size="16"></spacer>
+
+            <p>{{ "Please, hit the button below"|trans }}. {{ "We don't spam"|trans ~ ' ' ~ '💯' }}</p>
+
+            {% set confirmation_link = url('register_confirmation', {
+                'id': user.id,
+                'token': user.token.publicToken,
+                '_locale': app.request.locale
+            }) %}
+
+            <button class="sym-email-button small-expanded" href="{{ confirmation_link }}">
+                {{- "Confirm"|trans -}}
+            </button>
+
+            <p class="word-break-force">{{ "Button not working"|trans }}? {{ "Paste this link into your browser"|trans ~ ': ' ~ confirmation_link }}</p>
+        </columns>
+    </row>
+{%- endblock content -%}

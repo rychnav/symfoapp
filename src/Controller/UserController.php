@@ -264,6 +264,11 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Pass the old user into event to get changes after updating.
             $event = new UserUpdateSuccess($user);
+
+            if ($dto->email !== $user->getEmail()) {
+                $user->setConfirmedAt(null);
+            }
+
             $user = $dto->toEntity($form->getData(), $user, $encoder);
 
             $em->persist($user);
@@ -329,6 +334,10 @@ class UserController extends AbstractController
                 'value' => $propertyAccessor->getValue($user, $property),
                 'errors' => $messages,
             ]);
+        }
+
+        if ($property === 'email' and $value !== $user->getEmail()) {
+            $user->setConfirmedAt(null);
         }
 
         $propertyAccessor->setValue(

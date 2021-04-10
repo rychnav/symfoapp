@@ -4,10 +4,15 @@ Administrator: Администратор
 All rights reserved: Все права защищены
 Authentication type: Тип аутентификации
 Back to the list: Назад к списку
+Button not working: Кнопка не работает
 Cancel selection: Отменить выбор
 Choose language: Выберите язык
 Choose the authentication type: Выберите тип аутентификации
 Choose the role: Выберите роль
+Confirm your account: Подтвердите аккаунт
+Confirm: Подтвердить
+Confirmation email: Письмо подтверждение
+Confirming your account will give you full access to app and all feature notifications will be sent to this email address: Подтверждение вашего аккаунта даст вам полный доступ к {appname}, и все будущие уведомления будут приходить на этот электронный адрес
 Contacts: Контакты
 Create user: Создать пользователя
 Date: Дата
@@ -15,6 +20,8 @@ Delete many: Удалить несколько
 Delete permanently: Удалить навсегда
 Delete user: Удалить пользователя
 Disable editing: Запретить редактирование
+Email confirmation: Подтверждение почты
+Email is already verified: Адрес ''{email}'' уже подтвержден
 Email subject: Тема письма
 Email: Почта
 Enable editing: Разрешить редактирование
@@ -42,6 +49,9 @@ Not Found: Не найдено
 Ok: Ок
 Oops: Упс
 Password: Пароль
+Paste this link into your browser: Откройте эту ссылку в вашем браузере
+Please, hit the button below: Пожалуйста, нажмите кнопку внизу
+Please, wait a little, then try again: Пожалуйста подождите немного ({hours}ч {minutes}мин) и попробуйте еще раз
 Register: Зарегистрироваться
 Registration date from: Дата регистрации от
 Registration date to: Дата регистрации до
@@ -65,11 +75,15 @@ Start date: Начальная дата
 Subject: Тема
 Symfoapp: Symfoapp
 Terms accepted: Условия приняты
+Thank you for choosing to build your day with: Спасибо за то, что решили построить свой день с {appname}
+The confirmation email was not sent: Письмо подтверждение не было отправлено
+The confirmation email was successfully sent: Письмо подтверждение успешно отправлено
 The email was not sent: Письмо не было отправлено
 The email was successfully sent: Письмо было успешно отправлено
 The new user was created successfully: Пользователь ''{email}'' успешно создан
 The user was deleted successfully: Пользователь ''{email}'' был успешно удален
 The user was updated successfully: Пользователь ''{email}'' успешно обновлен
+This email is not yours: Это не ваша почта
 Translate on my language: Перевести на русский
 Try again: Еще раз
 Update user: Обновить пользователя
@@ -78,10 +92,15 @@ User email: Почта пользователя
 User name: Имя пользователя
 User password: Пароль пользователя
 User role: Роль пользователя
+User with email could not be found: Пользователь с почтой ''{email}'' не найден
 User: Пользователь
 Users: Пользователи
+We don't spam: Мы не будем спамить
 Welcome: Добро пожаловать
 Write us: Напишите нам
+Your account is already verified: Ваш аккаунт уже подтвержден
+Your account has not been verified yet: Ваш аккаунт еще не подтвержден
+Your account was confirmed successfully: Вы успешно подтвердили свой аккаунт
 Your email: Ваша почта
 Your name: Ваше имя
 Your password: Ваш пароль

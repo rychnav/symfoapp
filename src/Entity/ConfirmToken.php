@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ConfirmTokenRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -72,5 +73,30 @@ class ConfirmToken
         $this->expiresAt = $expiresAt;
 
         return $this;
+    }
+
+    public function encode(string $publicToken, string $identifier, DateTime $expireDate): string
+    {
+        return base64_encode(
+            hash_hmac('sha256', json_encode([
+                $publicToken,
+                $identifier,
+                $expireDate->getTimestamp(),
+            ]),
+                $_ENV['APP_SECRET'],
+                true
+            )
+        );
+    }
+
+    public function setSecret(string $identifier): void
+    {
+        $secret = $this->encode(
+            $this->publicToken,
+            $identifier,
+            $this->expiresAt
+        );
+
+        $this->token = $secret;
     }
 }

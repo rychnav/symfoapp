@@ -28,6 +28,7 @@ security:
                     - App\Security\LoginFormAuthenticator
                     - App\Security\OAuthGoogleAuthenticator
                     - App\Security\OAuthFacebookAuthenticator
+                    - App\Security\RegisterConfirmationAuthenticator
 
             logout:
                 path: logout

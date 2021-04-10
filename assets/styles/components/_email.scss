@@ -59,3 +59,12 @@ body {
         }
     }
 }
+
+/* See: https://github.com/foundation/foundation-emails/issues/491 */
+.word-break-force {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+}

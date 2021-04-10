@@ -1,0 +1,20 @@
+{% extends app.request.isxmlhttprequest ? 'base-ajax.html.twig' : 'base.html.twig' %}
+
+{%- block title -%}{{ "Email confirmation"|trans }}{%- endblock title -%}
+
+{%- block page_content -%}
+    {%- set submit_text = 'Confirm' -%}
+
+    <h1>{{ "Email confirmation"|trans }}</h1>
+
+    {{- block('confirm_email_type', '/security/_form.html.twig') -}}
+{%- endblock page_content -%}
+
+{%- block central_banner -%}
+    {{- block('page_content') -}}
+{%- endblock central_banner -%}
+
+{%- block modal_content -%}
+    {{- block('page_content') -}}
+    {{- block('ajax_flashes', '/parts/messages/_flashes.html.twig') -}}
+{%- endblock modal_content -%}

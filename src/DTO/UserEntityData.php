@@ -52,7 +52,7 @@ class UserEntityData extends AbstractEntityData
 
     public function toEntity(UserEntityData $data, User $user, UserPasswordEncoderInterface $encoder): User
     {
-        $user->setFirstName($data->firstName);
+        $user->setFirstName(mb_convert_case($data->firstName, MB_CASE_TITLE, "UTF-8"));
         $user->setEmail($data->email);
         $user->setRoles($data->roles ?? ['ROLE_USER']);
 

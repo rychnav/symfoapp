@@ -16,6 +16,7 @@ services:
         bind:
             string $publicDir: '%kernel.project_dir%/public'
             string $adminEmail: '%env(ADMIN_EMAIL)%'
+            string $noReplyAddress: '%env(NO_REPLY_ADDRESS)%'
 
     # Makes classes in src/ available to be used as services.
     # This creates a service per class whose id is the fully-qualified class name.

@@ -17,6 +17,14 @@
                 'text': 'Logout',
                 'is_modal_trigger': false,
             }) -}}
+
+            {%- if not app.user.confirmedAt -%}
+                {{- _self.security_item({
+                    'route': 'register_confirm',
+                    'icon_id': 'running_with_errors',
+                    'text': 'Confirm your account'
+                }) -}}
+            {%- endif-%}
         {%- else -%}
             {{- _self.security_item({
                 'route': 'login',
