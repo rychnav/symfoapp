@@ -1,0 +1,17 @@
+{%- macro social_auth_link(params) -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    <a href="{{ path(params.network ~ '_connect') }}"
+       class="btn waves-effect waves-light social-auth-button {{ params.network }}-auth-button">
+        {{- "Login with"|trans ~ ' ' ~ params.network|capitalize -}}
+        {{- svg_icon({'id': params.network, 'class': 'sym-icon__small__light'}) -}}
+    </a>
+{%- endmacro social_auth_link -%}
+
+{%- block social_auth -%}
+    <div class="row">
+        <div class="input-field col s12">
+            {{ _self.social_auth_link({'network': 'google'}) }}
+        </div>
+    </div>
+{%- endblock social_auth -%}

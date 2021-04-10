@@ -41,6 +41,22 @@ class UserSearchType extends ModalFormType
                     ],
                 ],
             ])
+            ->add('authType', ChoiceType::class, [
+                'required' => false,
+                'attr' => ['name' => 'authType'],
+                'label' => 'Authentication type',
+                'placeholder' => 'Choose the authentication type',
+                'choices' => [
+                    'Email' => 'email',
+                    'Google' => 'google',
+                ],
+                'choice_attr' => [
+                    'Choose the authentication type' => [
+                        'disabled' => true,
+                        'selected' => true
+                    ],
+                ],
+            ])
         ;
     }
 }

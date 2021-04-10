@@ -10,6 +10,11 @@
     }
 }
 
-button[type="submit"] {
+button[type="submit"],
+a.social-auth-button {
     @extend %submit-button;
+
+    &.google-auth-button {
+        @extend %google-grad;
+    }
 }

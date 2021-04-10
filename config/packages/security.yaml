@@ -22,8 +22,11 @@ security:
             provider: db_user_provider
 
             guard:
+                entry_point: App\Security\LoginFormAuthenticator
+
                 authenticators:
                     - App\Security\LoginFormAuthenticator
+                    - App\Security\OAuthGoogleAuthenticator
 
             logout:
                 path: logout

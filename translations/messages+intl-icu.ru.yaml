@@ -2,9 +2,11 @@ Actions: Действия
 Add more: Добавить еще
 Administrator: Администратор
 All rights reserved: Все права защищены
+Authentication type: Тип аутентификации
 Back to the list: Назад к списку
 Cancel selection: Отменить выбор
 Choose language: Выберите язык
+Choose the authentication type: Выберите тип аутентификации
 Choose the role: Выберите роль
 Contacts: Контакты
 Create user: Создать пользователя
@@ -20,6 +22,7 @@ Error: Ошибка
 First name: Имя
 Forbidden: Запрещено
 From: От
+Google: Google
 Hi! Welcome here!: Привет, {username}! Добро пожаловать!
 ID: №
 I want to permanently delete an entity: >-
@@ -27,6 +30,7 @@ I want to permanently delete an entity: >-
         user {Я хочу безвозвратно удалить пользователя ''{entity_title}''!}
         other {Я хочу безвозвратно удалить}
     }
+Login with: Войти с
 Login: Войти
 Logout: Выйти
 Message text: Текст сообщения

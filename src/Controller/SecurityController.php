@@ -77,6 +77,7 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $dto->toEntity($form->getData(), new User(), $encoder);
+            $user->setAuthType(self::REGISTER_WITH_EMAIL);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

@@ -9,15 +9,16 @@ class UserSearchData
 {
     public $firstName;
     public $email;
+    public $roles;
 
     /**
      * @Assert\Expression(
-     *     expression="this.firstName || this.email || value",
+     *     expression="this.firstName || this.email || this.roles || value",
      *     message="At least one of the fields must be filled",
      *     payload={"severity"="error"}
      * )
      */
-    public $roles;
+    public $authType;
 
     public function fromForm(FormInterface $form): self
     {
@@ -26,6 +27,7 @@ class UserSearchData
         $data->firstName = $form->get('firstName')->getData() ?: 'null';
         $data->email = $form->get('email')->getData() ?: 'null';
         $data->roles = $form->get('roles')->getData() ?: 'null';
+        $data->authType = $form->get('authType')->getData() ?: 'null';
 
         return $data;
     }

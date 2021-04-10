@@ -2,9 +2,11 @@ Actions: Činy
 Add more: Přidat další
 Administrator: Administrátor
 All rights reserved: Všechna práva vyhrazena
+Authentication type: Typ ověření
 Back to the list: Zpět na seznam
 Cancel selection: Zrušit výběr
 Choose language: Zvolte jazyk
+Choose the authentication type: Zvolte typ ověření
 Choose the role: Zvolte roli
 Contacts: Kontakty
 Create user: Vytvořit uživatele
@@ -20,6 +22,7 @@ Error: Chyba
 First name: Křestní jméno
 Forbidden: Zakázáno
 From: Od
+Google: Google
 Hi! Welcome here!: Ahoj, {username}! Vítejte tady!
 I want to permanently delete an entity: >-
     {entity, select,
@@ -27,6 +30,7 @@ I want to permanently delete an entity: >-
         other {Chci trvale odstranit}
     }
 ID: №
+Login with: Přihlásit se pomocí
 Login: Přihlásit se
 Logout: Odhlásit se
 Message text: Text zprávy

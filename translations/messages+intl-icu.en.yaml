@@ -2,9 +2,11 @@ Actions: Actions
 Add more: Add more
 Administrator: Administrator
 All rights reserved: All rights reserved
+Authentication type: Authentication type
 Back to the list: Back to the list
 Cancel selection: Cancel selection
 Choose language: Choose language
+Choose the authentication type: Choose the authentication type
 Choose the role: Choose the role
 Contacts: Contacts
 Create user: Create user
@@ -20,6 +22,7 @@ Error: Error
 First name: First name
 Forbidden: Forbidden
 From: From
+Google: Google
 Hi! Welcome here!: Hi, {username}! Welcome here!
 ID: №
 I want to permanently delete an entity: >-
@@ -27,6 +30,7 @@ I want to permanently delete an entity: >-
         user {I want to permanently delete a user with email ''{entity_title}''!}
         other {I want to permanently delete}
     }
+Login with: Login with
 Login: Login
 Logout: Logout
 Message text: Message text

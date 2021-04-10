@@ -40,6 +40,11 @@
                         </th>
 
                         <th scope="col">
+                            {%- if can_sort -%}{{- _self.sort_link({'sort_path': sort_path, 'sort_property': 'authType'}) -}}{%- endif -%}
+                            <span>{{- 'Authentication type'|trans -}}</span>
+                        </th>
+
+                        <th scope="col">
                             {{- 'Actions'|trans -}}
                         </th>
                     </tr>
@@ -77,6 +82,13 @@
                                     <span>{{- 'Administrator'|trans -}}</span>
                                 </label>
                             </td>
+
+                            <td>
+                                <span data-field="authType" data-type="text" data-old="{{ user.authType }}">
+                                    {{- user.authType|capitalize -}}
+                                </span>
+                            </td>
+
 
                             <td>
                                 {{- _self.action_link({

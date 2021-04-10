@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Controller\SecurityController;
 use App\Entity\User;
 use App\Event\LoginFail;
 use App\Event\LoginSuccess;
@@ -202,6 +203,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
     {
         $user = $token->getUser();
+
+        if ($user->getAuthType() !== SecurityController::REGISTER_WITH_EMAIL) {
+            $user->setAuthType(SecurityController::REGISTER_WITH_EMAIL);
+            $this->entityManager->flush();
+        }
 
         $event = new LoginSuccess($user);
         $this->eventDispatcher->dispatch($event, LoginSuccess::NAME);

@@ -8,6 +8,7 @@
     <h1 class="center-align">{{ "Registration"|trans }}</h1>
 
     {{- block('register_type', '/security/_form.html.twig') -}}
+    {{- block('social_auth', '/security/_social-auth.html.twig') -}}
 {%- endblock page_content -%}
 
 {%- block central_banner -%}

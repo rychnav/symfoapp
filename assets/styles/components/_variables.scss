@@ -30,6 +30,11 @@ $sym-success: #81c784;  // green lighten-2
         linear-gradient(30deg, $second 60%, $third 60%);
 }
 
+%google-grad {
+    background:
+        linear-gradient(70deg, #4285f4 20%, #db4437 20% 50%, #f4b400 50% 80%, #0f9d58 80%);
+}
+
 /** Animations */
 
 @keyframes fadify {

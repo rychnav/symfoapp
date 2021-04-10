@@ -84,7 +84,7 @@ class UserController extends AbstractController
 
     /**
      * @Route(
-     *     path="/list/sort/{page<\d+>?1}/{sort_property<id|firstName|email|roles>?id}/{sort_order<asc|desc>?asc}",
+     *     path="/list/sort/{page<\d+>?1}/{sort_property<id|firstName|email|roles|authType>?id}/{sort_order<asc|desc>?asc}",
      *     name="user_list_sort",
      *     methods={"GET"},
      * )
@@ -136,6 +136,7 @@ class UserController extends AbstractController
                 'firstName' => $data->firstName,
                 'email' => $data->email,
                 'roles' => $data->roles,
+                'authType' => $data->authType,
             ]);
         }
 
@@ -146,7 +147,7 @@ class UserController extends AbstractController
 
     /**
      * @Route(
-     *     path="/list/{page<\d+>?1}/search/{firstName}/{email}/{roles}",
+     *     path="/list/{page<\d+>?1}/search/{firstName}/{email}/{roles}/{authType}",
      *     name="user_list_search",
      *     methods={"GET"},
      * )
@@ -158,12 +159,13 @@ class UserController extends AbstractController
         string $firstName,
         string $email,
         string $roles,
+        string $authType,
         TargetPathResolver $targetPathResolver
     ): Response {
         $targetPathResolver->setPath();
 
         $repository = $this->getDoctrine()->getRepository(User::class);
-        $query = $repository->search($firstName, $email, $roles);
+        $query = $repository->search($firstName, $email, $roles, $authType);
 
         $idBag->saveFromQuery($query, self::USER_BAG_KEY);
 
@@ -185,6 +187,7 @@ class UserController extends AbstractController
             'firstName' => $firstName,
             'email' => $email,
             'roles' => $roles,
+            'authType' => $authType,
         ]);
     }
 
