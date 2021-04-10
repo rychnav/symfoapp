@@ -28,6 +28,8 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
  */
 class SecurityController extends AbstractController
 {
+    public const REGISTER_WITH_EMAIL = 'email';
+
     /**
      * @Route(
      *     path="/login",

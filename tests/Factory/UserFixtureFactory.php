@@ -2,6 +2,7 @@
 
 namespace App\Tests\Factory;
 
+use App\Controller\SecurityController;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Zenstruck\Foundry\RepositoryProxy;
@@ -24,6 +25,7 @@ class UserFixtureFactory extends ModelFactory
         return [
             'email' => self::faker()->unique()->email,
             'firstName' => self::faker()->firstName(),
+            'authType' => SecurityController::REGISTER_WITH_EMAIL
         ];
     }
 

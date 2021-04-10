@@ -30,7 +30,7 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $password;
 
@@ -38,6 +38,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=50)
      */
     private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $authType;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $googleId;
 
     public function getId(): ?int
     {
@@ -113,6 +123,30 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getAuthType(): ?string
+    {
+        return $this->authType;
+    }
+
+    public function setAuthType(?string $authType): self
+    {
+        $this->authType = $authType;
+
+        return $this;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): self
+    {
+        $this->googleId = $googleId;
 
         return $this;
     }
