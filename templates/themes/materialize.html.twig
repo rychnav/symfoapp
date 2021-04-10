@@ -21,7 +21,7 @@
         {{- svg_icon({'id': 'lock', 'class': 'prefix sym-icon__small__dark'}) -}}
     {%- endif -%}
 
-    {%- if type in ['search', 'text'] -%}
+    {%- if type in ['search', 'text'] and form.vars.block_prefixes[1] not in ['date'] -%}
         {{- svg_icon({'id': 'short_text', 'class': 'prefix sym-icon__small__dark'}) -}}
     {%- endif -%}
 
@@ -99,6 +99,59 @@
         {{- block('choice_widget_options') -}}
     </select>
 {%- endblock choice_widget_collapsed -%}
+
+{# From To Date  #}
+
+{%- block from_to_date_widget -%}
+    <div class="input-field col s6">
+        {{- form_widget(form.from) -}}
+        {{- form_label(form.from) -}}
+
+        {% if form.from.vars.errors is empty %}
+            {{- form_help(form.from) -}}
+        {% endif %}
+
+        {{- form_errors(form.from) -}}
+    </div>
+
+    <div class="input-field col s6">
+        {{- form_widget(form.to) -}}
+        {{- form_label(form.to) -}}
+
+        {% if form.to.vars.errors is empty %}
+            {{- form_help(form.to) -}}
+        {% endif %}
+
+        {{- form_errors(form.to) -}}
+    </div>
+{%- endblock from_to_date_widget -%}
+
+{%- block from_to_date_row -%}
+    <div class="row">
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock from_to_date_row -%}
+
+{# Date #}
+
+{%- block date_widget -%}
+    {% from 'parts/icons/_svg.html.twig' import svg_icon %}
+
+    {%- if widget == 'single_text' -%}
+        {%- set attr = attr|default({})|merge({class: 'datepicker '}) -%}
+
+        {{- svg_icon({'id': 'event', 'class': 'prefix sym-icon__small__dark'}) -}}
+        {{- block('form_widget_simple') -}}
+    {%- else -%}
+        <div {{ block('widget_container_attributes') }}>
+            {{- date_pattern|replace({
+                '{{ year }}': form_widget(form.year),
+                '{{ month }}': form_widget(form.month),
+                '{{ day }}': form_widget(form.day),
+            })|raw -}}
+        </div>
+    {%- endif -%}
+{%- endblock date_widget -%}
 
 {# Label #}
 

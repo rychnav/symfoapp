@@ -57,6 +57,11 @@ class UserSearchType extends ModalFormType
                     ],
                 ],
             ])
+            ->add('registerRange', FromToDateType::class, [
+                'required' => false,
+                'from_label' => 'Registration date from',
+                'to_label' => 'Registration date to',
+            ])
         ;
     }
 }

@@ -62,4 +62,14 @@ select:-webkit-autofill {
         width: 0;
         padding: 0;
     }
+
+    .col.s6 {
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
 }

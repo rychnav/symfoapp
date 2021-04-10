@@ -18,6 +18,7 @@ Disable editing: Disable editing
 Email subject: Email subject
 Email: Email
 Enable editing: Enable editing
+End date: End date
 Error: Error
 First name: First name
 Forbidden: Forbidden
@@ -42,6 +43,9 @@ Ok: Ok
 Oops: Oops
 Password: Password
 Register: Register
+Registration date from: Registration date from
+Registration date to: Registration date to
+Registration date: Registration date
 Registration: Registration
 Remember me: Remember me
 Repeat password: Repeat password
@@ -57,6 +61,7 @@ Show Flash messages: Show Flash messages
 Sign in: Sign in
 Sign out: Sign out
 Something went wrong: Something went wrong
+Start date: Start date
 Subject: Subject
 Symfoapp: Symfoapp
 Terms accepted: Terms accepted

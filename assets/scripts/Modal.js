@@ -52,6 +52,7 @@ let Modal = (() => {
 
             if(Modal.form !== null) {
                 await Materializer.initSelects();
+                await Materializer.initDatePickers();
                 Modal.form.addEventListener('submit', postForm);
 
                 await Flasher.init();

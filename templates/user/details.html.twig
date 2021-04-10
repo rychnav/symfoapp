@@ -34,6 +34,7 @@
                 <th scope="col">{{ 'Email'|trans }}</th>
                 <th scope="col">{{ 'Roles'|trans }}</th>
                 <th scope="col">{{ 'Authentication type'|trans }}</th>
+                <th scope="col">{{ 'Registration date'|trans }}</th>
                 <th scope="col">{{ 'Actions'|trans }}</th>
             </tr>
         </thead>
@@ -44,6 +45,7 @@
                 <td>{{ user.email }}</td>
                 <td>{{ role|trans }}</td>
                 <td>{{ user.authType|capitalize }}</td>
+                <td>{{- trans_date(user.registerAt|date, "dd LLLL yyyy - HH:mm, EEEE") -}}</td>
                 <td class="td-actions">
                     {{- action_link({
                         'route': 'user_update',

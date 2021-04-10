@@ -18,6 +18,7 @@ Disable editing: Запретить редактирование
 Email subject: Тема письма
 Email: Почта
 Enable editing: Разрешить редактирование
+End date: Конечная дата
 Error: Ошибка
 First name: Имя
 Forbidden: Запрещено
@@ -42,6 +43,9 @@ Ok: Ок
 Oops: Упс
 Password: Пароль
 Register: Зарегистрироваться
+Registration date from: Дата регистрации от
+Registration date to: Дата регистрации до
+Registration date: Дата регистрации
 Registration: Регистрация
 Remember me: Запомнить меня
 Repeat password: Повтор пароля
@@ -57,6 +61,7 @@ Show Flash messages: Показать Флеш сообщения
 Sign in: Войти
 Sign out: Выйти
 Something went wrong: Что-то не так
+Start date: Начальная дата
 Subject: Тема
 Symfoapp: Symfoapp
 Terms accepted: Условия приняты

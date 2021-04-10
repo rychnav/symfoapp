@@ -25,7 +25,8 @@ class UserFixtureFactory extends ModelFactory
         return [
             'email' => self::faker()->unique()->email,
             'firstName' => self::faker()->firstName(),
-            'authType' => SecurityController::REGISTER_WITH_EMAIL
+            'authType' => SecurityController::REGISTER_WITH_EMAIL,
+            'registerAt' => self::faker()->dateTime(),
         ];
     }
 

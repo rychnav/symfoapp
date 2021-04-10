@@ -8,6 +8,7 @@ use App\Event\RegisterSuccess;
 use App\Form\LoginType;
 use App\Form\RegisterType;
 use App\Security\LoginFormAuthenticator;
+use DateTime;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -78,6 +79,7 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $dto->toEntity($form->getData(), new User(), $encoder);
             $user->setAuthType(self::REGISTER_WITH_EMAIL);
+            $user->setRegisterAt(new DateTime());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

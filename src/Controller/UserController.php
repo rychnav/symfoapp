@@ -15,6 +15,7 @@ use App\Form\UserType;
 use App\Service\IdBag;
 use App\Service\Pager;
 use App\Service\TargetPathResolver;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,7 +85,7 @@ class UserController extends AbstractController
 
     /**
      * @Route(
-     *     path="/list/sort/{page<\d+>?1}/{sort_property<id|firstName|email|roles|authType>?id}/{sort_order<asc|desc>?asc}",
+     *     path="/list/sort/{page<\d+>?1}/{sort_property<id|firstName|email|roles|authType|registerAt>?id}/{sort_order<asc|desc>?asc}",
      *     name="user_list_sort",
      *     methods={"GET"},
      * )
@@ -137,6 +138,8 @@ class UserController extends AbstractController
                 'email' => $data->email,
                 'roles' => $data->roles,
                 'authType' => $data->authType,
+                'registerFrom' => $data->registerRange['from'],
+                'registerTo' => $data->registerRange['to'],
             ]);
         }
 
@@ -147,7 +150,7 @@ class UserController extends AbstractController
 
     /**
      * @Route(
-     *     path="/list/{page<\d+>?1}/search/{firstName}/{email}/{roles}/{authType}",
+     *     path="/list/{page<\d+>?1}/search/{firstName}/{email}/{roles}/{authType}/{registerFrom}/{registerTo}",
      *     name="user_list_search",
      *     methods={"GET"},
      * )
@@ -160,12 +163,14 @@ class UserController extends AbstractController
         string $email,
         string $roles,
         string $authType,
+        string $registerFrom,
+        string $registerTo,
         TargetPathResolver $targetPathResolver
     ): Response {
         $targetPathResolver->setPath();
 
         $repository = $this->getDoctrine()->getRepository(User::class);
-        $query = $repository->search($firstName, $email, $roles, $authType);
+        $query = $repository->search($firstName, $email, $roles, $authType, $registerFrom, $registerTo);
 
         $idBag->saveFromQuery($query, self::USER_BAG_KEY);
 
@@ -188,6 +193,8 @@ class UserController extends AbstractController
             'email' => $email,
             'roles' => $roles,
             'authType' => $authType,
+            'registerFrom' => $registerFrom,
+            'registerTo' => $registerTo,
         ]);
     }
 
@@ -213,6 +220,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $dto->toEntity($form->getData(), new User(), $encoder);
+            $user->setRegisterAt(new DateTime());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -48,6 +49,22 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $googleId;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $registerAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $confirmedAt;
+
+    /**
+     * @ORM\OneToOne(targetEntity=ConfirmToken::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $token;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -168,6 +185,30 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getRegisterAt(): ?DateTimeInterface
+    {
+        return $this->registerAt;
+    }
+
+    public function setRegisterAt(DateTimeInterface $registerAt): self
+    {
+        $this->registerAt = $registerAt;
+
+        return $this;
+    }
+
+    public function getConfirmedAt(): ?DateTimeInterface
+    {
+        return $this->confirmedAt;
+    }
+
+    public function setConfirmedAt(?DateTimeInterface $confirmedAt): self
+    {
+        $this->confirmedAt = $confirmedAt;
+
+        return $this;
+    }
+
     /**
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
@@ -186,5 +227,17 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here.
         //$this->plainPassword = null;
+    }
+
+    public function getToken(): ?ConfirmToken
+    {
+        return $this->token;
+    }
+
+    public function setToken(?ConfirmToken $token): self
+    {
+        $this->token = $token;
+
+        return $this;
     }
 }

@@ -18,6 +18,7 @@ Disable editing: Zakázat úpravy
 Email subject: Předmět emailu
 Email: Email
 Enable editing: Povolit úpravy
+End date: Datum ukončení
 Error: Chyba
 First name: Křestní jméno
 Forbidden: Zakázáno
@@ -42,6 +43,9 @@ Ok: Dobrý
 Oops: Jejda
 Password: Heslo
 Register: Zaregistrovat se
+Registration date from: Datum registrace od
+Registration date to: Datum registrace do
+Registration date: Datum registrace
 Registration: Registrace
 Remember me: Zapamatovat mě
 Repeat password: Opakování hesla
@@ -57,6 +61,7 @@ Show Flash messages: Zobrazit Bleskové zprávy
 Sign in: Přihlásit se
 Sign out: Odhlásit se
 Something went wrong: Něco se pokazilo
+Start date: Datum zahájení
 Subject: Předmět
 Symfoapp: Symfoapp
 Terms accepted: Podmínky přijaty

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use App\Service\IdBag;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -53,7 +54,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery();
     }
 
-    public function search(string $firstName, string $email, string $roles, string $authType): Query
+    public function search(string $firstName, string $email, string $roles, string $authType, string $registerFrom, string $registerTo): Query
     {
         $qb = $this->getFromSession();
 
@@ -75,6 +76,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         if ($authType && $authType !== 'null') {
             $qb->andWhere("u.authType LIKE :authType_val")
                 ->setParameter('authType_val', "%$authType%");
+        }
+
+        if ($registerFrom !== 'null' || $registerTo !== 'null') {
+            $from = $registerFrom === 'null' ? new DateTime() : new DateTime($registerFrom);
+            $from->setTime(0, 0, 0);
+            $to = $registerTo === 'null' ? new DateTime() : new DateTime($registerTo);
+            $to->setTime(23, 59, 59);
+
+            $qb->andWhere($qb->expr()->between('u.registerAt', ':register_from', ':register_to'))
+                ->setParameter('register_from', $from)
+                ->setParameter('register_to', $to)
+            ;
         }
 
         return $qb->getQuery();

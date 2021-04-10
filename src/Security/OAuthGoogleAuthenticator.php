@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Event\LoginSuccess;
 use App\Repository\UserRepository;
 use App\Service\TargetPathResolver;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2ClientInterface;
@@ -83,6 +84,7 @@ class OAuthGoogleAuthenticator extends SocialAuthenticator
         if(!$existingUser) {
             $authUser->setFirstName($googleUser->getName());
             $authUser->setRoles(['ROLE_USER']);
+            $authUser->setRegisterAt(new DateTime());
 
             $this->entityManager->persist($authUser);
         }
