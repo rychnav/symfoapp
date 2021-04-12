@@ -61,6 +61,11 @@ class User implements UserInterface
     private $confirmedAt;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastResetAt;
+
+    /**
      * @ORM\OneToOne(targetEntity=ConfirmToken::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
@@ -193,6 +198,18 @@ class User implements UserInterface
     public function setRegisterAt(DateTimeInterface $registerAt): self
     {
         $this->registerAt = $registerAt;
+
+        return $this;
+    }
+
+    public function getLastResetAt(): ?DateTimeInterface
+    {
+        return $this->lastResetAt;
+    }
+
+    public function setLastResetAt(?DateTimeInterface $lastResetAt): self
+    {
+        $this->lastResetAt = $lastResetAt;
 
         return $this;
     }
