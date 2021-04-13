@@ -28,16 +28,22 @@ Enable editing: Enable editing
 End date: End date
 Error: Error
 First name: First name
+First you need to verify your account: First you need to verify your account
 Forbidden: Forbidden
 From: From
 Google: Google
+Hello: Hello, {username}
 Hi! Welcome here!: Hi, {username}! Welcome here!
 ID: №
+If you did not mean to reset your password, just ignore this email: If you did not mean to reset your password, just ignore this email
+It seems to you need a password reset: It seems to you need a password reset
+It's easy and takes a few seconds: It's easy and takes a few seconds
 I want to permanently delete an entity: >-
     {entity, select,
         user {I want to permanently delete a user with email ''{entity_title}''!}
         other {I want to permanently delete}
     }
+Later you will be able to make a new request: Later you will be able to make a new request
 Login with: Login with
 Login: Login
 Logout: Logout
@@ -50,6 +56,8 @@ Ok: Ok
 Oops: Oops
 Password: Password
 Paste this link into your browser: Paste this link into your browser
+Please, be advised that this link can be used only once: Please, be advised that this link can be used only once
+Please, click the button below to create a new password: Please, click the button below to create a new password
 Please, hit the button below: Please, hit the button below
 Please, wait a little, then try again: Please, wait a little ({hours}h {minutes}min), then try again
 Register: Register
@@ -63,6 +71,10 @@ Repeat your password, please: Repeat your password, please
 Delete many: Delete many
 Reply: Reply
 Reset filters: Reset filters
+Reset password link is expired: Reset password link is expired
+Reset password link is invalid: Reset password link is invalid
+Reset password: Reset password
+Resetting password: Resetting password
 Roles: Roles
 Search users: Search users
 Send: Send
@@ -73,6 +85,7 @@ Sign out: Sign out
 Something went wrong: Something went wrong
 Start date: Start date
 Subject: Subject
+Such user does not exist: Such user does not exist
 Symfoapp: Symfoapp
 Terms accepted: Terms accepted
 Thank you for choosing to build your day with: Thank you for choosing to build your day with {appname}

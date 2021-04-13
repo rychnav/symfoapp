@@ -12,7 +12,8 @@
     - ability to edit entities directly in the list;
     - ability to delete multiply entities at once;
     - sending emails;
-    - social login (Google, Facebook);
+    - email or social login (Google, Facebook);
+    - registration and resetting password;
 - **Changed**
 - **Deprecated**
 - **Removed**

@@ -28,16 +28,22 @@ Enable editing: Povolit úpravy
 End date: Datum ukončení
 Error: Chyba
 First name: Křestní jméno
+First you need to verify your account: Nejprve musíte ověřit svůj účet
 Forbidden: Zakázáno
 From: Od
 Google: Google
+Hello: Ahoj, {username}
 Hi! Welcome here!: Ahoj, {username}! Vítejte tady!
+If you did not mean to reset your password, just ignore this email: Pokud jste nechtěli resetovat heslo, stačí ignorovat tento email
+It seems to you need a password reset: Zdá se, že potřebujete resetovat heslo
+It's easy and takes a few seconds: Je to snadné a zabere to pár sekund
 I want to permanently delete an entity: >-
     {entity, select,
         user {Chci trvale odstranit uživatele s emailem ''{entity_title}''!}
         other {Chci trvale odstranit}
     }
 ID: №
+Later you will be able to make a new request: Později budete moci podat nový požadavek
 Login with: Přihlásit se pomocí
 Login: Přihlásit se
 Logout: Odhlásit se
@@ -50,6 +56,8 @@ Ok: Dobrý
 Oops: Jejda
 Password: Heslo
 Paste this link into your browser: Vložte tento odkaz do svého prohlížeče
+Please, be advised that this link can be used only once: Prosím, upozorněte, že tento odkaz může být použit pouze jednou
+Please, click the button below to create a new password: Prosím, klikněte na tlačítko níže pro vytvoření nového hesla
 Please, hit the button below: Prosím, stiskněte tlačítko níže
 Please, wait a little, then try again: Prosím, počkejte chvíli ({hours}hod {minutes}min), pak to zkuste znovu
 Register: Zaregistrovat se
@@ -62,12 +70,17 @@ Repeat password: Opakování hesla
 Repeat your password, please: Zopakujte heslo, prosím
 Reply: Odpovědět
 Reset filters: Obnovit filtry
+Reset password link is expired: Platnost odkazu k obnovení hesla vypršela
+Reset password link is invalid: Odkaz na nové heslo je neplatný
+Reset password: Obnovit heslo
+Resetting password: Obnovení hesla
 Roles: Role
 Search users: Vyhledat uživatele
 Select many: Vybrat více
 Send: Odeslat
 Show details: Zobrazit podrobnosti
 Show Flash messages: Zobrazit Bleskové zprávy
+Such user does not exist: Takový uživatel neexistuje
 Sign in: Přihlásit se
 Sign out: Odhlásit se
 Something went wrong: Něco se pokazilo

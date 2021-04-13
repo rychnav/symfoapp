@@ -5,12 +5,15 @@ namespace App\EventSubscriber;
 use App\DTO\FlashAction;
 use App\DTO\FlashMessage;
 use App\Event\ConfirmationFail;
+use App\Event\InvalidToken;
 use App\Event\LoginFail;
 use App\Event\LoginSuccess;
 use App\Event\NoConfirmedAccount;
+use App\Event\NotYetReset;
 use App\Event\RegisterSuccess;
 use App\Event\ShouldWait;
 use DateTime;
+use App\Event\TokenExpired;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -90,7 +93,7 @@ class SecuritySubscriber implements EventSubscriberInterface
 
     public function onConfirmationFail(ConfirmationFail $event): void
     {
-        $email = $event->getEmail();
+        $email = $event->getEmail() ?? 'NULL';
         $message = $event->getMessage();
 
         $flashMessage = new FlashMessage(

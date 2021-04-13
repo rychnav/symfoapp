@@ -1,0 +1,54 @@
+{% extends 'parts/messages/email/base-email.html.twig' %}
+
+{%- block content -%}
+    <row>
+        <columns>
+            <center>
+                <center>
+                    <img width="200" height="200" alt="{{ "Password"|trans }}" class="float-center"
+                         src="{{ email.image('@images/icons/password.png') }}">
+                </center>
+
+                <spacer size="32"></spacer>
+
+                <h1 class="text-center">
+                    {{- "Hello"|trans({"username": user.firstName}) -}}
+                </h1>
+
+                <spacer size="16"></spacer>
+
+                <h2 class="text-center teal-text text-lighten-2">
+                    {{- "It seems to you need a password reset"|trans ~ "?" -}}
+                </h2>
+
+                <spacer size="16"></spacer>
+
+                <p class="text-center">
+                    {{- "Please, click the button below to create a new password"|trans }}.
+                </p>
+
+                <p class="text-center">
+                    {{ "It's easy and takes a few seconds"|trans -}}.
+                </p>
+
+                <p class="text-center">
+                    {{- '📌 ' ~ "If you did not mean to reset your password, just ignore this email"|trans -}}.
+                </p>
+
+                <spacer size="32"></spacer>
+
+                {% set confirmation_link = url('reset_password', {'id': user.id, 'token': user.token.publicToken}) %}
+
+                <button class="sym-email-button small-expanded" href="{{ confirmation_link }}">
+                    {{- "Confirm"|trans -}}
+                </button>
+
+                <p class="word-break-force">{{ "Button not working"|trans }}? {{ "Paste this link into your browser"|trans ~ ': ' ~ confirmation_link }}</p>
+
+                <small> {{- '⏱️ ' ~ "Please, be advised that this link can be used only once"|trans }}.
+                    {{ "Later you will be able to make a new request"|trans -}}.
+                </small>
+            </center>
+        </columns>
+    </row>
+{%- endblock content -%}

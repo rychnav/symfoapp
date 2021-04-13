@@ -28,16 +28,22 @@ Enable editing: Разрешить редактирование
 End date: Конечная дата
 Error: Ошибка
 First name: Имя
+First you need to verify your account: Сначала вам нужно подтвердить аккаунт
 Forbidden: Запрещено
 From: От
 Google: Google
+Hello: Привет, {username}
 Hi! Welcome here!: Привет, {username}! Добро пожаловать!
 ID: №
+If you did not mean to reset your password, just ignore this email: Если Вы не собирались сбрасывать пароль, просто проигнорируйте это письмо
+It seems to you need a password reset: Похоже, что вам нужно сбросить пароль
+It's easy and takes a few seconds: Это просто и займет несколько секунд
 I want to permanently delete an entity: >-
     {entity, select,
         user {Я хочу безвозвратно удалить пользователя ''{entity_title}''!}
         other {Я хочу безвозвратно удалить}
     }
+Later you will be able to make a new request: Позже вы сможете создать новый запрос
 Login with: Войти с
 Login: Войти
 Logout: Выйти
@@ -50,6 +56,8 @@ Ok: Ок
 Oops: Упс
 Password: Пароль
 Paste this link into your browser: Откройте эту ссылку в вашем браузере
+Please, be advised that this link can be used only once: Пожалуйста, обратите внимание, что эту ссылку можно использовать только один раз
+Please, click the button below to create a new password: Пожалуйста, нажмите кнопку ниже, чтобы создать новый пароль
 Please, hit the button below: Пожалуйста, нажмите кнопку внизу
 Please, wait a little, then try again: Пожалуйста подождите немного ({hours}ч {minutes}мин) и попробуйте еще раз
 Register: Зарегистрироваться
@@ -61,6 +69,10 @@ Remember me: Запомнить меня
 Repeat password: Повтор пароля
 Repeat your password, please: Повторите пароль, пожалуйста
 Reset filters: Сбросить фильтры
+Reset password link is expired: Срок действия ссылки уже истек
+Reset password link is invalid: Ваша ссылка недействительна
+Reset password: Сбросить пароль
+Resetting password: Сброс пароля
 Reply: Ответить
 Roles: Роли
 Search users: Искать пользователей
@@ -73,6 +85,7 @@ Sign out: Выйти
 Something went wrong: Что-то не так
 Start date: Начальная дата
 Subject: Тема
+Such user does not exist: Нет такого пользователя
 Symfoapp: Symfoapp
 Terms accepted: Условия приняты
 Thank you for choosing to build your day with: Спасибо за то, что решили построить свой день с {appname}

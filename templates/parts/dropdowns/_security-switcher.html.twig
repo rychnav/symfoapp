@@ -38,6 +38,14 @@
                 'text': 'Register'
             }) -}}
         {%- endif -%}
+
+        {%- if not app.user or app.user.confirmedAt -%}
+            {{- _self.security_item({
+                'route': 'reset_confirm',
+                'icon_id': 'security',
+                'text': 'Reset password'
+            }) -}}
+        {%- endif -%}
     </ul>
 {%- endblock security_switcher_content -%}
 
