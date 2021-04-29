@@ -27,7 +27,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class UserController
+ * Class AdminController
  * @package App\Controller
  * @Route(
  *     path="/{_locale}/admin/user",
@@ -35,7 +35,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *     requirements={"_locale": "%app_locales%"},
  * )
  */
-class UserController extends AbstractController
+class AdminController extends AbstractController
 {
     private const ITEMS_PER_PAGE = 5;
     private const USER_BAG_KEY = IdBag::USER_BAG_KEY;
