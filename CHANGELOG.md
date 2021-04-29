@@ -14,6 +14,7 @@
     - sending emails;
     - email or social login (Google, Facebook);
     - registration and resetting password;
+    - user profile page;
 - **Changed**
 - **Deprecated**
 - **Removed**

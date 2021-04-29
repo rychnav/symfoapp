@@ -99,6 +99,7 @@ The user was updated successfully: Пользователь ''{email}'' успе
 This email is not yours: Это не ваша почта
 Translate on my language: Перевести на русский
 Try again: Еще раз
+Update account: Обновить профиль
 Update user: Обновить пользователя
 User details: Подробно о пользователе
 User email: Почта пользователя
@@ -114,6 +115,7 @@ Write us: Напишите нам
 Your account is already verified: Ваш аккаунт уже подтвержден
 Your account has not been verified yet: Ваш аккаунт еще не подтвержден
 Your account was confirmed successfully: Вы успешно подтвердили свой аккаунт
+Your account was updated successfully: Ваш аккаунт был успешно обновлен
 Your email: Ваша почта
 Your name: Ваше имя
 Your password: Ваш пароль

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{%- block title %}{{ app.user.firstName }}{% endblock title -%}
+
+{%- block page_content -%}
+    {%- set submit_text = 'Update account' -%}
+
+    <h1>{{ "Hello"|trans({'username': app.user.firstName}) }}</h1>
+
+    {{- block('profile_type', '/profile/_form.html.twig') -}}
+{%- endblock page_content -%}
+
+{%- block central_banner -%}
+    {{- block('page_content') -}}
+{%- endblock central_banner -%}
